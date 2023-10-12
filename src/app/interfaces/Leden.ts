@@ -9,7 +9,8 @@ export class Leden
     telefoon: number;
     Address: string;
     betaald: boolean;
-    constructor(id:null,naam:string, voornaam:string, email:string, afdeling:string, afdelingId:number, telefoon:number, Address:string, betaald:boolean)
+    geboortedatum: string;
+    constructor(id:null,naam:string, voornaam:string, email:string, afdeling:string, afdelingId:number, telefoon:number, Address:string, betaald:boolean, geboortedatum:string)
     {
         this.Id = id;
         this.naam = naam;
@@ -20,5 +21,6 @@ export class Leden
         this.telefoon = telefoon;
         this.Address = Address;
         this.betaald = betaald;
+        this.geboortedatum = geboortedatum;
     }
 }

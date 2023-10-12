@@ -21,6 +21,7 @@ export class AddLidComponent implements OnInit {
   houseNumber: string = ""
   postcode: any = ""
   city: string = ""
+  geboortedatum: string = "" 
 
   validForm: boolean = false
 
@@ -71,6 +72,11 @@ export class AddLidComponent implements OnInit {
       this.responseMessage = "Vul Je gemeente In!";
       this.bgColor = "#fca5a5"
       this.bColor = "3px solid red"
+    } else if (!item.geboortedatum.trim()) {
+      this.validForm = false;
+      this.responseMessage = "Vul Je geboortedatum In!";
+      this.bgColor = "#fca5a5"
+      this.bColor = "3px solid red"
     }
     else {
       // If all fields are filled, set validForm to true (assuming you want to validate them all)
@@ -84,7 +90,8 @@ export class AddLidComponent implements OnInit {
         email: this.email,
         telefoon: this.phone,
         Address: this.street +" "+ this.houseNumber +" "+  this.postcode +" "+  this.city,
-        betaald: false
+        betaald: false,
+        geboortedatum: this.geboortedatum
       };
 
       this.firebaseservice.addLid(newLid).then(() => {
