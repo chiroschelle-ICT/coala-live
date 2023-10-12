@@ -1,6 +1,6 @@
 import { environment } from '../../../environments'; // Adjust the path as needed
 import { initializeApp } from 'firebase/app';
-import { Firestore, getFirestore, collection, addDoc, collectionGroup, query, CollectionReference, where, orderBy, DocumentReference, doc, getDoc } from 'firebase/firestore';
+import { Firestore, getFirestore, collection, addDoc, collectionGroup, query, CollectionReference, where, orderBy, DocumentReference, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { Injectable, Query } from '@angular/core';
 import { DocumentData } from 'rxfire/firestore/interfaces';
 import { Observable, from } from 'rxjs';
@@ -53,20 +53,11 @@ export class FirebaseService {
     )
   }
 
-  test(id: any) {
-    const lidR = doc(this.db, 'leden/'+id) as DocumentReference<Leden>;
-    return from(getDoc(lidR))
+  // Change checkbox state
+  changeCheckBoxState(lid : DocumentData, id: string) {
+    const lidRef = doc(this.db, 'leden/'+id) as DocumentReference<Leden>
+    return from(updateDoc(lidRef, lid))
   }
-/* 
-  getAllLeden(): Observable<Leden[]> { // Observable of type Turf will be returned // Log the parameter
-    return collectionData<Leden> (
-      query(
-        collection(this.db, 'leden') as CollectionReference<Leden>,
-      ),
-      {idField: 'Id'}
-    )
-  }
- */
 
   
 }

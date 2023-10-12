@@ -37,8 +37,12 @@
     </div>
 
     <div class="ml-64">
-      <input type="checkbox" class="w-5 h-5" id="inschrijvingCheckbox" [(ngModel)]="lid.lidgeldBetaald" (change)="handleCheckboxChange(lid.id, lid.lidgeldBetaald)">
+      <input type="checkbox" class="w-5 h-5" id="inschrijvingCheckbox" [(ngModel)]="lid.betaald" (change)="handleCheckboxChange(lid.Id, lid.betaald, lid)">    
     </div>
+
+    <div class="ml-64">
+      {{lid.Id}}
+    </div>  
   </div>
   
 </div>

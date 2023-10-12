@@ -32,18 +32,10 @@ export class AfdelingLijstComponent implements OnInit {
     // this.onGetLeden()
   }
 
-  handleCheckboxChange(lidId: number, isChecked:boolean) {
-
-    console.log('lidgeldBetaald value:', isChecked); // Add this line
-
-    this.dataService.updateCheckboxState(lidId, isChecked)/* .subscribe(
-      (response) => {
-        console.log('CheckBox state update succesfully')
-      },(error) => {
-        console.error('Erro updating checkbnox state: ',error)
-      }
-      
-    ) */
+  handleCheckboxChange(lidId: any, isChecked:boolean, lid:any) {
+    console.log('lidgeldBetaald value:', lidId);
+    lid.betaald = isChecked;
+    this.fb.changeCheckBoxState(lid,lid.Id)
   }
 
   onGetAfdeling(afId: any): void {
