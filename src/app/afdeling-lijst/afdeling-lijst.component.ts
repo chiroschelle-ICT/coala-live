@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../service/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FirebaseService } from '../service/firebase.service';
 
 @Component({
   selector: 'app-afdeling-lijst',
@@ -15,17 +16,14 @@ export class AfdelingLijstComponent implements OnInit {
   inschrijvingIsChecked: boolean = false;
   isChecked!: boolean;
 
-  constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router, private fb : FirebaseService) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.parameterValue = params['afdelingParId']
       console.log("Parameter value: ", this.parameterValue)
     })
-    this.dataService.getAfdelingId(this.parameterValue).subscribe((data: any[]) => {
-      this.leden = data
-      this.afdeling = data[0].afdeling
-    }) 
+    this.onGetAfdeling(this.parameterValue)
   }
 
   handleCheckboxChange(lidId: number, isChecked:boolean) {
@@ -40,6 +38,14 @@ export class AfdelingLijstComponent implements OnInit {
       }
       
     ) */
+  }
+
+  onGetAfdeling(afId: any): void {
+    const num = parseInt(afId)
+    this.fb.getAllLedenPerAfdeling(num).subscribe((data: any) => {
+      this.leden = data
+      console.log(this.leden)
+    })
   }
 
 }

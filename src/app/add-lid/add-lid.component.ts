@@ -79,14 +79,11 @@ export class AddLidComponent implements OnInit {
       const newLid = {
         voornaam: this.voornaam,
         name: this.name,
-        department: this.department,
-        email: this.email,
-        phone: this.phone,
-        street: this.street,
-        houseNumber: this.houseNumber,
-        postcode: this.postcode,
-        city: this.city,
+        afdeling: this.department,
         afdelingId: this.afdelingId,
+        email: this.email,
+        telefoon: this.phone,
+        Address: this.street +" "+ this.houseNumber +" "+  this.postcode +" "+  this.city,
         betaald: false
       };
 

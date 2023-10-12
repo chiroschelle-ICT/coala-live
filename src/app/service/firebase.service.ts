@@ -1,9 +1,11 @@
 import { environment } from '../../../environments'; // Adjust the path as needed
 import { initializeApp } from 'firebase/app';
-import { Firestore, getFirestore, collection, addDoc } from 'firebase/firestore';
-import { Injectable } from '@angular/core';
+import { Firestore, getFirestore, collection, addDoc, collectionGroup, query, CollectionReference, where, orderBy } from 'firebase/firestore';
+import { Injectable, Query } from '@angular/core';
 import { DocumentData } from 'rxfire/firestore/interfaces';
-import { from } from 'rxjs';
+import { Observable, from } from 'rxjs';
+import { collectionData } from 'rxfire/firestore';
+import { Leden } from '../interfaces/leden';
 
 /* 
 const app = initializeApp(environment.firebase);
@@ -28,5 +30,16 @@ export class FirebaseService {
     console.log("Ja?>")
   }
   
+  // Get lid per afdeling
+  getAllLedenPerAfdeling(afdeling : any) : Observable<Leden[]>{
+    const a = afdeling
+    console.log('afdeling parameter Service:', afdeling); // Log the parameter
+    return collectionData<Leden> (
+      query(
+        collection(this.db, 'leden') as CollectionReference<Leden>,
+        where("afdelingId", "==", afdeling)
+      )
+    )
+  };
   
 }
