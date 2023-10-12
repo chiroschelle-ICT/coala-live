@@ -35,4 +35,5 @@ Tijdelijke coala voor leden beheer Chiro Schelle
 ### Taillwind
 ```npm install -D tailwindcss postcss autoprefixer```
 
-
+### body parser
+```npm install body-parser```

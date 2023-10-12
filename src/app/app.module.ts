@@ -20,6 +20,10 @@ import { LedenDetailsComponent } from './leden-details/leden-details.component';
 import { FormsModule } from '@angular/forms';
 import { AddLidComponent } from './add-lid/add-lid.component'; // Import FormsModule
 
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { environment } from '../../environments';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +44,10 @@ import { AddLidComponent } from './add-lid/add-lid.component'; // Import FormsMo
     AuthenticationModule,
     AuthenticationRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
     
   ],
   providers: [],

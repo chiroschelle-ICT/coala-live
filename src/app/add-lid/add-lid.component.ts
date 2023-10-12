@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../service/data.service';
+import { FirebaseService } from '../service/firebase.service';
+import { Subscriber } from 'rxjs'
 
 @Component({
   selector: 'app-add-lid',
@@ -26,7 +28,7 @@ export class AddLidComponent implements OnInit {
   bgColor!: string
   responseMessage!: string
 
-  constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router, private firebaseservice : FirebaseService) {}
 
   ngOnInit(): void {
     
@@ -73,12 +75,33 @@ export class AddLidComponent implements OnInit {
     else {
       // If all fields are filled, set validForm to true (assuming you want to validate them all)
       this.afdelingId = this.getAfdelingId(this.department)
-      console.log()
-      this.dataService.postLid(this.voornaam, this.name, this.department, this.afdelingId, this.email, this.phone, this.street, this.houseNumber, this.city,this.postcode).subscribe()
-      this.bgColor = "#9fff96"
-      this.bColor = "3px solid green"
-      this.responseMessage = "Nieuw Lid toegevoegd!"
-      this.clearFormInput()
+     
+      const newLid = {
+        voornaam: this.voornaam,
+        name: this.name,
+        department: this.department,
+        email: this.email,
+        phone: this.phone,
+        street: this.street,
+        houseNumber: this.houseNumber,
+        postcode: this.postcode,
+        city: this.city,
+        afdelingId: this.afdelingId,
+        betaald: false
+      };
+
+      this.firebaseservice.addLid(newLid).then(() => {
+        this.clearFormInput()
+        console.log('Data added to Firestore successfully.');
+        this.bgColor = "#9fff96"
+        this.bColor = "3px solid green"
+        this.responseMessage = "Nieuw Lid toegevoegd!"
+      }) .catch((error) => {
+        this.bgColor = "#fca5a5"
+        this.bColor = "3px solid red"
+        this.responseMessage = "Error Met toevoegen van Lid: " + error
+      });
+      
     }
   }
 
