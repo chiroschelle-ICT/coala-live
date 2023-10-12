@@ -1,5 +1,6 @@
 export class Leden
 {
+    Id!: null;
     naam: string;
     voornaam: string;
     email: string;
@@ -8,8 +9,9 @@ export class Leden
     telefoon: number;
     Address: string;
     betaald: boolean;
-    constructor(naam:string, voornaam:string, email:string, afdeling:string, afdelingId:number, telefoon:number, Address:string, betaald:boolean)
+    constructor(id:null,naam:string, voornaam:string, email:string, afdeling:string, afdelingId:number, telefoon:number, Address:string, betaald:boolean)
     {
+        this.Id = id;
         this.naam = naam;
         this.voornaam = voornaam;
         this.email = email;

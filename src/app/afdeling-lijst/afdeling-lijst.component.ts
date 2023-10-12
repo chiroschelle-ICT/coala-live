@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../service/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FirebaseService } from '../service/firebase.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-afdeling-lijst',
@@ -11,6 +12,10 @@ import { FirebaseService } from '../service/firebase.service';
 export class AfdelingLijstComponent implements OnInit {
 
   leden: any[] = [];
+
+  ledenAll: any[] = [];
+  lidSubscription!: Subscription;
+  
   afdeling!: string
   parameterValue!: number 
   inschrijvingIsChecked: boolean = false;
@@ -24,6 +29,7 @@ export class AfdelingLijstComponent implements OnInit {
       console.log("Parameter value: ", this.parameterValue)
     })
     this.onGetAfdeling(this.parameterValue)
+    // this.onGetLeden()
   }
 
   handleCheckboxChange(lidId: number, isChecked:boolean) {
@@ -47,5 +53,18 @@ export class AfdelingLijstComponent implements OnInit {
       console.log(this.leden)
     })
   }
+
+
+
+
+/*   onGetLeden(): void {
+    this.lidSubscription = this.fb.getAllLeden().subscribe((data: any) => {
+      this.ledenAll = data;
+    })
+  } */
+
+
+
+
 
 }

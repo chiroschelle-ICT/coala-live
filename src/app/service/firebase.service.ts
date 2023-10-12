@@ -5,7 +5,7 @@ import { Injectable, Query } from '@angular/core';
 import { DocumentData } from 'rxfire/firestore/interfaces';
 import { Observable, from } from 'rxjs';
 import { collectionData } from 'rxfire/firestore';
-import { Leden } from '../interfaces/leden';
+import { Leden } from '../interfaces/Leden';
 
 /* 
 const app = initializeApp(environment.firebase);
@@ -32,14 +32,30 @@ export class FirebaseService {
   
   // Get lid per afdeling
   getAllLedenPerAfdeling(afdeling : any) : Observable<Leden[]>{
-    const a = afdeling
     console.log('afdeling parameter Service:', afdeling); // Log the parameter
     return collectionData<Leden> (
       query(
         collection(this.db, 'leden') as CollectionReference<Leden>,
         where("afdelingId", "==", afdeling)
-      )
+      ),
+      {idField: 'Id'}
     )
   };
+
+  // Get Lid per afdeling
+  getLidPerId(id: any){
+    return collectionData (collection(this.db, 'leden'),  { idField: 'id'});
+  }
+/* 
+  getAllLeden(): Observable<Leden[]> { // Observable of type Turf will be returned // Log the parameter
+    return collectionData<Leden> (
+      query(
+        collection(this.db, 'leden') as CollectionReference<Leden>,
+      ),
+      {idField: 'Id'}
+    )
+  }
+ */
+
   
 }
