@@ -1,6 +1,6 @@
 import { environment } from '../../../environments'; // Adjust the path as needed
 import { initializeApp } from 'firebase/app';
-import { Firestore, getFirestore, collection, addDoc, collectionGroup, query, CollectionReference, where, orderBy } from 'firebase/firestore';
+import { Firestore, getFirestore, collection, addDoc, collectionGroup, query, CollectionReference, where, orderBy, DocumentReference, doc, getDoc } from 'firebase/firestore';
 import { Injectable, Query } from '@angular/core';
 import { DocumentData } from 'rxfire/firestore/interfaces';
 import { Observable, from } from 'rxjs';
@@ -43,8 +43,19 @@ export class FirebaseService {
   };
 
   // Get Lid per afdeling
-  getLidPerId(id: any){
-    return collectionData (collection(this.db, 'leden'),  { idField: 'id'});
+  getLidPerId(id: string){
+    return collectionData<Leden> (
+      query(
+        collection(this.db, 'leden') as CollectionReference<Leden>,
+        where('__name__', "==", id),
+      ),
+      {idField: 'Id'}
+    )
+  }
+
+  test(id: any) {
+    const lidR = doc(this.db, 'leden/'+id) as DocumentReference<Leden>;
+    return from(getDoc(lidR))
   }
 /* 
   getAllLeden(): Observable<Leden[]> { // Observable of type Turf will be returned // Log the parameter

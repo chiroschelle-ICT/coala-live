@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../service/data.service';
 import { Route, ActivatedRoute, Data, Router } from '@angular/router';
+import { FirebaseService } from '../service/firebase.service';
 
 @Component({
   selector: 'app-leden-details',
@@ -9,7 +10,7 @@ import { Route, ActivatedRoute, Data, Router } from '@angular/router';
 })
 export class LedenDetailsComponent implements OnInit{
 
-  constructor(private dataService : DataService, private route : ActivatedRoute, private router : Router) {}  
+  constructor(private fb : FirebaseService, private route : ActivatedRoute, private router : Router) {}  
 
   leden: any[] = []
   parameterValue!: any
@@ -30,9 +31,11 @@ export class LedenDetailsComponent implements OnInit{
       this.parameterValue = params['lidId']
       console.log("Parameter value: ", this.parameterValue)
     })
-    this.dataService.getLidById(this.parameterValue).subscribe((data: any[]) => {
+    const num = parseInt(this.parameterValue)
+    this.fb.getLidPerId(this.parameterValue).subscribe((data : any) => {
       this.leden = data
-    }) 
+      console.log(num)
+    })
   }
 
 }
