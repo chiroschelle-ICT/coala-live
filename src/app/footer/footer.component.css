@@ -1,6 +1,9 @@
-.sticky-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-  }
-  
+#footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #FF0000; /* Replace with your desired background color */
+  color: hsl(0, 0%, 100%); /* Replace with your desired text color */
+
+  text-align: center;
+}
