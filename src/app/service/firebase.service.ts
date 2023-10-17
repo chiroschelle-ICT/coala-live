@@ -27,7 +27,6 @@ export class FirebaseService {
   async addLid(data: DocumentData) {
     const ledenCollection = collection(this.db, 'leden');
     return from(addDoc(ledenCollection, data));
-    console.log("Ja?>")
   }
   
   // Get lid per afdeling
@@ -51,6 +50,13 @@ export class FirebaseService {
       ),
       {idField: 'Id'}
     )
+  }
+
+  // update lid
+  // lid is any because error when using Leden
+  updateLid(lid: any, id: string) {
+    const lidRef = doc(this.db, 'leden/'+id) as DocumentReference<Leden>
+    return from(updateDoc(lidRef, lid))
   }
 
   // Change checkbox state

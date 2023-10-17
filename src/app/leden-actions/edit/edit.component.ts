@@ -16,10 +16,6 @@ export class EditComponent implements OnInit {
   afdelingId: number = 0
   email: string = "" 
   phone: string = ""
-  street: string = ""
-  houseNumber: string = ""
-  postcode: any = ""
-  city: string = ""
   address: string = ""
   geboortedatum: string = "" 
 
@@ -57,9 +53,34 @@ export class EditComponent implements OnInit {
     })
   }
 
- 
-
   editLidForm(item: any) {
+    if (!item.voornaam || !item.voornaam.trim()) {
+      this.validForm = false;
+      this.responseMessage = "Vul het voornaam veld In!";
+      this.bgColor = "#fca5a5";
+      this.bColor = "3px solid red";
+    } else if (!item.name || !item.name.trim()) {
+      this.validForm = false;
+      this.responseMessage = "Vul het naam veld In!";
+      this.bgColor = "#fca5a5";
+      this.bColor = "3px solid red";
+    } else if (!item.email || !item.email.trim()) {
+      this.validForm = false;
+      this.responseMessage = "Vul het email veld In!";
+      this.bgColor = "#fca5a5";
+      this.bColor = "3px solid red";
+    } else if (!item.address || !item.address.trim()) {
+      this.validForm = false;
+      this.responseMessage = "Vul het address veld In!";
+      this.bgColor = "#fca5a5";
+      this.bColor = "3px solid red";
+    } else {
+      // If all fields are filled, set validForm to true (assuming you want to validate them all)
+      this.firebaseservice.updateLid(item, this.parameterValue);
+      this.responseMessage = "Lid Aangepast!";
+      this.bgColor = "#9fff96";
+      this.bColor = "3px solid green";
+    }
   }
-
+  
 }
