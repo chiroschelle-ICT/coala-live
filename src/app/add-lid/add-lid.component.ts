@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../service/data.service';
 import { FirebaseService } from '../service/firebase.service';
-import { Subscriber } from 'rxjs'
 
 @Component({
   selector: 'app-add-lid',
