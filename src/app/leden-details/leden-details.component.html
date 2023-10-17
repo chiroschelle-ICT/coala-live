@@ -37,9 +37,25 @@
         <button [routerLink]="['/edit', lid.Id]" class="bg-yellow-400 hover:bg-yellow-600 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-blue">
           Aanpassen
         </button>
-        <button class="bg-red-400 hover:bg-red-600 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-red">
+        <button (click)="openDisableModal()" class="bg-red-400 hover:bg-red-600 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-red">
           Gestopt
         </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="fixed inset-0 flex items-center justify-center z-50" *ngIf="isModalOpen">
+    <!-- Grayish Background -->
+    <div class="fixed inset-0 bg-gray-500 opacity-50"></div>
+  
+    <div class="modal-content p-6 bg-white rounded-lg shadow-lg relative">
+      <h2 class="text-2xl font-semibold mb-4">Lid Uitschrijven?</h2>
+      <p>Ben je zeker dat dit lid wilt uitschrijven?</p>
+  
+      <!-- Using Flexbox to align buttons -->
+      <div class="flex justify-between mt-4">
+        <button (click)="closeDisableModal()" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Ja</button>
+        <button (click)="closeDisableModal()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Nee</button>
       </div>
     </div>
   </div>

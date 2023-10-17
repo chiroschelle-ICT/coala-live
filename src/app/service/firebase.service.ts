@@ -1,6 +1,6 @@
 import { environment } from '../../../environments'; // Adjust the path as needed
 import { initializeApp } from 'firebase/app';
-import { Firestore, getFirestore, collection, addDoc, collectionGroup, query, CollectionReference, where, orderBy, DocumentReference, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { Firestore, getFirestore, collection, addDoc, collectionGroup, query, CollectionReference, where, orderBy, DocumentReference, doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { Injectable, Query } from '@angular/core';
 import { DocumentData } from 'rxfire/firestore/interfaces';
 import { Observable, from } from 'rxjs';
@@ -58,6 +58,14 @@ export class FirebaseService {
     const lidRef = doc(this.db, 'leden/'+id) as DocumentReference<Leden>
     return from(updateDoc(lidRef, lid))
   }
+
+  // delete lid
+  // Add only Admins can permanatly delete Leden
+  deleteLid(id: string) {
+    const lidRef = doc(this.db, 'leden/'+id) as DocumentReference<Leden>
+    return from(deleteDoc(lidRef))
+  }
+  
 
   // Change checkbox state
   changeCheckBoxState(lid : DocumentData, id: string) {

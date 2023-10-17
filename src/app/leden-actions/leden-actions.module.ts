@@ -6,10 +6,11 @@ import { EditComponent } from './edit/edit.component';
 // Modules
 import { ledenActionsRoutingModule } from './leden-actions-routing.module';
 import { FormsModule } from '@angular/forms';
+// import { DisableComponent } from './disable/disable.component';
 
 @NgModule({
   declarations: [
-    EditComponent
+    EditComponent,
   ],
   imports: [
     CommonModule,

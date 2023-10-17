@@ -26,6 +26,8 @@ export class LedenDetailsComponent implements OnInit{
   lidGemeente!: any
   lidPostcode!: any
 
+  isModalOpen: boolean = false
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.parameterValue = params['lidId']
@@ -37,5 +39,19 @@ export class LedenDetailsComponent implements OnInit{
       console.log(num)
     })
   }
+
+  openDisableModal() :  void {
+    this.isModalOpen = true;
+    console.log("Open Modal")
+  }
+
+  schrijfLidUit() {
+    
+  }
+
+  closeDisableModal() : void {
+    this.isModalOpen = false;
+  }
+
 
 }

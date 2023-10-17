@@ -21,6 +21,7 @@ export class AfdelingLijstComponent implements OnInit {
   inschrijvingIsChecked: boolean = false;
   isChecked!: boolean;
 
+
   constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router, private fb : FirebaseService) {}
 
   ngOnInit() {
