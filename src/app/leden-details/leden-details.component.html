@@ -50,11 +50,12 @@
   
     <div class="modal-content p-6 bg-white rounded-lg shadow-lg relative">
       <h2 class="text-2xl font-semibold mb-4">Lid Uitschrijven?</h2>
-      <p>Ben je zeker dat dit lid wilt uitschrijven?</p>
+      <h4 class="text-xl">Ben je zeker dat dit lid wilt uitschrijven?</h4>
+      <h5 class="text-sm">Dit zal het lid verwijderen</h5>
   
       <!-- Using Flexbox to align buttons -->
       <div class="flex justify-between mt-4">
-        <button (click)="closeDisableModal()" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Ja</button>
+        <button (click)="schrijfLidUit()" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Ja</button>
         <button (click)="closeDisableModal()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Nee</button>
       </div>
     </div>
