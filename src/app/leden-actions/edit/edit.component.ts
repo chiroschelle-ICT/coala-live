@@ -15,8 +15,8 @@ export class EditComponent implements OnInit {
   department: string = ""
   afdelingId: number = 0
   email: string = "" 
-  phone: string = ""
-  address: string = ""
+  telefoon: string = ""
+  Address: string = ""
   geboortedatum: string = "" 
 
   validForm: boolean = false
@@ -49,8 +49,8 @@ export class EditComponent implements OnInit {
       this.name = data[0].name
       this.department = data[0].afdeling
       this.email = data[0].email
-      this.phone = data[0].telefoon
-      this.address = data[0].Address
+      this.telefoon = data[0].telefoon
+      this.Address = data[0].Address
       this.geboortedatum = data[0].geboortedatum
     })
   }
@@ -71,7 +71,7 @@ export class EditComponent implements OnInit {
       this.responseMessage = "Vul het email veld In!";
       this.bgColor = "#fca5a5";
       this.bColor = "3px solid red";
-    } else if (!item.address || !item.address.trim()) {
+    } else if (!item.Address || !item.Address.trim()) {
       this.validForm = false;
       this.responseMessage = "Vul het address veld In!";
       this.bgColor = "#fca5a5";
