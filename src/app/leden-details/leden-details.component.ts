@@ -31,18 +31,15 @@ export class LedenDetailsComponent implements OnInit{
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.parameterValue = params['lidId']
-      console.log("Parameter value: ", this.parameterValue)
     })
     const num = parseInt(this.parameterValue)
     this.fb.getLidPerId(this.parameterValue).subscribe((data : any) => {
       this.leden = data
-      console.log(num)
     })
   }
 
   openDisableModal() :  void {
     this.isModalOpen = true;
-    console.log("Open Modal")
   }
 
   schrijfLidUit() {

@@ -95,7 +95,6 @@ export class AddLidComponent implements OnInit {
 
       this.firebaseservice.addLid(newLid).then(() => {
         this.clearFormInput()
-        console.log('Data added to Firestore successfully.');
         this.bgColor = "#9fff96"
         this.bColor = "3px solid green"
         this.responseMessage = "Nieuw Lid toegevoegd!"

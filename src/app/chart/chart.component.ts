@@ -68,7 +68,6 @@ export class ChartComponent implements OnInit {
       this.leden = data
       this.totalLeden = this.leden.ength
       for(let i = 0; i<data.length; i++){
-      console.log(data[i].afdelingId)
         switch(data[i].afdelingId) {
           case 1:
             this.countRibbelM++;

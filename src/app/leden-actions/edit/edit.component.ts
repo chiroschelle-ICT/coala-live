@@ -8,12 +8,13 @@ import { FirebaseService } from 'src/app/service/firebase.service';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
-export class EditComponent implements OnInit {
+export class EditComponent implements OnInit  {
 
   voornaam: string = ""
   name: string = ""
-  department: string = ""
+  afdeling: string = ""
   afdelingId: number = 0
+  afdelingIdPreChange!: number 
   email: string = "" 
   telefoon: string = ""
   Address: string = ""
@@ -27,6 +28,8 @@ export class EditComponent implements OnInit {
 
   parameterValue!: string
 
+  setTimeoutActive: boolean = true
+
   constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router, private firebaseservice : FirebaseService) {}
 
   ngOnInit(): void {
@@ -39,7 +42,7 @@ export class EditComponent implements OnInit {
   loadParameter() {
     this.route.params.subscribe(params => {
       this.parameterValue = params['lidId']
-      console.log("Parameter value: ", this.parameterValue)
+      
     })
   }
   
@@ -47,11 +50,14 @@ export class EditComponent implements OnInit {
     this.firebaseservice.getLidPerId(this.parameterValue).subscribe((data: any) => {
       this.voornaam = data[0].voornaam
       this.name = data[0].name
-      this.department = data[0].afdeling
+      this.afdeling = data[0].afdeling
+      if(this.setTimeoutActive) {
+        this.afdelingIdPreChange = data[0].afdelingId
+      }
       this.email = data[0].email
       this.telefoon = data[0].telefoon
       this.Address = data[0].Address
-      this.geboortedatum = data[0].geboortedatum
+      this.geboortedatum = data[0].geboortedatum      
     })
   }
 
@@ -78,13 +84,28 @@ export class EditComponent implements OnInit {
       this.bColor = "3px solid red";
     } else {
       // If all fields are filled, set validForm to true (assuming you want to validate them all)
-      this.firebaseservice.updateLid(item, this.parameterValue);
+      this.afdelingId = this.firebaseservice.getAfdelingId(this.afdeling)
+      
+      const updatedLid = {
+        voornaam: this.voornaam,
+        name: this.name,
+        afdeling: this.afdeling,
+        afdelingId: this.afdelingId,
+        email: this.email,
+        telefoon: this.telefoon,
+        Address: this.Address,
+        betaald: false,
+        geboortedatum: this.geboortedatum
+      };
+
+      this.firebaseservice.updateLid(updatedLid, this.parameterValue);
       this.responseMessage = "Lid Aangepast!";
       this.bgColor = "#9fff96";
       this.bColor = "3px solid green";
-      this.afdelingId = this.firebaseservice.getAfdelingId(this.department)
+      this.setTimeoutActive = false;
       setTimeout(() => {
-        this.router.navigate(['/afdelingLijst/'+this.afdelingId])      
+        this.router.navigate(['/afdelingLijst/'+this.afdelingIdPreChange])      
+        
       }, 1000)
     }
   }

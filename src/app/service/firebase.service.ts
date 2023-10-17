@@ -31,7 +31,6 @@ export class FirebaseService {
   
   // Get lid per afdeling
   getAllLedenPerAfdeling(afdeling : any) : Observable<Leden[]>{
-    console.log('afdeling parameter Service:', afdeling); // Log the parameter
     return collectionData<Leden> (
       query(
         collection(this.db, 'leden') as CollectionReference<Leden>,

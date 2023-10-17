@@ -37,12 +37,10 @@ export class DataService {
   }
   // get All lid's of the parameters afdelingID
   getAfdelingId(afdelingId: any): Observable<any[]>{
-    console.log("AfdelingId Service: "+afdelingId)
     return this.http.get<any[]>(`${this.baseUrl}/leden/${afdelingId}`);
   }
   // get 1 specific lid according to the parameter (lidid)
   getLidById(lidId: any): Observable<any[]> {
-    console.log("Service Lid id: "+lidId)
     return this.http.get<any[]>(`${this.baseUrl}/leden/lidId/${lidId}`)
   }
   // Add lid
@@ -68,8 +66,6 @@ export class DataService {
   updateCheckboxState(lidId: number, lidgeldBetaald: boolean) {
     const url = `${this.checkboxUrl}${lidId}`;
     const body = { checkData: lidgeldBetaald }; // Use lidgeldBetaald for checkbox state
-    console.log("Service body");
-    console.log(body.checkData);
     this.http.put<any>(url, body).subscribe()
   }
 

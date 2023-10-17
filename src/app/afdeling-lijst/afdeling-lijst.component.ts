@@ -27,14 +27,12 @@ export class AfdelingLijstComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.parameterValue = params['afdelingParId']
-      console.log("Parameter value: ", this.parameterValue)
     })
     this.onGetAfdeling(this.parameterValue)
     // this.onGetLeden()
   }
 
   handleCheckboxChange(lidId: any, isChecked:boolean, lid:any) {
-    console.log('lidgeldBetaald value:', lidId);
     lid.betaald = isChecked;
     this.fb.changeCheckBoxState(lid,lid.Id)
   }
@@ -43,7 +41,6 @@ export class AfdelingLijstComponent implements OnInit {
     const num = parseInt(afId)
     this.fb.getAllLedenPerAfdeling(num).subscribe((data: any) => {
       this.leden = data
-      console.log(this.leden)
     })
   }
 
