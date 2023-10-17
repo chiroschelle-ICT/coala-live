@@ -79,7 +79,7 @@ export class AddLidComponent implements OnInit {
     }
     else {
       // If all fields are filled, set validForm to true (assuming you want to validate them all)
-      this.afdelingId = this.getAfdelingId(this.department)
+      this.afdelingId = this.firebaseservice.getAfdelingId(this.department)
      
       const newLid = {
         voornaam: this.voornaam,
@@ -108,7 +108,6 @@ export class AddLidComponent implements OnInit {
     }
   }
 
-
   clearFormInput() {
     this.voornaam = "";
     this.name = "";
@@ -120,36 +119,4 @@ export class AddLidComponent implements OnInit {
     this.postcode = "";
     this.city = "";
   }
-
-  getAfdelingId(afdeling:string) {
-    switch (afdeling) {
-      case "Ribbel Meisjes":
-        return 1;
-      case "Ribbel Jongens":
-        return 2;
-      case "Speelclub Meisjes":
-        return 3;
-      case "Speelclub Jongens":
-        return 4;
-      case "Kwiks":
-        return 5;
-      case "Rakkers":
-        return 6;
-      case "Tippers":
-        return 7;
-      case "Toppers":
-        return 8;
-      case "Tiptiens":
-        return 9;
-      case "Kerels":
-        return 10;
-      case "Aspi Meisjes":
-        return 11;
-      case "Aspi Jongens":
-        return 12;
-      default:
-        return 0; // Return 0 for unknown departments or handle it as needed
-    }
-  }
-
 }

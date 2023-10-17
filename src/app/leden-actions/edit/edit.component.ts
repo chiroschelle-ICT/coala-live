@@ -34,6 +34,8 @@ export class EditComponent implements OnInit {
     this.fillDataOfLid()
   }
 
+  
+
   loadParameter() {
     this.route.params.subscribe(params => {
       this.parameterValue = params['lidId']
@@ -80,6 +82,10 @@ export class EditComponent implements OnInit {
       this.responseMessage = "Lid Aangepast!";
       this.bgColor = "#9fff96";
       this.bColor = "3px solid green";
+      this.afdelingId = this.firebaseservice.getAfdelingId(this.department)
+      setTimeout(() => {
+        this.router.navigate(['/afdelingLijst/'+this.afdelingId])      
+      }, 1000)
     }
   }
   
