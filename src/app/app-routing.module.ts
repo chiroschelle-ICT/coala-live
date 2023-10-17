@@ -17,6 +17,10 @@ const routes: Routes = [
     path: 'authentication',
     loadChildren: () => import('./authentication/authentication-routing.module').then(m => m.AuthenticationRoutingModule)
   },
+  {
+    path: 'ledenActions',
+    loadChildren: () => import('./leden-actions/leden-actions.module').then(m => m.LedenActionsModule)
+  }
 ];
 
 @NgModule({

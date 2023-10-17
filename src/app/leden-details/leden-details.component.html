@@ -34,7 +34,7 @@
   
       <!-- Edit and Delete Buttons -->
       <div class="flex justify-between">
-        <button class="bg-yellow-400 hover:bg-yellow-600 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-blue">
+        <button [routerLink]="['/edit', lid.Id]" class="bg-yellow-400 hover:bg-yellow-600 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-blue">
           Aanpassen
         </button>
         <button class="bg-red-400 hover:bg-red-600 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-red">
