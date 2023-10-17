@@ -46,7 +46,8 @@ export class LedenDetailsComponent implements OnInit{
   }
 
   schrijfLidUit() {
-    
+    this.fb.deleteLid(this.parameterValue)
+    this.router.navigate(['/afdelingLijst/'+this.leden[0].afdelingId])
   }
 
   closeDisableModal() : void {

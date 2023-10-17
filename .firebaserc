@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "coala-df864"
-  }
+    "default": "coala-df864",
+    "coalaFirebase": "coala-df864"
+  },
+  "targets": {},
+  "etags": {}
 }
