@@ -44,7 +44,7 @@ export class EditComponent implements OnInit {
       console.log("Parameter value: ", this.parameterValue)
     })
   }
-
+  
   fillDataOfLid() {
     this.firebaseservice.getLidPerId(this.parameterValue).subscribe((data: any) => {
       this.voornaam = data[0].voornaam
@@ -57,30 +57,7 @@ export class EditComponent implements OnInit {
     })
   }
 
-  splitAddress(dataAddress: any) {
-    const addressSplitted = this.address.split(' ');
-    let houseNumberFound = false
-    let postalCodeFound = false
-
-    for(let i = 0; i < dataAddress.length; i++) {
-      const comp = dataAddress;
-      if (/^\d+$/.test(comp)) { // Check if the component is a numeric sequence
-        if (!houseNumberFound) {
-          this.houseNumber = comp
-          houseNumberFound = true;
-        } else {
-          this.postcode = parseInt(comp, 10);
-          postalCodeFound = true;
-        }
-      } else {
-        if (!houseNumberFound) {
-          this.street = this.street ? this.street + ' ' + comp : comp;
-        } else if (!postalCodeFound) {
-          this.city = this.city ? this.city + ' ' + comp : comp;
-        }
-      }
-    }
-  }
+ 
 
   editLidForm(item: any) {
   }
