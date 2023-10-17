@@ -125,7 +125,7 @@ export class AddLidComponent implements OnInit {
     switch (afdeling) {
       case "Ribbel Meisjes":
         return 1;
-      case "Robbel Jongens":
+      case "Ribbel Jongens":
         return 2;
       case "Speelclub Meisjes":
         return 3;
