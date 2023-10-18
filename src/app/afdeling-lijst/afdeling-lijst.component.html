@@ -7,42 +7,60 @@
 
 <div class="grid grid-cols-1 gap-2 px-2 py-4">
 
-  <div class="grid grid-cols-10 grid-rows-1 p-2 shadow-md  text-left bg-orange-300 rounded-lg border-2 border-black">
-    <div class="w-80">
+  <div class="grid grid-cols-7 grid-rows-1 p-2 shadow-md  text-left bg-orange-300 rounded-lg border-2 border-black">
+    <div class="text-center w-fit ml-6">
       <span class="text-xl font-bold">Naam: </span>
     </div>
+    <div class="text-cente w-fit px-3">
+      <span class="text-xl font-bold">Achternaam: </span>
+    </div>
+    <div class="text-center">
+      <span class="text-xl font-bold">Geboortedatum </span>
+    </div>
 
-    <div class="w-60 ml-32">
+    <div class="text-center">
       <span class="text-xl font-bold">Afdeling: </span>
     </div>
-    <div class="ml-56 w-full">
-      <span class="text-xl font-bold"> Knoppen:</span>      
-    </div>
-    <div class="ml-48 w-full">
+    <div class="text-center">
       <span class="text-xl font-bold"> LidGeld Betaald?</span>      
+    </div>
+    <!-- Add only admins can see the id -->
+    <div class="text-center">
+      <span class="text-xl font-bold"> Id</span>      
+    </div>
+    <div class="text-center">
+      <span class="text-xl font-bold"> Meer Info:</span>      
     </div>
   </div>
 
-  <div *ngFor="let lid of leden" class="grid grid-cols-10 grid-rows-1 p-2 shadow-md  text-left bg-orange-300 rounded-lg border-2 border-black">    
-    <div class="w-80">
-        <span class="text-lg font-semibold">{{ lid.naam }} {{ lid.voornaam }} </span>
+  <div *ngFor="let lid of leden" class="grid grid-cols-7 grid-rows-1 p-2 shadow-md  text-left bg-orange-300 rounded-lg border-2 border-black">    
+    <div class="text-center w-fit px-3 ml-6">
+        <span class="text-lg font-semibold">{{ lid.voornaam }} </span>
     </div>
 
-    <div class="w-60 ml-32">
+    <div class="text-center w-fit px-3 ml-6">
+      <span class="text-lg font-semibold"> {{ lid.name }} </span>
+    </div>
+
+    <div class="text-center">
+      <span class="text-lg font-semibold"> {{ lid.geboortedatum }} </span>
+    </div>
+
+    <div class="text-center">
         <span class="text-lg font-semibold">{{ lid.afdeling }}</span>
     </div>
 
-    <div class="ml-56">
-      <button [routerLink]="['/ledenDetails', lid.Id]" class="bg-red-500 border-2 border-red-800 hover:bg-red-800  ease-in-out duration-400 px-4 rounded-md text-white font-semibold"> Details </button>      
-    </div>
-
-    <div class="ml-64">
+    <div class="text-center">
       <input type="checkbox" class="w-5 h-5" id="inschrijvingCheckbox" [(ngModel)]="lid.betaald" (change)="handleCheckboxChange(lid.Id, lid.betaald, lid)">    
     </div>
 
-    <div class="ml-64">
+    <div class="text-center">
       {{lid.Id}}
     </div>  
+
+    <div class="text-center">
+      <button [routerLink]="['/ledenDetails', lid.Id]" class="bg-red-500 border-2 border-red-800 hover:bg-red-800  ease-in-out duration-400 px-4 rounded-md text-white font-semibold"> Details </button>      
+    </div>
   </div>
   
 </div>
