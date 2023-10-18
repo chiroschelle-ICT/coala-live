@@ -39,12 +39,7 @@ export class LoginComponent implements OnInit {
   }
 
   validateUser(item:any) {
-
-    if(!item.name.trim()) {
-      this.validForm = false
-      this.responseMessage = "Vul Je naam In!"
-    }
-    else if(!item.email.trim()) {
+  if(!item.email.trim()) {
       this.validForm = false
       this.responseMessage = "Vul Je email In!"
     }

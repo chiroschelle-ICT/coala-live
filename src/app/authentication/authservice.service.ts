@@ -12,7 +12,12 @@ export class AuthserviceService {
 
   // Register new User --> only WG ICT
   signup(email: string, passwd : string) : Promise<string>{
-    
+    return createUserWithEmailAndPassword(this.auth, email, passwd)
+    .catch(error => {
+      console.error("ERROR with creating new user: "+error);
+    }).then(() => {
+      return 'succes'
+    })
   }
 
 
