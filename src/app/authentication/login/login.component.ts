@@ -4,6 +4,8 @@ import { delay } from 'rxjs';
 import { users } from 'src/app/interfaces/users';
 import { AuthenticationService } from 'src/app/service/authentication.service';
 import { DataService } from 'src/app/service/data.service';
+import { AuthserviceService } from '../authservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit {
   
   loginValid = false;
 
-  constructor(private dataService: DataService, private authservice : AuthenticationService) {}
+  constructor(private dataService: DataService, private authservice : AuthserviceService, private router : Router, private loginservice : AuthenticationService) {}
 
   ngOnInit() {
     this.dataService.getUsers().subscribe((data: any[]) => {
@@ -39,12 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
   validateUser(item:any) {
-
-    if(!item.name.trim()) {
-      this.validForm = false
-      this.responseMessage = "Vul Je naam In!"
-    }
-    else if(!item.email.trim()) {
+  if(!item.email.trim()) {
       this.validForm = false
       this.responseMessage = "Vul Je email In!"
     }
@@ -54,49 +51,24 @@ export class LoginComponent implements OnInit {
     }
 
     if(this.validForm) {
-
-      for(let i=0; i<this.allUsers.length; i++) {
-        if(this.username === this.allUsers[i].naam) {
-          // Login the user 
-          this.loginUser(item)
-
-          break
-        }else {
-          this.bgColor = "#fca5a5"
-          this.bColor = "3px solid red"
-          this.responseMessage = "Foute Gegevens!"
-          // exit
-        }
-      }
-    
-
-      this.dataService.getUserPerUsername(this.username).subscribe((data: any[]) => {
-        this.user = data
-      })
-      
+          this.loginUser()
     }
     else {
       this.bgColor = "#fca5a5"
       this.bColor = "3px solid red"
-    }
-
-    
+    }    
   }
 
 
-
-  loginUser(item: any[]) {
-    this.dataService.getUserPerUsername(this.username).subscribe((data: any[]) => {
-      if(data[0].naam === this.username && data[0].email === this.email && data[0].password === this.password) {
-        // User Logged in
-        this.authservice.loginUser()
-
+  loginUser() {
+    this.authservice.loginUser(this.email, this.password)
+    .then((res) => {
+      if('succes') {
         this.bgColor = "#9fff96"
         this.bColor = "3px solid green"
         this.responseMessage = "U Bent Ingelogd"
-        
-      }
-      else {
+        this.loginservice.loginUser();
+      } else {
         this.bgColor = "#fca5a5"
         this.bColor = "3px solid red"
         this.responseMessage = "Foute Gegevens!"

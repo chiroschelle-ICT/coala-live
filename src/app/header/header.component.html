@@ -6,7 +6,11 @@
       <ul class="flex space-x-4 items-center">
         <li routerLink="/" class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Dashboard</a></li>
         <li routerLink="/afdelingen" class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Afdelingen</a></li>
-        <li routerLink="/login" class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Login</a></li>
+        
+        <li *ngIf="!loggedIn" routerLink="/login" class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Login</a></li>
+        <li *ngIf="loggedIn" routerLink="/logout" class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Logout</a></li>
+        
+        <li class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Admin</a></li>
         <li class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Verjaardagen</a></li>
       </ul>
       <div class="relative">

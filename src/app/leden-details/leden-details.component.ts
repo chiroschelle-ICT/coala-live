@@ -28,6 +28,8 @@ export class LedenDetailsComponent implements OnInit{
 
   isModalOpen: boolean = false
 
+  tempAfdelingID!: number
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.parameterValue = params['lidId']
@@ -35,6 +37,7 @@ export class LedenDetailsComponent implements OnInit{
     const num = parseInt(this.parameterValue)
     this.fb.getLidPerId(this.parameterValue).subscribe((data : any) => {
       this.leden = data
+      this.tempAfdelingID = data[0].afdelingId
     })
   }
 

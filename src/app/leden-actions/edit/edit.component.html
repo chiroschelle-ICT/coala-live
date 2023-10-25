@@ -12,8 +12,43 @@
             <label for="name" class="font-semibold">Naam:</label>
             <input type="text" name="name" placeholder="Naam" [(ngModel)]="name"
               class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" required>
+          </div>          
+          <div class="w-full md:w-1/2 mb-4 md:pl-2">
+            <label for="email" class="font-semibold">Email 1</label>
+            <input type="email" name="email" placeholder="Email" [(ngModel)]="email"
+              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" required>
+          </div>
+          <div class="w-full md:w-1/2 mb-4 md:pl-2">
+            <label for="email" class="font-semibold">Email 2</label>
+            <input type="email" name="email" placeholder="Email" [(ngModel)]="email2"
+              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" required>
           </div>
           <div class="w-full md:w-1/2 mb-4 md:pr-2">
+            <label for="telefoon" class="font-semibold">Telefoon:</label>
+            <input type="tel" name="telefoon" placeholder="telefoon" [(ngModel)]="telefoon"
+              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500">
+          </div> 
+          <div class="w-full md:w-1/2 mb-4 md:pr-2">
+            <label for="telefoon" class="font-semibold">Telefoon 2:</label>
+            <input type="tel" name="telefoon" placeholder="telefoon" [(ngModel)]="telefoon2"
+              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500">
+          </div>                  
+          <div class="w-full mb-4 md:pl-2">
+            <label for="Address" class="font-semibold">Address:</label>
+            <input type="text" name="Address" placeholder="Address" [(ngModel)]="Address"
+              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" required>
+          </div>
+          <div class="w-full mb-4 md:pl-2">
+            <label for="Address" class="font-semibold">Address 2:</label>
+            <input type="text" name="Address" placeholder="Address 2" [(ngModel)]="Address2"
+              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" required>
+          </div>
+          <div class="w-full md:w-1/2 mb-4 md:pl-2">
+            <label for="geboortedatum" class="font-semibold">Geboorte Datum:</label>
+            <input type="date" name="geboortedatum" placeholder="geboortedatum" [(ngModel)]="geboortedatum"
+              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" required>
+          </div>
+          <div class="row-span-2 w-full md:w-1/2 mb-4 md:pr-2">
             <label for="afdeling" class="font-semibold">Voornaam Afdeling:</label>
             <select name="afdeling" [(ngModel)]="afdeling"
               class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" required>
@@ -31,29 +66,13 @@
               <option value="Aspi Meisjes">Aspi Meisjes</option>
             </select>
           </div>
-          <div class="w-full md:w-1/2 mb-4 md:pl-2">
-            <label for="email" class="font-semibold">Email:</label>
-            <input type="email" name="email" placeholder="Email" [(ngModel)]="email"
-              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" required>
-          </div>
-          <div class="w-full md:w-1/2 mb-4 md:pr-2">
-            <label for="telefoon" class="font-semibold">Telefoon:</label>
-            <input type="tel" name="telefoon" placeholder="telefoon" [(ngModel)]="telefoon"
-              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500">
-          </div>        
-          <div class="w-full md:w-1/2 mb-4 md:pl-2">
-            <label for="geboortedatum" class="font-semibold">Geboorte Datum:</label>
-            <input type="date" name="geboortedatum" placeholder="geboortedatum" [(ngModel)]="geboortedatum"
-              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" required>
-          </div>
-          <div class="w-full mb-4 md:pl-2">
-            <label for="Address" class="font-semibold">Address:</label>
-            <input type="text" name="Address" placeholder="Address" [(ngModel)]="Address"
-              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" required>
-          </div>
           <div class="w-full text-center">
             <button type="submit"
-              class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full">Submit</button>
+              class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg w-3/5 mb-5">Submit</button>
+          </div>
+            <div class="w-full text-center">
+            <button [routerLink]="['/ledenDetails', parameterValue]" routerLinkActive="router-link-active" 
+              class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">Terug</button>
           </div>
     
           <div class="rounded-md px-2 py-3 text-center mt-2 font-bold w-full text-center mt-2" [style.border]="bColor" [style.background]="bgColor">

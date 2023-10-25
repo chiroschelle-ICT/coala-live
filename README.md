@@ -7,11 +7,12 @@ Tijdelijke coala voor leden beheer Chiro Schelle
 - [x] Simpele style
 - [ ] dark mode toevoegen
 - [x] Database
-- [ ] ERD
-- [ ] fucnties:
+- [x] ERD
+- functies:
   - [x] Leden toevoegen
-  - [ ] Leden Editen
-  - [ ] Leden Verwijderen (NIET PERMANENT --> Uit afdelingslijst verplaatst naar verwijderde leden lijst)
+  - [x] Leden Editen
+  - [ ] Leden Disabelen (uitschrijven)
+  - [x] Leden Verwijderen
   - [x] Checks toevoegen en disablen (NIET VERWIJDEREN)
     - Disabelen --> Check gegevens worden nog behouden maar je kan ze niet meer op True of False zetten
 - [ ] Perms
@@ -34,6 +35,9 @@ Tijdelijke coala voor leden beheer Chiro Schelle
 
 ### Taillwind
 ```npm install -D tailwindcss postcss autoprefixer```
+
+### Firebase 
+```npm install -g firebase-tools```
 
 ### body parser
 ```npm install body-parser```

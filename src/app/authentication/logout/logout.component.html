@@ -1,0 +1,14 @@
+<div class="max-w-sm mx-auto mt-1 p-4 border rounded-lg shadow-lg">
+    <div class="bg-red-500 text-white text-center py-2 px-4 rounded-t-lg">
+        <h2 class="text-xl font-bold">Log uit</h2>
+    </div>
+    <div class="bg-white p-4 rounded-b-lg">
+        <h3 class="mb-4 text-lg font-bold">Ben je zeker dat je wilt uitloggen? </h3>
+        <div class="mb-4 text-lg font-semibold">
+            <button (click)="logoutUser()" class="border bg-red-500 hover:bg-red-600 text-white py-2 px-1 w-full rounded-full">Ja ik wil uitloggen</button>
+        </div>
+    </div>
+    <div class="rounded-md px-2 py-3 text-center mt-2 font-bold" [style.border]="bColor" [style.background]="bgColor">
+        {{ responseMessage }}
+    </div>
+</div>  

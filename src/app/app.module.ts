@@ -8,6 +8,7 @@ import { environment } from '../../environments';
 // Firebase
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { provideAuth, getAuth } from '@angular/fire/auth';
 // Routing
 import { AppRoutingModule } from './app-routing.module';
 // Components
@@ -27,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LedenActionsModule } from './leden-actions/leden-actions.module';
 import { AddLidComponent } from './add-lid/add-lid.component'; // Import FormsModule
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,7 @@ import { AddLidComponent } from './add-lid/add-lid.component'; // Import FormsMo
     LedenActionsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
-    
+    provideAuth(() => getAuth())
   ],
   providers: [],
   bootstrap: [AppComponent]

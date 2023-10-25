@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ledenActionsRoutingModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class LedenActionsModule { }

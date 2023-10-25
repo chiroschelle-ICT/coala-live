@@ -37,6 +37,9 @@
         <button [routerLink]="['/edit', lid.Id]" class="bg-yellow-400 hover:bg-yellow-600 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-blue">
           Aanpassen
         </button>
+        <button [routerLink]="['/afdelingLijst', tempAfdelingID]" routerLinkActive="router-link-active"  class="bg-blue-400 hover:bg-blue-600 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-red">
+          Terug
+        </button>
         <button (click)="openDisableModal()" class="bg-red-400 hover:bg-red-600 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-red">
           Gestopt
         </button>
@@ -56,6 +59,7 @@
       <!-- Using Flexbox to align buttons -->
       <div class="flex justify-between mt-4">
         <button (click)="schrijfLidUit()" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Ja</button>
+        
         <button (click)="closeDisableModal()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Nee</button>
       </div>
     </div>
