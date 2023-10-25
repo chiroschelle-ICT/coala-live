@@ -15,9 +15,12 @@ export class EditComponent implements OnInit  {
   afdeling: string = ""
   afdelingId: number = 0
   afdelingIdPreChange!: number 
-  email: string = "" 
+  email: string = ""
+  email2: string = ""
   telefoon: string = ""
+  telefoon2: string = ""
   Address: string = ""
+  Address2: string = ""
   geboortedatum: string = "" 
 
   validForm: boolean = false

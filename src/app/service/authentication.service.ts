@@ -18,6 +18,9 @@ export class AuthenticationService {
   }
   logout() {
     this.isAuthneticated = false
+    setTimeout(() => {
+      this.router.navigate(['/login']); 
+    }, 1200)
   }
 
   isAuthenticatedUser(): boolean {

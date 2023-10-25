@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { AuthserviceService } from '../authservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -8,10 +10,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
 
-  singupForm!: FormGroup;
+  signupForm: FormGroup;
 
-  constructor(private formbuilder : FormBuilder) {
-    this.singupForm = this.formbuilder.group({
+  constructor(private formbuilder : FormBuilder, private authservice : AuthserviceService, private router : Router) {
+    this.signupForm = this.formbuilder.group({
       email: ['', [
         Validators.required,
         Validators.pattern(/^\w+\.\w+@chiroschelle\.be$/)
@@ -39,8 +41,16 @@ export class SignupComponent implements OnInit {
 
   }
 
-  validateNewUser() {
-   
+  onSignUp() {
+    const email = this.signupForm.value.email
+    const password = this.signupForm.value.password
+    this.authservice.signup(email, password)
+    .then((res) => {
+      if(res == 'succes') {
+        // this.router.navigate(['/login']);
+      }
+    })
   }
 
 }
+ 

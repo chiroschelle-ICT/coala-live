@@ -1,39 +1,44 @@
-<div class="max-w-sm mx-auto mt-4 p-4 border rounded-lg shadow-lg">
+<div class="max-w-sm mx-auto p-4 border rounded-lg shadow-lg">
     <div class="bg-red-500 text-white text-center py-2 px-4 rounded-t-lg">
         <h2 class="text-xl font-bold">Signup</h2>
     </div>
     <div class="bg-white p-4 rounded-b-lg">
         <h3 class="mb-4 text-lg font-bold">Heb jeproblemen? mailtje naar <a href="mailto:ict@chiroschelle.be">ict@chiroschelle.be </a></h3>
     </div>
-    <form [formGroup]="singupForm" (ngSubmit)="validateNewUser()">
-        <div class="mb-4">
-          <label for="email" class="font-semibold">Vul de chiro email in</label>
-          <input type="email" formControlName="email" placeholder="voornaam.naam@chiroschelle.be"
+<!--     <form (ngSubmit)="onSignUp(f)" #f="ngForm"> -->
+  
+    <form (submit)="onSignUp()" [formGroup]="signupForm">
+      <div class="mb-4">
+          <label for="email" class="font-semibold">Vul de chiro email in</label> 
+          <input type="email" formControlName="email" placeholder="voornaam.naam@chiroschelle.be" value="kil.ser@chiroschelle.be"
             class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500">
-          <div *ngIf="singupForm.get('email')?.hasError('pattern')" class="text-red-500 text-sm">
+          <div *ngIf="signupForm.get('email')?.hasError('pattern')" class="text-red-500 text-sm">
             Foute email formaat, het moet zijn zoals: woord.woord@chiroschelle.be
           </div>
         </div>
       
         <div class="mb-4">
           <label for="password" class="font-semibold">Vul het Wachtwoord in</label>
-          <input type="password" formControlName="password" placeholder="wachtwoord"
+          <input type="password" formControlName="password" placeholder="wachtwoord" value="supperwachtwoord123!"
             class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500">
-          <div *ngIf="singupForm.get('password')?.hasError('pattern')" class="text-red-500 text-sm">
+          <div *ngIf="signupForm.get('password')?.hasError('pattern')" class="text-red-500 text-sm">
             Wachtwoord moet minstens 6 tekens bevatten met 2 cijfers en 1 speciaal karakter.
           </div>
         </div>
       
         <div class="mb-4">
           <label for="password" class="font-semibold">Herhaal het Wachtwoord</label>
-          <input type="password" formControlName="confirmPassword" placeholder="bevestig wachtwoord"
+          <input type="password" formControlName="confirmPassword" placeholder="bevestig wachtwoord" value="supperwachtwoord123!"
             class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500">
-          <div *ngIf="singupForm.get('confirmPassword')?.hasError('required')" class="text-red-500 text-sm">
+          <div *ngIf="signupForm.get('confirmPassword')?.hasError('required')" class="text-red-500 text-sm">
             Vul de wachtwoordbevestiging in.
           </div>
-          <div *ngIf="singupForm.get('confirmPassword')?.value !== singupForm.get('password')?.value" class="text-red-500 text-sm">
+          <div *ngIf="signupForm.get('confirmPassword')?.value !== signupForm.get('password')?.value" class="text-red-500 text-sm">
             Wachtwoorden komen niet overeen.
           </div>
+          <div class="mb-4 text-center">
+            <button  type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full">Maak nieuwe gebruiker</button>
+        </div>
         </div>
       </form>
 </div>

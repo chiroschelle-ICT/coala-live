@@ -12,12 +12,14 @@ import { environment } from '../../../environments';
 
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { SignupComponent } from './signup/signup.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    LogoutComponent
   ],
   imports: [
     CommonModule,
