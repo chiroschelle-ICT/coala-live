@@ -6,15 +6,57 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=604800"
+          }
+        ]
+      }
+    ],
     "rewrites": [
       {
         "source": "**",
         "destination": "/index.html"
       }
+    ],
+    "trailingSlash": false,
+    "appAssociation": "AUTO",
+    "predeploy": ["npm run build"],
+    "postdeploy": ["npm run after-deploy"],
+    "ignore": [
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "cleanUrls": true,
+    "cacheControl": {
+      "default": {
+        "maxAge": "1d"
+      },
+      "targets": {
+        "images": {
+          "maxAge": "7d"
+        },
+        "videos": {
+          "maxAge": "7d"
+        },
+        "js": {
+          "maxAge": "7d"
+        },
+        "css": {
+          "maxAge": "7d"
+        }
+      }
+    },
+    "public": "dist",
+    "sizeLimits": [
+      {
+        "target": "all",
+        "limit": "1MB"
+      }
     ]
-  },
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
   }
 }
