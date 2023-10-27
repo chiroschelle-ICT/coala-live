@@ -20,7 +20,6 @@ import { ChartComponent } from './chart/chart.component';
 import { AfdelingenComponent } from './afdelingen/afdelingen.component';
 import { AfdelingLijstComponent } from './afdeling-lijst/afdeling-lijst.component';
 import { LedenDetailsComponent } from './leden-details/leden-details.component';
-import { DisableComponent } from './leden-actions/disable/disable.component'
 // Modules
 import { AuthenticationModule } from './authentication/authentication.module';
 import { AuthenticationRoutingModule } from './authentication/authentication-routing.module';
@@ -41,7 +40,6 @@ import { from } from 'rxjs';
     AfdelingLijstComponent,
     LedenDetailsComponent,
     AddLidComponent,
-    DisableComponent
   ],
   imports: [
     BrowserModule,
