@@ -23,6 +23,7 @@ import { LedenDetailsComponent } from './leden-details/leden-details.component';
 // Modules
 import { AuthenticationModule } from './authentication/authentication.module';
 import { AuthenticationRoutingModule } from './authentication/authentication-routing.module';
+import { AdminRoutingModule } from './admin/admin-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LedenActionsModule } from './leden-actions/leden-actions.module';
@@ -47,6 +48,7 @@ import { from } from 'rxjs';
     AppRoutingModule,
     AuthenticationModule,
     AuthenticationRoutingModule,
+    AdminRoutingModule,
     HttpClientModule,
     FormsModule,
     LedenActionsModule,

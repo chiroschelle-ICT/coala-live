@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/service/authentication.service';
+import { AuthserviceService } from 'src/app/authentication/authservice.service'
 
 @Component({
   selector: 'app-logout',
@@ -9,17 +9,27 @@ import { AuthenticationService } from 'src/app/service/authentication.service';
 })
 export class LogoutComponent {
 
-  constructor(private loginAuth : AuthenticationService, private router: Router) {}
+  constructor(private auth : AuthserviceService, private router: Router) {}
 
   responseMessage:string = ""
   bgColor!: string  
   bColor!: string
 
   logoutUser() {
-    this.loginAuth.logout();
-    this.responseMessage = "U Bent Uitgelogd!"
-    this.bgColor = "#9fff96"
-    this.bColor = "3px solid green"
+    this.auth.logout()
+    this.actionResponse("U bent Uitgelogd", true)
   }
   
+  actionResponse(msg : string, color: boolean) {
+    if(color) {
+      this.bgColor = "#9fff96"
+        this.bColor = "3px solid green"
+        this.responseMessage = msg
+    } else {
+      this.bgColor = "#fca5a5"
+      this.bColor = "3px solid red"
+      this.responseMessage = msg
+    }
+  }
+
 }

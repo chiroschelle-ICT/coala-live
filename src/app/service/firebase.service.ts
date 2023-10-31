@@ -4,8 +4,9 @@ import { Firestore, getFirestore, collection, addDoc, collectionGroup, query, Co
 import { Injectable, Query } from '@angular/core';
 import { DocumentData } from 'rxfire/firestore/interfaces';
 import { Observable, from } from 'rxjs';
-import { collectionData } from 'rxfire/firestore';
+import { collectionData, docData } from 'rxfire/firestore';
 import { Leden } from '../interfaces/Leden';
+import { Admin } from '../interfaces/Admin';
 
 /* 
 const app = initializeApp(environment.firebase);
@@ -102,6 +103,12 @@ export class FirebaseService {
       default:
         return 0; // Return 0 for unknown departments or handle it as needed
     }
+  }
+
+  getAdmin(uid: string | null ) {
+    return docData<Admin>(
+      doc(this.db, '/administrators/' + uid) as DocumentReference<Admin>
+    )
   }
   
 }

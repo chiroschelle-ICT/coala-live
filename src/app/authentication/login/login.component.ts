@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms'
 import { delay } from 'rxjs';
 import { users } from 'src/app/interfaces/users';
 import { AuthenticationService } from 'src/app/service/authentication.service';
@@ -29,52 +29,70 @@ export class LoginComponent implements OnInit {
   bgColor!: string  
   bColor!: string
   
-  loginValid = false;
+  loginValid:boolean = false
 
   constructor(private dataService: DataService, private authservice : AuthserviceService, private router : Router, private loginservice : AuthenticationService) {}
 
   ngOnInit() {
-    this.dataService.getUsers().subscribe((data: any[]) => {
-      this.allUsers = data;
-    });
-
+    this.loginValid = false
   }
 
-  validateUser(item:any) {
-  if(!item.email.trim()) {
+  validateUser(item: NgForm) {
+    if(!item.value.email.trim()) {
       this.validForm = false
-      this.responseMessage = "Vul Je email In!"
-    }
-    else if(!item.password.trim()) {
+      this.actionResponse("Vul Je email In!", false)
+    } else if(!item.value.password.trim()) {
       this.validForm = false
-      this.responseMessage = "Vul Je wachtwoord In!"
+      this.actionResponse("Vul Je wachtwoord in!", false)
     }
-
     if(this.validForm) {
-          this.loginUser()
+      this.loginUser(item)
     }
-    else {
+  }
+
+
+  loginUser(form : NgForm) {
+    const email = form.value.email;
+    const password = form.value.password;
+    this.authservice.loginUser(email, password)
+      .then((response) => {
+        if(!response) {
+          this.loginValid = false
+          this.actionResponse("Foute Gegevens!", false)
+        } else {
+          this.loginValid = true
+          this.actionResponse("U Bent Ingelogd!", true)
+          setTimeout(() => {
+            this.router.navigate(['']);
+          },1500)
+        }
+      })
+  }
+
+  actionResponse(msg : string, color: boolean) {
+    if(color) {
+      this.bgColor = "#9fff96"
+        this.bColor = "3px solid green"
+        this.responseMessage = msg
+    } else {
       this.bgColor = "#fca5a5"
       this.bColor = "3px solid red"
-    }    
+      this.responseMessage = msg
+    }
   }
 
 
-  loginUser() {
-    this.authservice.loginUser(this.email, this.password)
-    .then((res) => {
-      if('succes') {
+/* 
+if('succes') {
         this.bgColor = "#9fff96"
         this.bColor = "3px solid green"
         this.responseMessage = "U Bent Ingelogd"
-        this.loginservice.loginUser();
       } else {
         this.bgColor = "#fca5a5"
         this.bColor = "3px solid red"
         this.responseMessage = "Foute Gegevens!"
       }
-    })
-  }
+     */
 
 }
 
