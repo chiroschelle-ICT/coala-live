@@ -30,7 +30,9 @@ describe('SignupComponent', () => {
     });
     fixture = TestBed.createComponent(SignupComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    fixture.detectChanges(); 
+
+    // ddd
   });
 
   // Test Cases go here:
