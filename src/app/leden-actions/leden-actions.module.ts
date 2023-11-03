@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { EditComponent } from './edit/edit.component';
 // Modules
 import { ledenActionsRoutingModule } from './leden-actions-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { DisableComponent } from './disable/disable.component';
 
 @NgModule({
@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     ledenActionsRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
+
   ]
 })
 export class LedenActionsModule { }
