@@ -70,14 +70,23 @@
             <button type="submit"
               class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg w-3/5 mb-5">Submit</button>
           </div>
-            <div class="w-full text-center">
-            <button [routerLink]="['/ledenDetails', parameterValue]" routerLinkActive="router-link-active" 
-              class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">Terug</button>
-          </div>
+
     
-          <div class="rounded-md px-2 py-3 text-center mt-2 font-bold w-full text-center mt-2" [style.border]="bColor" [style.background]="bgColor">
-              {{ responseMessage }}
-          </div>
+
+          
         </div>
       </div>
     </form>
+
+    <div class="w-full text-center" *ngIf="confirmExit">
+      <div class="rounded-md px-2 py-3 font-bold w-1/4 text-center mt-2 mb-3 mx-auto" [style.border]="bColor" [style.background]="bgColor">
+          {{ responseMessage }}
+      </div>
+
+      <button (click)="exitAction(true)"  routerLinkActive="router-link-active" 
+        class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 mx-3 rounded-lg">Ja</button>
+
+      <button (click)="exitAction(false)" routerLinkActive="router-link-active" 
+        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 mx-3 rounded-lg">Nee</button>
+
+    </div>

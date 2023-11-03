@@ -4,7 +4,6 @@ import { AuthserviceService } from '../authentication/authservice.service';
 import { Admin } from '../interfaces/Admin';
 import { FirebaseService } from '../service/firebase.service';
 import { Injectable } from '@angular/core';
-import { admin } from './admin';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +19,7 @@ export class adminGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.firebaseService.getAdmin(this.authService.getUid())
       .pipe(map(
-        (admin : admin | undefined) => {
+        (admin : Admin | undefined) => {
           if(admin) {
             return true
           } else {

@@ -1,7 +1,9 @@
 // auth.guard.ts
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthserviceService } from '../authentication/authservice.service';
+import { EditComponent } from '../leden-actions/edit/edit.component';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,4 +19,14 @@ export class AuthGuard implements CanActivate {
       return false;
     }
   }
+
+  canDeactivate(
+    component: EditComponent,
+    curentRoute: ActivatedRouteSnapshot,
+    currentStage: RouterStateSnapshot,
+    nextStage?: RouterStateSnapshot
+  ) : Observable<boolean> | Promise<boolean> | boolean {
+    return component.canDeactive();
+  }
+  
 }

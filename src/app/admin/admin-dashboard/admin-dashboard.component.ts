@@ -12,26 +12,33 @@ import { getDownloadURL, ref, Storage, uploadBytesResumable } from '@angular/fir
 export class AdminDashboardComponent {
   
   public file: any = {};
-  images: any[] = []
-  isModalOpen: boolean = true
+  accounts: any[] = []
+  isModalOpen: boolean = false
 
   constructor(private fb : FirebaseService, private storage : Storage) {}
 
-  openModal() {
-    this.isModalOpen = true
-  }
-  closeModal() {
-    this.isModalOpen = false
+  // Closing and opening modal
+  modalFunction() {
+    if(this.isModalOpen) {
+      this.isModalOpen = false
+    } else {
+      this.isModalOpen = true
+    }
   }
 
+
+
+
+  // Add Images
   selectFile(event: any) {
     this.file = event.target.files[0];
   }
-
   async voegFileToe() {
     const storageRef = ref(this.storage,`/leiding/${this.file.name}`);
     const uploadTask = uploadBytesResumable(storageRef,this.file);
     uploadTask.on('state_changed', (snapshot) => {
+      const progress = (snapshot.bytesTransferred / snapshot.totalBytes);
+      console.log('Uploadnen: ' + progress + '% done');
       if(!Number.isNaN(this.file.name)){
         alert('Foto toegevoegd.');
       }
@@ -44,9 +51,6 @@ export class AdminDashboardComponent {
         console.log('fotokrijgbaar iop' + downloadURL);
       });
     }
-    
-    )
-    
+    )   
   }
-
 }
