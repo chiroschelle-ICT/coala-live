@@ -43,18 +43,4 @@ export class AfdelingLijstComponent implements OnInit {
       this.leden = data
     })
   }
-
-
-
-
-/*   onGetLeden(): void {
-    this.lidSubscription = this.fb.getAllLeden().subscribe((data: any) => {
-      this.ledenAll = data;
-    })
-  } */
-
-
-
-
-
 }

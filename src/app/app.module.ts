@@ -32,6 +32,9 @@ import { AddLidComponent } from './add-lid/add-lid.component'; // Import FormsMo
 import { from } from 'rxjs';
 import { getStorage } from 'firebase/storage';
 import { HoverDirective } from './afdeling-lijst/hover.directive';
+import { CommonModule } from '@angular/common';
+import { SortByNamePipe } from './pipes/sort-by-name.pipe';
+
 
 @NgModule({
   declarations: [
@@ -45,6 +48,7 @@ import { HoverDirective } from './afdeling-lijst/hover.directive';
     LedenDetailsComponent,
     AddLidComponent,
     HoverDirective,
+    SortByNamePipe,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,8 @@ import { HoverDirective } from './afdeling-lijst/hover.directive';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
