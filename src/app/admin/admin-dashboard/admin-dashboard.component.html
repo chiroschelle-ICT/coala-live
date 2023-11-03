@@ -2,7 +2,7 @@
     <!-- Box 1 with a button -->
     <div class="p-4 border rounded-lg">
       <h2 class="text-xl font-semibold mb-4">Admin Functies</h2>
-      <button class="bg-red-500 hover:bg-red-800 text-white rounded-lg px-4 py-2 w-full my-3">Voeg foto toe</button>
+      <button (click)="openModal()" class="bg-red-500 hover:bg-red-800 text-white rounded-lg px-4 py-2 w-full my-3">Voeg foto toe</button>
       <button class="bg-red-500 hover:bg-red-800 text-white rounded-lg px-4 py-2 w-full my-3">Voeg Leiding toe</button>
     </div>
   
@@ -14,3 +14,24 @@
     </div>
   </div>
   
+
+
+  <div class="fixed inset-0 flex items-center justify-center z-50" *ngIf="isModalOpen">
+    <!-- Grayish Background -->
+    <div class="fixed inset-0 bg-gray-500 opacity-50"></div>
+  
+    <div class="modal-content p-6 bg-white rounded-lg shadow-lg relative">
+      <h2 class="text-2xl font-semibold mb-4">Foto toevoegen</h2>
+      <h4 class="text-xl">Kies hier de foto dat je wilt:</h4>
+      <h5 class="text-sm mt-3 mb-4">
+        <input (change)="selectFile($event)" type="file" name="img" id="img" accept=".jpg, .png, .jpeg" />
+      </h5>
+  
+      <!-- Using Flexbox to align buttons -->
+      <div class="flex justify-between mt-4">
+        <button (click)="voegFileToe()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Voeg foto toe</button>
+        
+        <button (click)="closeModal()" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-800">Annuleer</button>
+      </div>
+    </div>
+  </div>

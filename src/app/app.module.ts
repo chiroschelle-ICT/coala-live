@@ -9,6 +9,7 @@ import { environment } from '../../environments';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideAuth, getAuth } from '@angular/fire/auth';
+import { Storage, provideStorage } from '@angular/fire/storage';
 // Routing
 import { AppRoutingModule } from './app-routing.module';
 // Components
@@ -29,6 +30,7 @@ import { FormsModule } from '@angular/forms';
 import { LedenActionsModule } from './leden-actions/leden-actions.module';
 import { AddLidComponent } from './add-lid/add-lid.component'; // Import FormsModule
 import { from } from 'rxjs';
+import { getStorage } from 'firebase/storage';
 
 @NgModule({
   declarations: [
@@ -51,10 +53,11 @@ import { from } from 'rxjs';
     AdminRoutingModule,
     HttpClientModule,
     FormsModule,
-    LedenActionsModule,
+    LedenActionsModule,    
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
+    provideStorage(() => getStorage())
   ],
   providers: [],
   bootstrap: [AppComponent]

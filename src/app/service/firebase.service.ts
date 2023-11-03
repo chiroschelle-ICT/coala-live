@@ -1,28 +1,26 @@
-import { environment } from '../../../environments'; // Adjust the path as needed
+import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
-import { Firestore, getFirestore, collection, addDoc, collectionGroup, query, CollectionReference, where, orderBy, DocumentReference, doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { Injectable, Query } from '@angular/core';
+import { CollectionReference, DocumentReference, Firestore, addDoc, collection, deleteDoc, doc, getFirestore, query, updateDoc, where } from 'firebase/firestore';
 import { DocumentData } from 'rxfire/firestore/interfaces';
 import { Observable, from } from 'rxjs';
 import { collectionData, docData } from 'rxfire/firestore';
 import { Leden } from '../interfaces/Leden';
 import { Admin } from '../interfaces/Admin';
+import { getDownloadURL, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
+import { environment } from '../../../environments'; // Adjust the path as needed
 
-/* 
-const app = initializeApp(environment.firebase);
-const firestore = getFirestore(app);
- */
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
-  
   private db: Firestore;
-  
-  constructor() {
+  c: any;
+
+  constructor(private storage: Storage) {
     const app = initializeApp(environment.firebase);
     this.db = getFirestore(app);
   }
+
 
   // Add new lid
   async addLid(data: DocumentData) {
@@ -54,7 +52,7 @@ export class FirebaseService {
 
   // update lid
   // lid is any because error when using Leden
-  updateLid(lid: any, id: string) {
+  updateLid(lid: any, id: string) { 
     const lidRef = doc(this.db, 'leden/'+id) as DocumentReference<Leden>
     return from(updateDoc(lidRef, lid))
   }
@@ -111,4 +109,20 @@ export class FirebaseService {
     )
   }
   
+  // Upload Image
+  async uploadImg(path : string, file : File) : Promise<string> {
+    const storageRef = ref(this.storage, path);
+    const task = uploadBytesResumable(storageRef, file);
+    await task
+    const url = await getDownloadURL(storageRef)
+    return url
+  }
+
+  generateUniqueID() {
+    const timestamp = new Date().getTime();
+    const randomString = Math.random().toString(36).substring(2, 12);
+    const uniqueID = `${timestamp}${randomString}`;
+    return uniqueID;
+  }
+
 }
