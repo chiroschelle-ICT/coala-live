@@ -4,10 +4,11 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { adminGuard } from '../guards/admin.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'singup', component: SignupComponent },
+  { path: 'singup', component: SignupComponent, canDeactivate: [AuthGuard], canActivate: [adminGuard]},
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
 ];
 
