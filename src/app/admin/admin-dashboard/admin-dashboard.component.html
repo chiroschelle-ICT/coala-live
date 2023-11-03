@@ -1,0 +1,16 @@
+<div class="grid grid-cols-3 gap-4">
+    <!-- Box 1 with a button -->
+    <div class="p-4 border rounded-lg">
+      <h2 class="text-xl font-semibold mb-4">Admin Functies</h2>
+      <button class="bg-red-500 hover:bg-red-800 text-white rounded-lg px-4 py-2 w-full my-3">Voeg foto toe</button>
+      <button class="bg-red-500 hover:bg-red-800 text-white rounded-lg px-4 py-2 w-full my-3">Voeg Leiding toe</button>
+    </div>
+  
+    <!-- Box 2 with a div for Angular ngFor -->
+    <div class="p-4 border rounded-lg col-span-2">
+      <h2 class="text-xl font-semibold mb-4">Foto's</h2>
+      <div *ngFor="let images of images" class="mb-2">
+      </div>
+    </div>
+  </div>
+  

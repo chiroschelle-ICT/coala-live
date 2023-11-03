@@ -39,8 +39,11 @@ export class AuthserviceService {
             this.loggedIn = true
             localStorage.setItem('token', token);
             return true;
-          }
-        );
+          })
+          .catch(error => {
+            console.error("ERROR: And Error Acured with logging in a user: ", error);
+            return false;
+          });
     })
     .catch(
       error => {
@@ -59,7 +62,8 @@ export class AuthserviceService {
   }
 
   isLoggedIn() : boolean {
-    return this.loggedIn != null;
+    // return this.loggedIn != null;
+    return this.loggedIn;
   }
 
   getUid() {
