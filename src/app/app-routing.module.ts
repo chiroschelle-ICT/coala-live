@@ -8,11 +8,11 @@ import { AddLidComponent } from './add-lid/add-lid.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent, /*  canActivate: [AuthGuard] */  },
-  { path: 'afdelingen', component: AfdelingenComponent,/*  canActivate: [AuthGuard ]*/ },
-  { path: 'afdelingLijst/:afdelingParId', component: AfdelingLijstComponent,  /* canActivate: [AuthGuard] */  },
-  { path: 'ledenDetails/:lidId', component: LedenDetailsComponent,  /* canActivate: [AuthGuard] */  },
-  { path: 'addLid', component: AddLidComponent, /* canActivate: [AuthGuard] */  },
+  { path: '', component: DashboardComponent,  canActivate: [AuthGuard]  },
+  { path: 'afdelingen', component: AfdelingenComponent, canActivate: [AuthGuard ] },
+  { path: 'afdelingLijst/:afdelingParId', component: AfdelingLijstComponent,  canActivate: [AuthGuard]  },
+  { path: 'ledenDetails/:lidId', component: LedenDetailsComponent,  canActivate: [AuthGuard]  },
+  { path: 'addLid', component: AddLidComponent, canActivate: [AuthGuard] },
   { 
     path: 'authentication',
     loadChildren: () => import('./authentication/authentication-routing.module').then(m => m.AuthenticationRoutingModule)
@@ -20,6 +20,10 @@ const routes: Routes = [
   {
     path: 'ledenActions',
     loadChildren: () => import('./leden-actions/leden-actions.module').then(m => m.LedenActionsModule)
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   }
 ];
 

@@ -7,8 +7,9 @@ import { NgChartsModule } from 'ng2-charts';
 import { environment } from '../../environments';
 // Firebase
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getFirestore, provideFirestore,  } from '@angular/fire/firestore';
 import { provideAuth, getAuth } from '@angular/fire/auth';
+import { Storage, provideStorage } from '@angular/fire/storage';
 // Routing
 import { AppRoutingModule } from './app-routing.module';
 // Components
@@ -23,11 +24,14 @@ import { LedenDetailsComponent } from './leden-details/leden-details.component';
 // Modules
 import { AuthenticationModule } from './authentication/authentication.module';
 import { AuthenticationRoutingModule } from './authentication/authentication-routing.module';
+import { AdminRoutingModule } from './admin/admin-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LedenActionsModule } from './leden-actions/leden-actions.module';
 import { AddLidComponent } from './add-lid/add-lid.component'; // Import FormsModule
 import { from } from 'rxjs';
+import { getStorage } from 'firebase/storage';
+import { HoverDirective } from './afdeling-lijst/hover.directive';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,7 @@ import { from } from 'rxjs';
     AfdelingLijstComponent,
     LedenDetailsComponent,
     AddLidComponent,
+    HoverDirective,
   ],
   imports: [
     BrowserModule,
@@ -47,12 +52,14 @@ import { from } from 'rxjs';
     AppRoutingModule,
     AuthenticationModule,
     AuthenticationRoutingModule,
+    AdminRoutingModule,
     HttpClientModule,
     FormsModule,
-    LedenActionsModule,
+    LedenActionsModule,    
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
+    provideStorage(() => getStorage())
   ],
   providers: [],
   bootstrap: [AppComponent]

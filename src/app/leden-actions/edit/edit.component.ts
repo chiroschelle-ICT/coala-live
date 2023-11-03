@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { DataService } from 'src/app/service/data.service';
 import { FirebaseService } from 'src/app/service/firebase.service';
 
@@ -33,11 +34,14 @@ export class EditComponent implements OnInit  {
 
   setTimeoutActive: boolean = true
 
+  saved!: boolean
+  confirmExit: boolean = false
   constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router, private firebaseservice : FirebaseService) {}
 
   ngOnInit(): void {
     this.loadParameter()
     this.fillDataOfLid()
+    this.saved = false;
   }
 
   
@@ -106,10 +110,32 @@ export class EditComponent implements OnInit  {
       this.bgColor = "#9fff96";
       this.bColor = "3px solid green";
       this.setTimeoutActive = false;
+      this.saved = true
       setTimeout(() => {
         this.router.navigate(['/afdelingLijst/'+this.afdelingIdPreChange])      
         
       }, 1000)
+    }
+  }
+
+  canDeactive(): Observable<boolean> | Promise<boolean> | boolean {
+    if(!this.saved) {
+      this.responseMessage = "Annuleren zonder op te slaan?"        
+      this.bColor = "3px solid #dbb61f"
+      this.bgColor = "#f5d969"
+      this.confirmExit = true
+      return false
+    }
+    return true;
+  }
+
+  exitAction(res : boolean) {
+    if(res) {
+      this.saved = true,
+      this.router.navigate(['/ledenDetails', this.parameterValue])
+    } else {
+      this.confirmExit = false
+      
     }
   }
   

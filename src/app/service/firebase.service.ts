@@ -1,27 +1,18 @@
-import { environment } from '../../../environments'; // Adjust the path as needed
-import { initializeApp } from 'firebase/app';
-import { Firestore, getFirestore, collection, addDoc, collectionGroup, query, CollectionReference, where, orderBy, DocumentReference, doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { Injectable, Query } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { CollectionReference, collectionData, DocumentReference, Firestore, addDoc, collection, deleteDoc, doc,  query, updateDoc, where, docData } from '@angular/fire/firestore';
 import { DocumentData } from 'rxfire/firestore/interfaces';
 import { Observable, from } from 'rxjs';
-import { collectionData } from 'rxfire/firestore';
 import { Leden } from '../interfaces/Leden';
+import { Admin } from '../interfaces/Admin';
+import { getDownloadURL, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
 
-/* 
-const app = initializeApp(environment.firebase);
-const firestore = getFirestore(app);
- */
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
   
-  private db: Firestore;
-  
-  constructor() {
-    const app = initializeApp(environment.firebase);
-    this.db = getFirestore(app);
-  }
+  constructor(private storage: Storage, private db: Firestore) { }
+
 
   // Add new lid
   async addLid(data: DocumentData) {
@@ -53,7 +44,7 @@ export class FirebaseService {
 
   // update lid
   // lid is any because error when using Leden
-  updateLid(lid: any, id: string) {
+  updateLid(lid: any, id: string) { 
     const lidRef = doc(this.db, 'leden/'+id) as DocumentReference<Leden>
     return from(updateDoc(lidRef, lid))
   }
@@ -103,5 +94,28 @@ export class FirebaseService {
         return 0; // Return 0 for unknown departments or handle it as needed
     }
   }
+
+  getAdmin(uid: string | null ) {
+    return docData<Admin>(
+      doc(this.db, '/administrators/' + uid) as DocumentReference<Admin>
+    )
+  }
   
+  // Upload Image
+  async uploadImg(path : string, file : File) : Promise<string> {
+    const storageRef = ref(this.storage, path);
+    const task = uploadBytesResumable(storageRef, file);
+    await task
+    const url = await getDownloadURL(storageRef)
+    return url
+  }
+
+  generateUniqueID() {
+    const timestamp = new Date().getTime();
+    const randomString = Math.random().toString(36).substring(2, 12);
+    const uniqueID = `${timestamp}${randomString}`;
+    return uniqueID;
+  }
+
+
 }

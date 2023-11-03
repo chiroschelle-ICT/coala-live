@@ -1,0 +1,23 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+		function isAuthenticated() {
+    	return request.auth.uid != null;
+    }
+    
+    function isAdmin() {
+    	return exists(/databases/$(database)/documents/administrators/$(request.auth.uid));
+    }
+    
+     match /leden/{ledenid} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated();
+    }
+  
+    match /administrators/{adminid} {
+        allow read: if isAuthenticated();
+        allow write: if false;
+    }
+    
+  }
+}
