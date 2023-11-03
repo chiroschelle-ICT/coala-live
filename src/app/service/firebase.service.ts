@@ -1,25 +1,17 @@
 import { Injectable } from '@angular/core';
-import { initializeApp } from 'firebase/app';
-import { CollectionReference, DocumentReference, Firestore, addDoc, collection, deleteDoc, doc, getFirestore, query, updateDoc, where } from 'firebase/firestore';
+import { CollectionReference, collectionData, DocumentReference, Firestore, addDoc, collection, deleteDoc, doc,  query, updateDoc, where, docData } from '@angular/fire/firestore';
 import { DocumentData } from 'rxfire/firestore/interfaces';
 import { Observable, from } from 'rxjs';
-import { collectionData, docData } from 'rxfire/firestore';
 import { Leden } from '../interfaces/Leden';
 import { Admin } from '../interfaces/Admin';
 import { getDownloadURL, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
-import { environment } from '../../../environments'; // Adjust the path as needed
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
-  private db: Firestore;
-  c: any;
-
-  constructor(private storage: Storage) {
-    const app = initializeApp(environment.firebase);
-    this.db = getFirestore(app);
-  }
+  
+  constructor(private storage: Storage, private db: Firestore) { }
 
 
   // Add new lid
