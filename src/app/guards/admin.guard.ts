@@ -1,4 +1,4 @@
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { AuthserviceService } from '../authentication/authservice.service';
 import { Admin } from '../interfaces/Admin';
@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 })
 export class adminGuard implements CanActivate {
 
-  constructor(private authService : AuthserviceService, private firebaseService : FirebaseService) {}
+  constructor(private authService : AuthserviceService, private firebaseService : FirebaseService, private router : Router) {}
 
   test!: any
 
@@ -23,6 +23,7 @@ export class adminGuard implements CanActivate {
           if(admin) {
             return true
           } else {
+            this.router.navigate(['/login']);
             return false;
           }
         }
