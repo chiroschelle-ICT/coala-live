@@ -31,6 +31,7 @@ import { LedenActionsModule } from './leden-actions/leden-actions.module';
 import { AddLidComponent } from './add-lid/add-lid.component'; // Import FormsModule
 import { from } from 'rxjs';
 import { getStorage } from 'firebase/storage';
+import { HoverDirective } from './afdeling-lijst/hover.directive';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { getStorage } from 'firebase/storage';
     AfdelingLijstComponent,
     LedenDetailsComponent,
     AddLidComponent,
+    HoverDirective,
   ],
   imports: [
     BrowserModule,
