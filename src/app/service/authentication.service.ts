@@ -13,7 +13,7 @@ export class AuthenticationService {
   loginUser() {
     this.isAuthneticated = true
     setTimeout(() => {
-      this.router.navigate(['']); 
+      this.router.navigate(['afdelingen']); 
     }, 1200)
   }
   logout() {

@@ -3,17 +3,17 @@
         <h2 class="text-xl font-bold">Login</h2>
     </div>
     <div class="bg-white p-4 rounded-b-lg">
-        <h3 class="mb-4 text-lg font-bold">Heb je nog geen account? mailtje naar ict@chiroschelle.be </h3>
+        <h3 class="mb-4 text-lg font-bold">Heb je nog geen account? mailtje naar informatica@chiroschelle.be </h3>
         <form #loginForm="ngForm" (ngSubmit)="validateUser(loginForm)">          
             <div class="mb-4">
-                <label for="email" class="font-semibold">vul je chiro email in: killian.serluppens@chiroschelle.be </label>
+                <label for="email" class="font-semibold">vul je chiro email in: </label>
                 <input type="email" name="email" placeholder="voornaam.naam@chiroschelle.be" value="killian.serluppens@chiroschelle.be" [(ngModel)]="email"
                     class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500"
                     required
                 >
             </div>
             <div class="mb-4">
-                <label for="password" class="font-semibold">Vul je Wachtwoord in: Killian123!</label>
+                <label for="password" class="font-semibold">Vul je Wachtwoord in:</label>
                 <input type="password" name="password" placeholder="wachtwoord" value="" [(ngModel)]="password"
                     class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500"
                     required

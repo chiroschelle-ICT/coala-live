@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
           this.loginValid = true
           this.actionResponse("U Bent Ingelogd!", true)
           setTimeout(() => {
-            this.router.navigate(['']);
+            this.router.navigate(['/afdelingen']);
           },1500)
         }
       })

@@ -11,14 +11,21 @@ import { getDownloadURL, ref, Storage, uploadBytesResumable } from '@angular/fir
 })
 export class AdminDashboardComponent implements OnInit {
   
+
   public file: any = {};
   accounts: any[] = []
-  isModalOpen: boolean = false
+  isModalOpen!: boolean
 
+  showResponse: boolean = false
+  responseMessage:string = ""
+  bgColor!: string  
+  bColor!: string
+  
   constructor(private fb : FirebaseService, private storage : Storage) {}
 
   ngOnInit() {
     this.isModalOpen = false
+    this.showResponse = true
   }
 
   // Closing and opening modal
@@ -44,10 +51,15 @@ export class AdminDashboardComponent implements OnInit {
       const progress = (snapshot.bytesTransferred / snapshot.totalBytes);
       console.log('Uploadnen: ' + progress + '% done');
       if(!Number.isNaN(this.file.name)){
-        alert('Foto toegevoegd.');
+        this.showResponse = true
+        this.actionResponse("Foto Geupload!", true)
+        setTimeout(() => {
+          this.isModalOpen = false
+        }, 1500)
       }
       else{
-        alert('Geen foto geselecteerd.');
+        this.showResponse = true
+        this.actionResponse("geen Foto Geselecteerd!", false)
       }
     },
     () =>{
@@ -57,4 +69,17 @@ export class AdminDashboardComponent implements OnInit {
     }
     )   
   }
+
+  actionResponse(msg : string, color: boolean) {
+    if(color) {
+      this.bgColor = "#9fff96"
+        this.bColor = "3px solid green"
+        this.responseMessage = msg
+    } else {
+      this.bgColor = "#fca5a5"
+      this.bColor = "3px solid red"
+      this.responseMessage = msg
+    }
+  }
+
 }
