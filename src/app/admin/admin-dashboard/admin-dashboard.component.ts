@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/service/firebase.service';
 import { newImg } from '../newImg';
 import { getDownloadURL, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
@@ -9,13 +9,17 @@ import { getDownloadURL, ref, Storage, uploadBytesResumable } from '@angular/fir
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.css']
 })
-export class AdminDashboardComponent {
+export class AdminDashboardComponent implements OnInit {
   
   public file: any = {};
   accounts: any[] = []
   isModalOpen: boolean = false
 
   constructor(private fb : FirebaseService, private storage : Storage) {}
+
+  ngOnInit() {
+    this.isModalOpen = false
+  }
 
   // Closing and opening modal
   modalFunction() {

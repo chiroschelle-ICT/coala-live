@@ -35,12 +35,12 @@ export class SignupComponent implements OnInit {
   confirmPassword: string = ""
  */
   validForm: boolean = false
-  responseMessage: string = ""
-  bColor: string = ""
-  bgColor: string = ""
-
+  responseMessage:string = ""
+  bgColor!: string  
+  bColor!: string
+  showResponse!: boolean
   ngOnInit() {
-
+    this.showResponse = false
   }
 
   onSignUp() {
@@ -49,10 +49,25 @@ export class SignupComponent implements OnInit {
     this.authservice.signup(email, password)
     .then((res) => {
       if(res == 'succes') {
-        // this.router.navigate(['/login']);
+        this.showResponse = true
+        this.bgColor = "#9fff96"
+        this.bColor = "3px solid green"
+        this.responseMessage = "Nieuwe gebruiker aangemaakt"
+        this.clearFields()
       }
     })
+    setTimeout(() =>{
+      this.showResponse = false
+    }, 3000)
   }
 
+
+  clearFields() {
+    this.signupForm.reset({
+      email: '',
+      password: '',
+      confirmPassword: ''
+    });
+  }
 }
  
