@@ -4,6 +4,9 @@ Tijdelijke coala voor leden beheer Chiro Schelle
 
 ## Informatie Docent
 
+### Github link:
+- https://github.com/chiroschelle-ICT/coala-live
+
 ### Firebase URL:
 - https://coala-df864.web.app
 
