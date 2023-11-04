@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CollectionReference, collectionData, DocumentReference, Firestore, addDoc, collection, deleteDoc, doc,  query, updateDoc, where, docData } from '@angular/fire/firestore';
-import { DocumentData } from 'rxfire/firestore/interfaces';
+import { CollectionReference, collectionData, DocumentReference, Firestore, addDoc, collection, deleteDoc, doc,  query, updateDoc, where, docData, DocumentData } from '@angular/fire/firestore';
 import { Observable, from } from 'rxjs';
 import { Leden } from '../interfaces/Leden';
 import { Admin } from '../interfaces/Admin';

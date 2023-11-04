@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm, AbstractControl } from '@angular/forms';
 import { AuthserviceService } from '../authservice.service';
 import { Router } from '@angular/router';
+import { debounceTime, switchMap, map } from 'rxjs';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +18,8 @@ export class SignupComponent implements OnInit {
       email: ['', [
         Validators.required,
         Validators.pattern(/^\w+\.\w+@chiroschelle\.be$/)
-      ]],
+      ],
+    ],
       password: ['', [
         Validators.required,
         Validators.minLength(6), Validators.pattern(/^(?=.*[0-9].*[0-9])(?=.*[!|?]).{6,}$/)

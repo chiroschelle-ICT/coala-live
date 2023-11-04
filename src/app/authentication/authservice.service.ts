@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth'
-import { from } from 'rxjs';
+import { Observable, from } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthserviceService {
   token: string | null = null;
   loggedIn!: boolean
 
-  constructor(private router : Router, private auth : Auth) {
+  constructor(private router : Router, private auth : Auth, private http : HttpClient) {
     if(localStorage.getItem('token')) {
       this.token = localStorage.getItem('token')
     }

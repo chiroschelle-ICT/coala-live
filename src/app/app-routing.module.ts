@@ -24,6 +24,10 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+  },
+  {
+    path: 'sub',
+    loadChildren: () => import('./random-number/random-number.module').then(m => m.RandomNumberModule)
   }
 ];
 

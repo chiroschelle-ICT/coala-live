@@ -21,6 +21,7 @@ import { ChartComponent } from './chart/chart.component';
 import { AfdelingenComponent } from './afdelingen/afdelingen.component';
 import { AfdelingLijstComponent } from './afdeling-lijst/afdeling-lijst.component';
 import { LedenDetailsComponent } from './leden-details/leden-details.component';
+import { RandomNumberModule } from './random-number/random-number.module'
 // Modules
 import { AuthenticationModule } from './authentication/authentication.module';
 import { AuthenticationRoutingModule } from './authentication/authentication-routing.module';
@@ -49,6 +50,7 @@ import { SortByNamePipe } from './pipes/sort-by-name.pipe';
     AddLidComponent,
     HoverDirective,
     SortByNamePipe,
+    
   ],
   imports: [
     BrowserModule,
@@ -60,6 +62,7 @@ import { SortByNamePipe } from './pipes/sort-by-name.pipe';
     HttpClientModule,
     FormsModule,
     LedenActionsModule,    
+    RandomNumberModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
