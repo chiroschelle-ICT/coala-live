@@ -48,22 +48,14 @@ Tijdelijke coala voor leden beheer Chiro Schelle
     - the test passed
   - link to test: [Link to line 92](src\app\authentication\signup\signup.component.spec.ts#92)
 
-## Installs
+## All Dependencies
+- Inculdes
+  - Npm
+  - Angular
+  - Charts.js
+  - Tailwind
+  - Firebase
+  - body parser
+- Install:
+  - ```npm run install-all-packages```
 
-### Npm modules
-```npm install```
-
-### Angular
-```npm install -g @angular/cli```
-
-### Charts.js
-```npm install ng2-charts chart.js --save```
-
-### Taillwind
-```npm install -D tailwindcss postcss autoprefixer```
-
-### Firebase 
-```npm install -g firebase-tools```
-
-### body parser
-```npm install body-parser```

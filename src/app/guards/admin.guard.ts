@@ -1,7 +1,7 @@
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { AuthserviceService } from '../authentication/authservice.service';
-import { Admin } from '../interfaces/Admin';
+import { Admin } from '../../interfaces/Admin';
 import { FirebaseService } from '../service/firebase.service';
 import { Injectable } from '@angular/core';
 

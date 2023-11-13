@@ -5,7 +5,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { adminGuard } from '../guards/admin.guard';
 
 const routes: Routes = [
-  { path: 'AdminDashboard', component: AdminDashboardComponent, canActivate: [adminGuard] },
+  { path: 'AdminDashboard', component: AdminDashboardComponent, /* canActivate: [adminGuard] */ },
 ];
 
 @NgModule({

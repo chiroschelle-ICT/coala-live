@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "after-deploy": ""
+    "after-deploy": "",
+    "install-all-packages": "npm install && npm install -g @angular/cli && npm install ng2-charts chart.js --save && npm install -D tailwindcss postcss autoprefixer && npm install -g firebase-tools && npm install body-parser"
   },
   "private": true,
   "dependencies": {

@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth'
+
 import { Observable, from } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { CollectionReference, collectionData, DocumentReference, Firestore, addDoc, collection, deleteDoc, doc,  query, updateDoc, where, docData, DocumentData, getFirestore } from '@angular/fire/firestore';
+import { FirebaseService } from '../service/firebase.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,24 +14,44 @@ import { HttpClient } from '@angular/common/http';
 export class AuthserviceService {
   token: string | null = null;
   loggedIn!: boolean
+  userId!: string
 
-  constructor(private router : Router, private auth : Auth, private http : HttpClient) {
+  private userCollection: any
+
+  constructor(private router : Router, private auth : Auth, private db: Firestore) {
+    this.userCollection = collection(this.db, 'users');
     if(localStorage.getItem('token')) {
       this.token = localStorage.getItem('token')
     }
   }
 
-  
-  signup(email: string, passwd : string) : Promise<string>{
+  /* 
+    signup(email: string, passwd : string) : Promise<{status: string, userId: string}>{
     return createUserWithEmailAndPassword(this.auth, email, passwd)
     .catch(error => {
       console.error("ERROR with creating new user: "+error);
-      return 'error'
+      return { status: 'error' }
     }).then(() => {
-      return 'succes'
+      
+      return { status: 'succes' ,userId: "YA"}
     })
   }
-
+  */
+  signup(email: string, passwd : string) : Promise<{status: string, userId: string}>{
+    return createUserWithEmailAndPassword(this.auth, email, passwd)
+      .then(userCredential => {
+        const uId = userCredential.user?.uid
+        return { status: 'succes', userId: uId }
+      }) .catch(error => {
+        console.error("ERROR with creating new user: " + error); 
+        return { status: 'error', userId : "ERROR"}
+      });      
+  }
+  addNewUsertocollection(data: DocumentData) {
+    const ledenCollection = collection(this.db, 'users');
+    return from(addDoc(ledenCollection, data));
+  }
+ 
   // Login user with password and email
   loginUser(email: string, passwd: string) {
     console.log("Email And Password: \n" + email + " " + passwd)
@@ -42,7 +66,7 @@ export class AuthserviceService {
             return true;
           })
           .catch(error => {
-            console.error("ERROR: And Error Acured with logging in a user: ", error);
+            console.error("ERROR: An Error Acured with logging in a user: ", error);
             return false;
           });
     })
@@ -51,8 +75,9 @@ export class AuthserviceService {
         console.error("ERROR with loggin in user: " + error);
         return false;
       }
-    );
+    ) 
   }
+
 
   logout() : void {
     this.auth.signOut()

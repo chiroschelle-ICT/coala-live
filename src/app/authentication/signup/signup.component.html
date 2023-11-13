@@ -3,20 +3,51 @@
         <h2 class="text-xl font-bold">Signup</h2>
     </div>
     <div class="bg-white p-4 rounded-b-lg">
-        <h3 class="mb-4 text-lg font-bold">Heb jeproblemen? mailtje naar <a href="mailto:ict@chiroschelle.be">ict@chiroschelle.be </a></h3>
+        <h3 class="mb-4 text-lg font-bold">Heb jeproblemen? mailtje naar <a href="mailto:ict@chiroschelle.be">De Wergroep </a></h3>
     </div>
-<!--     <form (ngSubmit)="onSignUp(f)" #f="ngForm"> -->
   
     <form (submit)="onSignUp()" [formGroup]="signupForm">
-      <div class="mb-4">
+        <div class="mb-4">
           <label for="email" class="font-semibold">Vul de chiro email in</label> 
           <input type="email" formControlName="email" placeholder="voornaam.naam@chiroschelle.be" value="kil.ser@chiroschelle.be"
             class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500">
           <div *ngIf="signupForm.get('email')?.hasError('pattern')" class="text-red-500 text-sm">
-            Foute email formaat, het moet zijn zoals: woord.woord@chiroschelle.be
+            <!-- Foute email formaat, het moet zijn zoals: woord.woord@chiroschelle.be -->
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="name" class="font-semibold">Vul de Naam in</label>
+          <input type="text" formControlName="name" placeholder="voornaam"
+          class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500">
+          <div *ngIf="signupForm.get('name')?.hasError('pattern')" class="text-red-500 text-sm">
+            Full de naam in!
           </div>
         </div>
       
+        <div class="mb-4">
+          <label for="name" class="font-semibold">Afdeling: </label>
+          <select name="department" formControlName="afdeling"
+            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" >
+            <option value="Ribbel Jongens" selected>Ribbel Jongens</option>
+            <option value="Ribbel Meisjes">Ribbel Meisjes</option>
+            <option value="Speelclub Jongens">Speelclub Jongens</option>
+            <option value="Speelclub Meisjes">Speelclub Meisjes</option>
+            <option value="Rakkers">Rakkers</option>
+            <option value="Kwiks">Kwiks</option>
+            <option value="Toppers">Toppers</option>
+            <option value="Tippers">Tippers</option>
+            <option value="Kerels">Kerels</option>
+            <option value="Tiptiens">Tiptiens</option>
+            <option value="Aspi Jongens">Aspi Jongens</option>
+            <option value="Aspi Meisjes">Aspi Meisjes</option>
+        </select>
+        <div *ngIf="signupForm.get('afdeling')?.hasError('pattern')" class="text-red-500 text-sm">
+          Full de Afdeling in!
+        </div>
+        </div>
+      
+
         <div class="mb-4">
           <label for="password" class="font-semibold">Vul het Wachtwoord in</label>
           <input type="password" formControlName="password" placeholder="wachtwoord" value="supperwachtwoord123!"
