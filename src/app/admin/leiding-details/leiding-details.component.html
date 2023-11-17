@@ -1,1 +1,45 @@
-<p>leiding-details works!</p>
+<div class="" *ngFor="let user of users"> 
+    <div  class="bg-orange-300 border-2 border-black  p-6 rounded-lg shadow-md w-2/6 m-auto mt-10" >
+      <h2 class="text-2xl font-semibold mb-4 text-center">user Overview</h2>
+  
+      <!-- Customer Information -->
+      <div class="mb-4">
+        <p><strong class="text-gray-800">Naam</strong> {{user.name}} </p>
+        <br>
+        <p><strong class="text-gray-800">Email</strong> {{user.email}} </p>  
+        <br>    
+        <p><strong class="text-gray-800">Afdeling</strong> {{user.afdeling}} </p>
+        <br>    
+        <p><strong class="text-gray-800">Rechten</strong> {{user.rights}} </p>
+      </div>
+  
+      <!-- Edit and Delete Buttons -->
+      <div class="flex justify-between">
+        <button [routerLink]="['/editUser', user.Id]" class="bg-yellow-400 hover:bg-yellow-600 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-blue">
+          Aanpassen
+        </button>
+        <button [routerLink]="['/AdminDashboard']" routerLinkActive="router-link-active"  class="bg-blue-400 hover:bg-blue-600 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-red">
+          Terug
+        </button>
+        <button (click)="openDisableModal()" class="bg-red-400 hover:bg-red-600 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-red">
+          Gestopt
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="fixed inset-0 flex items-center justify-center z-50" *ngIf="isModalOpen">
+    <!-- Grayish Background -->
+    <div class="fixed inset-0 bg-gray-500 opacity-50"></div>
+    <div class="modal-content p-6 bg-white rounded-lg shadow-lg relative">
+      <h2 class="text-2xl font-semibold mb-4">User Verwijderen?</h2>
+      <h4 class="text-xl">Ben je zeker dat deze user wilt uitschrijven?</h4>
+      <!-- Using Flexbox to align buttons -->
+      <div class="flex justify-between mt-4">
+        <button (click)="deleteUser()" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Ja</button>
+        
+        <button (click)="closeDisableModal()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Nee</button>
+      </div>
+    </div>
+  </div>
+  

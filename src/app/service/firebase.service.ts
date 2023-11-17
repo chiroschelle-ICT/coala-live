@@ -131,5 +131,14 @@ export class FirebaseService {
       {idField: 'Id'}
     )
   }
+  getAuthUserDetails(uId:string) {
+    return collectionData<Users> (
+      query(
+        collection(this.db, 'users') as CollectionReference<Users>,
+        where('userId', "==", uId),
+      ),
+      {idField: 'Id'}
+    )
+  }
 
 }

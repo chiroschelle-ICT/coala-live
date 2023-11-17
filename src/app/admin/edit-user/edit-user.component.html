@@ -1,0 +1,84 @@
+<form (submit)="onSignUp()" [formGroup]="signupForm">
+    <div class="mb-4">
+      <label for="email" class="font-semibold">Vul de chiro email in</label> 
+      <input type="email" formControlName="email" placeholder="voornaam.naam@chiroschelle.be" value="kil.ser@chiroschelle.be"
+        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500">
+      <div *ngIf="signupForm.get('email')?.hasError('pattern')" class="text-red-500 text-sm">
+        <!-- Foute email formaat, het moet zijn zoals: woord.woord@chiroschelle.be -->
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="name" class="font-semibold">Vul de Naam in</label>
+      <input type="text" formControlName="name" placeholder="voornaam"
+      class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500">
+      <div *ngIf="signupForm.get('name')?.hasError('pattern')" class="text-red-500 text-sm">
+        Full de naam in!
+      </div>
+    </div>
+  
+    <div class="mb-4">
+      <label for="name" class="font-semibold">Afdeling: </label>
+      <select name="department" formControlName="afdeling"
+        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" >
+        <option value="Ribbel Jongens" selected>Ribbel Jongens</option>
+        <option value="Ribbel Meisjes">Ribbel Meisjes</option>
+        <option value="Speelclub Jongens">Speelclub Jongens</option>
+        <option value="Speelclub Meisjes">Speelclub Meisjes</option>
+        <option value="Rakkers">Rakkers</option>
+        <option value="Kwiks">Kwiks</option>
+        <option value="Toppers">Toppers</option>
+        <option value="Tippers">Tippers</option>
+        <option value="Kerels">Kerels</option>
+        <option value="Tiptiens">Tiptiens</option>
+        <option value="Aspi Jongens">Aspi Jongens</option>
+        <option value="Aspi Meisjes">Aspi Meisjes</option>
+    </select>
+    <div *ngIf="signupForm.get('afdeling')?.hasError('pattern')" class="text-red-500 text-sm">
+      Full de Afdeling in!
+    </div>
+    </div>
+  
+
+    <div class="mb-4">
+      <label for="password" class="font-semibold">Vul het Wachtwoord in</label>
+      <input type="password" formControlName="password" placeholder="wachtwoord" value="supperwachtwoord123!"
+        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500">
+      <div *ngIf="signupForm.get('password')?.hasError('pattern')" class="text-red-500 text-sm">
+        Wachtwoord moet minstens 6 tekens bevatten met 2 cijfers en 1 speciaal karakter.
+      </div>
+    </div>
+  
+    <div class="mb-4">
+      <label for="password" class="font-semibold">Herhaal het Wachtwoord</label>
+      <input type="password" formControlName="confirmPassword" placeholder="bevestig wachtwoord" value="supperwachtwoord123!"
+        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500">
+      <div *ngIf="signupForm.get('confirmPassword')?.hasError('required')" class="text-red-500 text-sm">
+        Vul de wachtwoordbevestiging in.
+      </div>
+      <div *ngIf="signupForm.get('confirmPassword')?.value !== signupForm.get('password')?.value" class="text-red-500 text-sm">
+        Wachtwoorden komen niet overeen.
+      </div>
+      <div class="mb-4 text-center">
+        <button  type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full">Maak nieuwe gebruiker</button>
+    </div>
+
+    <div class="rounded-md px-2 py-3 text-center mt-2 font-bold" *ngIf="showResponse" [style.border]="bColor" [style.background]="bgColor">
+      {{ responseMessage }}
+    </div>
+
+    </div>
+  </form>
+
+    <div class="w-full text-center" *ngIf="confirmExit">
+      <div class="rounded-md px-2 py-3 font-bold w-1/4 text-center mt-2 mb-3 mx-auto" [style.border]="bColor" [style.background]="bgColor">
+          {{ responseMessage }}
+      </div>
+
+      <button (click)="exitAction(true)"  routerLinkActive="router-link-active" 
+        class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 mx-3 rounded-lg">Ja</button>
+
+      <button (click)="exitAction(false)" routerLinkActive="router-link-active" 
+        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 mx-3 rounded-lg">Nee</button>
+
+    </div>
