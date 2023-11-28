@@ -7,7 +7,7 @@ import { LeidingDetailsComponent } from './leiding-details/leiding-details.compo
 import { EditUserComponent } from './edit-user/edit-user.component';
 
 const routes: Routes = [
-  { path: 'AdminDashboard', component: AdminDashboardComponent, /* canActivate: [adminGuard] */ },
+  { path: 'AdminDashboard', component: AdminDashboardComponent,  /* canActivate: [adminGuard] */ },
   { path: 'details/:userId', component: LeidingDetailsComponent, /* canActivate: [adminGuard] */ },
   { path: 'editUser/:userId', component: EditUserComponent, /* canActivate: [adminGuard] */ },
 

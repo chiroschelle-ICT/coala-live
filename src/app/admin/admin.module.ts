@@ -6,7 +6,8 @@ import { LeidingDetailsComponent } from './leiding-details/leiding-details.compo
 // Pipes
 import { AfdelingFilterPipe } from '../pipes/afdeling-filter.pipe';
 import { EditUserComponent } from './edit-user/edit-user.component'
-
+//Forms
+import { FormsModule, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,9 @@ import { EditUserComponent } from './edit-user/edit-user.component'
   imports: [
     CommonModule,
     AdminRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+
   ]
 })
 export class AdminModule { }
