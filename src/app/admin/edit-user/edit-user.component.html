@@ -1,0 +1,71 @@
+<form #nieuwLidForm="ngForm" (submit)="onEditUser()" [formGroup]="editUserForm">
+    <div class="max-w-2xl mx-auto mt-1 p-4 border rounded-lg shadow-lg">
+        <div class="bg-red-500 text-white text-center py-2 px-4 rounded-t-lg">
+          <h2 class="text-xl font-bold">Edit User</h2>
+        </div>
+        <div class="bg-white p-4 rounded-b-lg flex flex-wrap justify-between">
+          <div class="w-full md:w-1/2 mb-4 md:pr-2">
+            <label for="naam" class="font-semibold">Naam:</label>
+            <input type="text" formControlName="naam" name="naam" placeholder="Naam"
+              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500"  >
+          </div>
+          <div class="w-full md:w-1/2 mb-4 md:pl-2">
+            <label for="email" class="font-semibold">Email:</label>
+            <input type="email" formControlName="email" name="email" placeholder="Email"
+              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500"  >
+          </div>                  
+          <div class="row-span-2 w-full md:w-1/2 mb-4 md:pr-2">
+            <label for="afdeling" class="font-semibold">Afdeling:</label>
+            <select name="afdeling" formControlName="afdeling"
+              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500"  >
+              <option value="Ribbel Jongens">Ribbel J</option>
+              <option value="Ribbel Meisjes">Ribbel M</option>
+              <option value="Speelclub Jongens">Speelclub J</option>
+              <option value="Speelclub Meisjes">Speelclub M</option>
+              <option value="Rakkers">Rakkers</option>
+              <option value="Kwiks">Kwiks</option>
+              <option value="Toppers">Toppers</option>
+              <option value="Tippers">Tippers</option>
+              <option value="Kerels">Kerels</option>
+              <option value="Tiptiens">Tiptiens</option>
+              <option value="Aspi Jongens">Aspi Jongens</option>
+              <option value="Aspi Meisjes">Aspi Meisjes</option>
+            </select>
+          </div>
+          <div class="row-span-2 w-full md:w-1/2 mb-4 md:pr-2">
+            <label for="rights" class="font-semibold">Rechten:</label>
+            <select name="rights" formControlName="rechten"
+              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500"  >
+              <option [value]="0">Leiding</option>
+              <option [value]="1">Werkgroep ICT</option>
+            </select>
+          </div>
+          <div class="w-full text-center">
+            <button type="submit"
+              class="bg-red-500 hover:bg-red-800 text-white font-bold px-6 py-3 rounded-lg w-3/5 mb-8 mt-4 text-lg">Update De Gebruiker</button>
+            <div class="grid grid-cols-2 gap-x-10 items-center">
+              <div [routerLink]="['/details',parameterValue]" routerLinkActive="router-link-active" 
+                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mb-5 col-span-1 cursor-pointer">Info</div>
+              <div [routerLink]="['/AdminDashboard']" routerLinkActive="router-link-active" 
+                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mb-5 col-span-1 cursor-pointer">Dashboard</div>
+            </div>              
+          </div>
+          <div class="rounded-md px-2 py-3 text-center mt-2 mx-auto font-bold" *ngIf="showResponse" [style.border]="bColor" [style.background]="bgColor">
+            {{ responseMessage }}
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="w-full text-center" *ngIf="confirmExit">
+      <div class="rounded-md px-2 py-3 font-bold w-1/4 text-center mt-2 mb-3 mx-auto" [style.border]="bColor" [style.background]="bgColor">
+          {{ responseMessage }}
+      </div>
+
+      <button (click)="exitAction(true)"  routerLinkActive="router-link-active" 
+        class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 mx-3 rounded-lg">Ja</button>
+
+      <button (click)="exitAction(false)" routerLinkActive="router-link-active" 
+        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 mx-3 rounded-lg">Nee</button>
+
+    </div>

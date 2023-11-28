@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms'
-import { delay } from 'rxjs';
-import { users } from 'src/app/interfaces/users';
+import {  NgForm,  } from '@angular/forms'
 import { AuthenticationService } from 'src/app/service/authentication.service';
 import { DataService } from 'src/app/service/data.service';
 import { AuthserviceService } from '../authservice.service';

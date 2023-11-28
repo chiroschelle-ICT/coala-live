@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators, NgForm, AbstractControl } from '@an
 import { AuthserviceService } from '../authservice.service';
 import { Router } from '@angular/router';
 import { debounceTime, switchMap, map } from 'rxjs';
+import { FirebaseService } from 'src/app/service/firebase.service';
+import { uid } from 'chart.js/dist/helpers/helpers.core';
 
 @Component({
   selector: 'app-signup',
@@ -13,13 +15,21 @@ export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
 
-  constructor(private formbuilder : FormBuilder, private authservice : AuthserviceService, private router : Router) {
+  constructor(private formbuilder : FormBuilder, private authservice : AuthserviceService, private router : Router, private fire : FirebaseService) {
     this.signupForm = this.formbuilder.group({
       email: ['', [
         Validators.required,
         Validators.pattern(/^\w+\.\w+@chiroschelle\.be$/)
       ],
-    ],
+     ],
+      name: ['', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern(/^[A-Z]/)
+      ]],
+      afdeling: ['', [
+        Validators.required
+      ]],
       password: ['', [
         Validators.required,
         Validators.minLength(6), Validators.pattern(/^(?=.*[0-9].*[0-9])(?=.*[!|?]).{6,}$/)
@@ -39,6 +49,10 @@ export class SignupComponent implements OnInit {
   bgColor!: string  
   bColor!: string
   showResponse!: boolean
+
+  newUid!: string
+  afdeling!: string
+
   ngOnInit() {
     this.showResponse = false
   }
@@ -46,21 +60,44 @@ export class SignupComponent implements OnInit {
   onSignUp() {
     const email = this.signupForm.value.email
     const password = this.signupForm.value.password
-    this.authservice.signup(email, password)
+    const afdeling = this.signupForm.value.afdeling
+
+    this.authservice.signup(email, password)                // Create user in Authentication
     .then((res) => {
-      if(res == 'succes') {
+      this.newUid = res.userId
+      if(res.status != 'error') {
         this.showResponse = true
         this.bgColor = "#9fff96"
         this.bColor = "3px solid green"
         this.responseMessage = "Nieuwe gebruiker aangemaakt"
+        this.ActivateCreateUserDocument()
+        this.clearFields()
+        setTimeout(() =>{
+          this.showResponse = false
+        }, 3000)
+      } else {
+        this.showResponse = true
+        this.bgColor = "#fca5a5"
+        this.bColor = "3px solid red"
+        this.responseMessage = "Fout bij aanmaken Gebruiker"
         this.clearFields()
       }
     })
-    setTimeout(() =>{
-      this.showResponse = false
-    }, 3000)
   }
 
+  ActivateCreateUserDocument() {
+    const newUser = {
+      email: this.signupForm.value.email,
+      password: this.signupForm.value.password,
+      name: this.signupForm.value.name,
+      afdeling: this.signupForm.value.afdeling,
+      afdelingId: this.fire.getAfdelingId(this.signupForm.value.afdeling),
+      userId: this.newUid,
+      rights: 0
+    }
+    this.authservice.addNewUsertocollection(newUser)        // Add user in collection (to show in admin page)
+
+  }
 
   clearFields() {
     this.signupForm.reset({
