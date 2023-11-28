@@ -27,6 +27,7 @@ export class EditUserComponent implements OnInit{
   bColor!: string
   bgColor!: string
   responseMessage!: string
+  showResponse: boolean = false
 
   // Misc Values
   parameterValue!: string
@@ -79,6 +80,10 @@ export class EditUserComponent implements OnInit{
       rights: this.editUserForm.value.rechten
     }
     this.fb.updateUser(updatedUser, this.docId);
+    this.showResponse = true
+    this.bgColor = "#9fff96"
+    this.bColor = "3px solid green"
+    this.responseMessage = "Gebruiker aangepast!"
   }
   
   exitAction(res : boolean) {
