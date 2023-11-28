@@ -3,8 +3,6 @@
         <div class="bg-red-500 text-white text-center py-2 px-4 rounded-t-lg">
           <h2 class="text-xl font-bold">Edit User</h2>
         </div>
-  // Error Info: I changed the parameter value form the Document ID to the UserId this is why it cannot find the user for the update
-
         <div class="bg-white p-4 rounded-b-lg flex flex-wrap justify-between">
           <div class="w-full md:w-1/2 mb-4 md:pr-2">
             <label for="naam" class="font-semibold">Naam:</label>
@@ -46,7 +44,7 @@
             <button type="submit"
               class="bg-red-500 hover:bg-red-800 text-white font-bold px-6 py-3 rounded-lg w-3/5 mb-8 mt-4 text-lg">Update De Gebruiker</button>
             <div class="grid grid-cols-2 gap-x-10 items-center">
-              <div [routerLink]="['/details']" routerLinkActive="router-link-active" 
+              <div [routerLink]="['/details',parameterValue]" routerLinkActive="router-link-active" 
                 class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mb-5 col-span-1 cursor-pointer">Info</div>
               <div [routerLink]="['/AdminDashboard']" routerLinkActive="router-link-active" 
                 class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mb-5 col-span-1 cursor-pointer">Dashboard</div>

@@ -15,6 +15,7 @@ export class EditUserComponent implements OnInit{
   // Reactive form stuff
   editUserForm: FormGroup;
   user!: Users
+  docId!: string
 
   naam!: string
   email!: string
@@ -56,6 +57,8 @@ export class EditUserComponent implements OnInit{
       this.parameterValue = data['userId'];
     });
     this.fb.getAuthUserDetails(this.parameterValue).subscribe((data: any) => {
+      this.docId = data[0].Id
+      console.log(this.docId)
       this.editUserForm.patchValue({
         naam: data[0].name,
         email: data[0].email,
@@ -75,8 +78,7 @@ export class EditUserComponent implements OnInit{
       name: this.editUserForm.value.naam,
       rights: this.editUserForm.value.rechten
     }
-    console.log(this.editUserForm.value.afdeling)
-    this.fb.updateUser(updatedUser, this.parameterValue);
+    this.fb.updateUser(updatedUser, this.docId);
   }
   
   exitAction(res : boolean) {

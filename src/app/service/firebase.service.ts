@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CollectionReference, collectionData, DocumentReference, Firestore, addDoc, collection, deleteDoc, doc,  query, updateDoc, where, docData, DocumentData } from '@angular/fire/firestore';
+import { CollectionReference, collectionData, DocumentReference, Firestore, addDoc, collection, deleteDoc, doc,  query, updateDoc, where, docData, DocumentData, getDocs } from '@angular/fire/firestore';
 import { Observable, from } from 'rxjs';
 import { Leden } from '../../interfaces/Leden';
 import { Users } from '../../interfaces/Users';
@@ -104,9 +104,10 @@ export class FirebaseService {
     )
   }
 
+
   // Update user
   updateUser(user: any, id: string) : Observable<any>{ 
-      const userRef = doc(this.db, 'users/'+id) as DocumentReference<Users>
+      const userRef = doc(this.db, 'users/',id) as DocumentReference<Users>
       return from(updateDoc(userRef, user))
   }
   deleteUser(id: string) {
