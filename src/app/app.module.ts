@@ -30,7 +30,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LedenActionsModule } from './leden-actions/leden-actions.module';
 import { AddLidComponent } from './add-lid/add-lid.component'; // Import FormsModule
-import { from } from 'rxjs';
 import { getStorage } from 'firebase/storage';
 import { HoverDirective } from './afdeling-lijst/hover.directive';
 import { CommonModule } from '@angular/common';
