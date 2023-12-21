@@ -5,19 +5,21 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { LeidingDetailsComponent } from './leiding-details/leiding-details.component';
 // Pipes
 import { AfdelingFilterPipe } from '../pipes/afdeling-filter.pipe';
-import { EditUserComponent } from './edit-user/edit-user.component'
-
+import { EditUserComponent } from './edit-user/edit-user.component';
+// Forms
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AdminDashboardComponent,
     LeidingDetailsComponent,
     AfdelingFilterPipe,
-    EditUserComponent
+    EditUserComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
+    ReactiveFormsModule,
   ]
 })
 export class AdminModule { }

@@ -1,0 +1,62 @@
+<div class="w-4/12 mx-auto mt-1 p-4 border rounded-lg shadow-lg">
+    <div class="bg-red-500 text-white text-center py-2 px-4 rounded-t-lg">
+        <h2 class="text-xl font-bold">Gebruiker Aanpassen</h2>
+    </div>
+    <div class="bg-white p-4 rounded-b-lg">
+        <h3 class="mb-4 text-lg font-bold">Problemen? Stuur een mailtje naar informatica@chiroschelle.be </h3>
+        <form>
+            <div class="grid grid-cols-2 grid-rows-2">
+                <div class="mb-4">
+                    <label for="naam">Naam:</label>
+                    <input type="text" formControlName="name"
+                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500"
+                    >
+                </div>
+
+                <div class="mb-4">
+                    <label for="email">Email:</label>
+                    <input type="email" formControlName="email"
+                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500"
+                    >                
+                </div>
+
+                <div class="mb-4">
+                    <label for="name" class="font-semibold">Afdeling: </label>
+                    <select name="afdeling" formControlName="afdeling"
+                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500"
+                    >
+                    <option value="Ribbel Jongens">Ribbel Jongens</option>
+                    <option value="Ribbel Meisjes">Ribbel Meisjes</option>
+                    <option value="Speelclub Jongens">Speelclub Jongens</option>
+                    <option value="Speelclub Meisjes">Speelclub Meisjes</option>
+                    <option value="Rakkers">Rakkers</option>
+                    <option value="Kwiks">Kwiks</option>
+                    <option value="Toppers">Toppers</option>
+                    <option value="Tippers">Tippers</option>
+                    <option value="Kerels">Kerels</option>
+                    <option value="Tiptiens">Tiptiens</option>
+                    <option value="Aspi Jongens">Aspi Jongens</option>
+                    <option value="Aspi Meisjes">Aspi Meisjes</option>
+                </select>
+                </div>
+
+                <div class="mb-4">
+                    <label for="name" class="font-semibold">Rechten</label>
+                    <select name="rechten" id="rechten" form="rights"
+                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500"
+                    >
+                        <option value="0">Leiding</option>
+                        <option value="1">Wekgroep</option>
+                    </select>
+                </div>
+
+                <div class="mb-4 col-span-2 flex items-center justify-center">
+                    <button class="bg-yellow-400 border-2 border-yellow-500 hover:bg-yellow-500 text-black font-semibold px-8 py-2 rounded focus:outline-none focus:shadow-outline-blue">
+                        Update
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
