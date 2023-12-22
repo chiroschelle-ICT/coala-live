@@ -26,7 +26,8 @@ export class LeidingDetailsComponent implements OnInit {
 
   // actions
   deleteUser() {
-
+    this.fb.deleteUser(this.parameterValue)
+   this.router.navigate(['/AdminDashboard']); 
   }
 
   // Modal Actions

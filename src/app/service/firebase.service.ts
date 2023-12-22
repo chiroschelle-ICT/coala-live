@@ -145,8 +145,13 @@ export class FirebaseService {
 
   // update User
   updateUser(user: any, id: string) { 
-    const lidRef = doc(this.db, 'users/'+id) as DocumentReference<Users>
-    return from(updateDoc(lidRef, user))
+    const userRef = doc(this.db, 'users/'+id) as DocumentReference<Users>
+    return from(updateDoc(userRef, user))
+  }
+  // delete User
+  deleteUser(id: string) {
+    const userRef = doc(this.db, 'user/'+id) as DocumentReference<Users>
+    return from(deleteDoc(userRef))
   }
 
 }
