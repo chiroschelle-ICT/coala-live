@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcoala_beta=self.webpackChunkcoala_beta||[]).push([[8],{7008:(c,_,a)=>{a.r(_),a.d(_,{AdminModule:()=>u});var o=a(6814),s=a(4894),E=a(8589),l=a(95),n=a(4946);let u=(()=>{class t{static#a=this.\u0275fac=function(M){return new(M||t)};static#t=this.\u0275mod=n.oAB({type:t});static#_=this.\u0275inj=n.cJS({imports:[o.ez,s.c,l.UX,E.Bz]})}return t})()}}]);
