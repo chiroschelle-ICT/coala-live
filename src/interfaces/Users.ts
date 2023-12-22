@@ -6,7 +6,8 @@ export class Users
     afdelingId: string;
     email: string;
     password: string;
-    constructor(Id:null, name:string, email:string, afdeling:string, afdelingId:string, password:string)
+    rights: number;
+    constructor(Id:null, name:string, email:string, afdeling:string, afdelingId:string, password:string, rights:number)
     {
         this.Id = Id;
         this.name = name;
@@ -14,5 +15,6 @@ export class Users
         this.afdeling = afdeling;
         this.afdelingId = afdelingId;
         this.password = password;
+        this.rights = rights;
     }
 }

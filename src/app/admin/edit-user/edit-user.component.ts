@@ -51,6 +51,13 @@ export class EditUserComponent implements OnInit {
     });
     this.fb.getAuthUserDetails(this.parameterValue).subscribe(data => {
       this._password = data[0].password;
+      const formData = {
+        name: data[0].name,  
+        email: data[0].email,  
+        afdeling: data[0].afdeling,
+        rechten: data[0].rights
+      };
+      this.updateForm.setValue(formData);
     });
   }
 
