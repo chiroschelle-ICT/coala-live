@@ -107,7 +107,6 @@ export class AdminDashboardComponent implements OnInit {
       { border: '2px solid #c2410c', backgroundColor: '#fb923c' },       // Aspi
     ];
     const index = Math.ceil((afId / 2) - 1)
-    console.log("index: " + index)
     return colors[index]
   }
 

@@ -19,7 +19,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     AdminRoutingModule,
+    signinAdaptadion
     ReactiveFormsModule,
+
   ]
 })
 export class AdminModule { }

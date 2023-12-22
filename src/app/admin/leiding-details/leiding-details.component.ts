@@ -21,6 +21,7 @@ export class LeidingDetailsComponent implements OnInit {
     });
     this.fb.getAuthUserDetails(this.parameterValue).subscribe((data: any) => {
       this.users = data
+      console.log(data);
     });
   }
 
