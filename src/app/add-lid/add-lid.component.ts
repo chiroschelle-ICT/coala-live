@@ -22,6 +22,14 @@ export class AddLidComponent implements OnInit {
   city: string = ""
   geboortedatum: string = "" 
 
+  email_2: string = "" 
+  phone_2: string = ""
+  street_2: string = ""
+  houseNumber_2: string = ""
+  postcode_2: any = ""
+  city_2: string = ""
+  geboortedatum_2: string = "" 
+
   validForm: boolean = false
 
   bColor!: string
