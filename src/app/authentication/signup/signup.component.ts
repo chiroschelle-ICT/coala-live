@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, NgForm, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthserviceService } from '../authservice.service';
 import { Router } from '@angular/router';
-import { debounceTime, switchMap, map } from 'rxjs';
 import { FirebaseService } from 'src/app/service/firebase.service';
-import { uid } from 'chart.js/dist/helpers/helpers.core';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +13,7 @@ export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
 
-  constructor(private formbuilder : FormBuilder, private authservice : AuthserviceService, private router : Router, private fire : FirebaseService) {
+  constructor(private formbuilder : FormBuilder, private authservice : AuthserviceService, private fire : FirebaseService) {
     this.signupForm = this.formbuilder.group({
       email: ['', [
         Validators.required,

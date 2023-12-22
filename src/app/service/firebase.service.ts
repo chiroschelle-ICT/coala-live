@@ -5,7 +5,6 @@ import { Leden } from '../../interfaces/Leden';
 import { Users } from '../../interfaces/Users';
 import { Admin } from '../../interfaces/Admin';
 import { getDownloadURL, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
-import { Data } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -104,16 +103,6 @@ export class FirebaseService {
     )
   }
 
-
-  // Update user
-  updateUser(user: any, id: string) : Observable<any>{ 
-      const userRef = doc(this.db, 'users/',id) as DocumentReference<Users>
-      return from(updateDoc(userRef, user))
-  }
-  deleteUser(id: string) {
-    const userRef = doc(this.db, 'users/'+id) as DocumentReference<Users>
-    return from(deleteDoc(userRef))
-  }
   // ---- Misculanious functions ---
   // ---- Misculanious functions ---
   // ---- Misculanious functions ---
@@ -127,6 +116,7 @@ export class FirebaseService {
   getAfdelingId(afdeling:string) {
     switch (afdeling) {
       case "Ribbel Meisjes":
+        console.log("Afdeling = 0 (RM)")
         return 1;
       case "Ribbel Jongens":
         return 2;
@@ -159,6 +149,17 @@ export class FirebaseService {
     return docData<Admin>(
       doc(this.db, '/administrators/' + uid) as DocumentReference<Admin>
     )
+  }
+
+  // update User
+  updateUser(user: any, id: string) { 
+    const userRef = doc(this.db, 'users/'+id) as DocumentReference<Users>
+    return from(updateDoc(userRef, user))
+  }
+  // delete User
+  deleteUser(id: string) {
+    const userRef = doc(this.db, 'user/'+id) as DocumentReference<Users>
+    return from(deleteDoc(userRef))
   }
 
 }
