@@ -4,20 +4,35 @@
     </div>
     <div class="bg-white p-4 rounded-b-lg">
         <h3 class="mb-4 text-lg font-bold">Problemen? Stuur een mailtje naar informatica@chiroschelle.be </h3>
-        <form>
+        <form (ngSubmit)="OnUpdate()" [formGroup]="updateForm">
             <div class="grid grid-cols-2 grid-rows-2">
                 <div class="mb-4">
                     <label for="naam">Naam:</label>
                     <input type="text" formControlName="name"
                         class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500"
                     >
+                    <div *ngIf="updateForm.get('name')?.hasError('required')" class="text-red-500 font-semibold">
+                        Vul de Naam in!
+                    </div>
+                    <div *ngIf="updateForm.get('name')?.hasError('minlength')" class="text-red-500 font-semibold">
+                       Naam moet minstens 3 Tekens lang zijn!
+                    </div>
+                    <div *ngIf="updateForm.get('name')?.hasError('pattern')" class="text-red-500 font-semibold">
+                        Gebruik een hoofdletter In het begin!
+                     </div>
                 </div>
 
                 <div class="mb-4">
                     <label for="email">Email:</label>
                     <input type="email" formControlName="email"
                         class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500"
-                    >                
+                    > 
+                    <div *ngIf="updateForm.get('email')?.hasError('required')" class="text-red-500 font-semibold">
+                        Vul de Email in!
+                    </div>         
+                    <div *ngIf="updateForm.get('email')?.hasError('pattern')" class="text-red-500 font-semibold">
+                        gebruik voornaam.naam@chiroschelle.be
+                    </div>                                
                 </div>
 
                 <div class="mb-4">
@@ -38,21 +53,36 @@
                     <option value="Aspi Jongens">Aspi Jongens</option>
                     <option value="Aspi Meisjes">Aspi Meisjes</option>
                 </select>
+                <div *ngIf="updateForm.get('afdeling')?.hasError('required')" class="text-red-500 font-semibold">
+                    Selecteer een Afdeling!
+                </div>      
                 </div>
 
                 <div class="mb-4">
                     <label for="name" class="font-semibold">Rechten</label>
-                    <select name="rechten" id="rechten" form="rights"
+                    <select name="rechten" id="rechten" form="rights" formControlName="rechten"
                         class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500"
                     >
                         <option value="0">Leiding</option>
                         <option value="1">Wekgroep</option>
                     </select>
+                    <div *ngIf="updateForm.get('rechten')?.hasError('required')" class="text-red-500 font-semibold">
+                        Selecteer de Rechten!
+                    </div>      
                 </div>
 
                 <div class="mb-4 col-span-2 flex items-center justify-center">
-                    <button class="bg-yellow-400 border-2 border-yellow-500 hover:bg-yellow-500 text-black font-semibold px-8 py-2 rounded focus:outline-none focus:shadow-outline-blue">
+                    <div class="rounded-md px-2 py-3 text-center font-bold" *ngIf="showResponse" [style.border]="bColor" [style.background]="bgColor">
+                        {{ responseMessage }}
+                    </div>
+                </div>
+
+                <div class="mb-4 col-span-2 flex items-center justify-center">
+                    <button type="submit" class="bg-yellow-400 border-2 border-yellow-500 hover:bg-yellow-500 text-black font-semibold px-8 py-2 rounded focus:outline-none focus:shadow-outline-blue mr-5">
                         Update
+                    </button>
+                    <button [routerLink]="['/details', parameterValue]" routerLinkActive="router-link-active"  class="bg-blue-400 border-2 border-blue-500 hover:bg-blue-500 text-black font-semibold px-8 py-2 rounded focus:outline-none focus:shadow-outline-blue ml-5">
+                        Terug
                     </button>
                 </div>
 

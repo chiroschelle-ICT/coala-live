@@ -5,6 +5,7 @@ import { Leden } from '../../interfaces/Leden';
 import { Users } from '../../interfaces/Users';
 import { Admin } from '../../interfaces/Admin';
 import { getDownloadURL, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
+import { User } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +68,7 @@ export class FirebaseService {
   getAfdelingId(afdeling:string) {
     switch (afdeling) {
       case "Ribbel Meisjes":
+        console.log("Afdeling = 0 (RM)")
         return 1;
       case "Ribbel Jongens":
         return 2;
@@ -139,6 +141,12 @@ export class FirebaseService {
       ),
       {idField: 'Id'}
     )
+  }
+
+  // update User
+  updateUser(user: any, id: string) { 
+    const lidRef = doc(this.db, 'users/'+id) as DocumentReference<Users>
+    return from(updateDoc(lidRef, user))
   }
 
 }
