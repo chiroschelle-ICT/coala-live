@@ -16,16 +16,6 @@ export class LedenDetailsComponent implements OnInit{
   parameterValue!: any
   detailLid!: any
 
-  lidNaam!: any
-  lidVoornaam!: any
-  lidAfdeling!: any
-  lidEmail!: any
-  lidTelefoon!: any
-  lidStraat!: any
-  lidHuisnummer!: any
-  lidGemeente!: any
-  lidPostcode!: any
-
   isModalOpen: boolean = false
 
   tempAfdelingID!: number

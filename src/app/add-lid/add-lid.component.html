@@ -75,10 +75,15 @@
             <input type="text" name="postcode" placeholder="Postcode" [(ngModel)]="postcode"
               class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300" required>
           </div>
-          <div class="w-full md:w-full mb-4 md:pl-2 col-span-2">
+          <div class="w-full md:w-2/2 mb-4 md:pl-2">
             <label for="city" class="font-semibold">Gemeente:</label>
             <input type="text" name="city" placeholder="Gemeente" [(ngModel)]="city"
               class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300" required>
+          </div>
+          <div class="w-full  md:w-2/2 md:w-full mb-4 md:pl-2 col-span-2">
+            <label for="postcode" class="font-semibold">Opmerking:</label>
+            <input type="text" name="opmerking" placeholder="bv Papa of Oma" [(ngModel)]="opmerking"
+              class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300">
           </div>
         </fieldset>
       
@@ -111,9 +116,14 @@
             <input type="text" name="postcode_2" placeholder="Postcode" [(ngModel)]="postcode_2"
               class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300">
           </div>
-          <div class="w-full md:w-full mb-4 md:pl-2 col-span-2">
+          <div class="w-full md:w-2/2 mb-4 md:pl-2">
             <label for="city" class="font-semibold">Gemeente:</label>
             <input type="text" name="city_2" placeholder="Gemeente" [(ngModel)]="city_2"
+              class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300">
+          </div>
+          <div class="w-full  md:w-2/2 md:w-full mb-4 md:pl-2 col-span-2">
+            <label for="postcode" class="font-semibold">Opmerking:</label>
+            <input type="text" name="opmerking_2" placeholder="bv Mama / Opa" [(ngModel)]="opmerking_2"
               class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300">
           </div>
         </fieldset>
