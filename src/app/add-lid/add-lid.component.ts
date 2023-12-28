@@ -10,10 +10,13 @@ import { FirebaseService } from '../service/firebase.service';
 })
 export class AddLidComponent implements OnInit {
 
+  // Lid Data (only 1)
   voornaam: string = ""
   name: string = ""
   department: string = ""
   afdelingId: number = 0
+  
+  // Data for 1st Parent
   email: string = "" 
   phone: string = ""
   street: string = ""
@@ -22,16 +25,16 @@ export class AddLidComponent implements OnInit {
   city: string = ""
   geboortedatum: string = "" 
 
+  // Data for 2nd Parent (not required)
   email_2: string = "" 
   phone_2: string = ""
   street_2: string = ""
   houseNumber_2: string = ""
   postcode_2: any = ""
   city_2: string = ""
-  geboortedatum_2: string = "" 
 
+  // Validation and response 
   validForm: boolean = false
-
   bColor!: string
   bgColor!: string
   responseMessage!: string
@@ -84,21 +87,52 @@ export class AddLidComponent implements OnInit {
       this.responseMessage = "Vul Je geboortedatum In!";
       this.bgColor = "#fca5a5"
       this.bColor = "3px solid red"
-    }
+    } else if (!item.email_2.trim()) {
+      this.validForm = false;
+      this.responseMessage = "Vul de tweede email In!";
+      this.bgColor = "#fca5a5"
+      this.bColor = "3px solid red"
+    } else if (!item.street_2.trim()) {
+      this.validForm = false;
+      this.responseMessage = "Vul de tweede straat In!";
+      this.bgColor = "#fca5a5"
+      this.bColor = "3px solid red"
+    } else if (!item.houseNumber_2.trim()) {
+      this.validForm = false;
+      this.responseMessage = "Vul het tweede huisnummer In!";
+      this.bgColor = "#fca5a5"
+      this.bColor = "3px solid red"
+    } else if (!item.postcode_2.trim()) {
+      this.validForm = false;
+      this.responseMessage = "Vul de tweede postcode In!";
+      this.bgColor = "#fca5a5"
+      this.bColor = "3px solid red"
+    } else if (!item.city_2.trim()) {
+      this.validForm = false;
+      this.responseMessage = "Vul de tweede gemeente In!";
+      this.bgColor = "#fca5a5"
+      this.bColor = "3px solid red"
+    } 
     else {
       // If all fields are filled, set validForm to true (assuming you want to validate them all)
       this.afdelingId = this.firebaseservice.getAfdelingId(this.department)
      
       const newLid = {
+        // Data Lid
         voornaam: this.voornaam,
         name: this.name,
         afdeling: this.department,
         afdelingId: this.afdelingId,
+        geboortedatum: this.geboortedatum,
+        // Data ouder 1:
         email: this.email,
         telefoon: this.phone,
         Address: this.street +" "+ this.houseNumber +" "+  this.postcode +" "+  this.city,
+        // data ouder 2:
+        email_2: this.email_2,
+        telefoon_2: this.phone_2,
+        Address_2: this.street_2 +" "+ this.houseNumber_2 +" "+  this.postcode_2 +" "+  this.city_2,
         betaald: false,
-        geboortedatum: this.geboortedatum
       };
 
       this.firebaseservice.addLid(newLid).then(() => {
