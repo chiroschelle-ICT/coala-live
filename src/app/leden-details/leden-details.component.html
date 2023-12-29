@@ -8,19 +8,19 @@
         
         <br>
         
-        <p><strong class="text-gray-800">Email 1 ( {{this.lid.Opmerking}} ):</strong> {{lid.email}} </p>
-        <p><strong class="text-gray-800">Email 2 ( {{this.lid.Opmerking_2}} ):</strong> {{lid.email_2}}</p>
+        <p><strong class="text-gray-800">Email 1:</strong> {{lid.email}} </p>
+        <p><strong class="text-gray-800">Email 2:</strong> {{lid.email_2}}</p>
         
         <br>
         
         <p><strong class="text-gray-800">Telefoon 1 (  {{this.lid.Opmerking}} ):</strong> {{lid.telefoon}} </p>
-        <p><strong class="text-gray-800">Telefoon 1 (  {{this.lid.Opmerking_2}} ):</strong> {{lid.telefoon_2}} </p>
+        <p *ngIf="HadSecondAddress"><strong class="text-gray-800">Telefoon 1 (  {{this.lid.Opmerking_2}} ):</strong> {{lid.telefoon_2}} </p>
 
 
         <br>
 
         <p><strong class="text-gray-800">Address 1 (  {{this.lid.Opmerking}} ):</strong> {{lid.Address}} </p>
-        <p><strong class="text-gray-800">Address 1 (  {{this.lid.Opmerking_2}} ):</strong> {{lid.Address_2}} </p>
+        <p *ngIf="HadSecondAddress"><strong class="text-gray-800">Address 1 (  {{this.lid.Opmerking_2}} ):</strong> {{lid.Address_2}} </p>
 
         
         <br>
