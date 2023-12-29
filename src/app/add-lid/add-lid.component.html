@@ -5,7 +5,7 @@
     </div>
     <div class="bg-white p-4 rounded-b-lg ">
       <fieldset class="grid grid-cols-2 border-2 border-stone-300 p-3 rounded-md">
-        <legend class="font-semibold">Basis Informatie</legend>
+        <legend class="font-semibold">Basis Informatie <span class="font-bold text-red-600 mr-1">*</span> </legend>
 
         <div class="w-full md:w-2/2 mb-4 md:pr-2">
           <label for="voornaam" class="font-semibold">Voornaam:</label>
@@ -41,19 +41,26 @@
           <input type="date" name="geboortedatum" placeholder="geboortedatum" [(ngModel)]="geboortedatum"
             class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300" required>
         </div>
+
+        <div class="w-full md:w-2/2 mb-4 md:pl-2">
+          <label for="email" class="font-semibold">Email 1:</label>
+          <input type="email" name="email" placeholder="Email" [(ngModel)]="email"
+            class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300">
+        </div>
+
+        <div class="w-full md:w-2/2 mb-4 md:pl-2">
+          <label for="email" class="font-semibold">Email 2:</label>
+          <input type="email" name="email_2" placeholder="Email" [(ngModel)]="email_2"
+            class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300">
+        </div>
+
       </fieldset>    
 
       <!-- Addresses --> 
       <!-- Make Container wider and -ut the 2 addresses next to eachother and the Basis Info and Email Info also next to eachother (so a 2x2 grid using fieldset as the gridbox )-->
       <div class="grid grid-cols-2">
         <fieldset class="grid grid-cols- border-2 border-stone-300 p-3 rounded-md">
-          <legend class="font-semibold">Ouder 1 Informatie</legend>
-
-          <div class="w-full md:w-2/2 mb-4 md:pl-2">
-            <label for="email" class="font-semibold">Email 2:</label>
-            <input type="email" name="email" placeholder="Email 2" [(ngModel)]="email"
-              class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300">
-          </div>
+          <legend class="font-semibold">Ouder 1 Informatie <span class="font-bold text-red-600 mr-1">*</span></legend>    
 
           <div class="w-full md:w-2/2 mb-4 md:pr-2">
             <label for="phone" class="font-semibold">Telefoon:</label>
@@ -80,22 +87,26 @@
             <input type="text" name="city" placeholder="Gemeente" [(ngModel)]="city"
               class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300" required>
           </div>
+
+          <div class="w-full md:w-2/2 md:w-full mb-4 md:pl-2">
+            <label for="postcode" class="font-semibold">Verschillende Addresen:</label>
+            <div class="w-fit mx-auto">
+              <input (change)="OnChangeAddress()" id="default-checkbox" type="checkbox" value="" class="w-6 h-6 mt-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            </div>
+          </div>      
+          
           <div class="w-full  md:w-2/2 md:w-full mb-4 md:pl-2 col-span-2">
             <label for="postcode" class="font-semibold">Opmerking:</label>
             <input type="text" name="opmerking" placeholder="bv Papa of Oma" [(ngModel)]="opmerking"
               class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300">
-          </div>
+          </div>      
+                              
+          
         </fieldset>
       
-        <fieldset class="grid grid-cols-2 border-2 border-stone-300 p-3 rounded-md">
+        <fieldset class="grid grid-cols-2 border-2 border-stone-300 p-3 rounded-md" *ngIf="hasSecondAddress">
           <legend class="font-semibold">Ouder 2 Informatie</legend>
-
-          <div class="w-full md:w-2/2 mb-4 md:pl-2">
-            <label for="email" class="font-semibold">Email:</label>
-            <input type="email" name="email_2" placeholder="Email" [(ngModel)]="email_2"
-              class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300">
-          </div>
-
+        
           <div class="w-full md:w-2/2 mb-4 md:pr-2">
             <label for="phone" class="font-semibold">Telefoon:</label>
             <input type="tel" name="phone_2" placeholder="Telefoon" [(ngModel)]="phone_2"
