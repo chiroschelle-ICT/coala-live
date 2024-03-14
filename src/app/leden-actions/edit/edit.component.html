@@ -49,7 +49,7 @@
             </div>
     
             <div class="w-full md:w-2/2 mb-4 md:pl-2">
-              <label for="email" class="font-semibold">Email 2:</label>
+              <label for="email" class="font-semibold">Email 2: <span class="text-xs">(niet verplicht)</span></label>
               <input type="email" name="email_2" placeholder="Email" [(ngModel)]="email_2"
                 class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300">
             </div>
@@ -130,11 +130,11 @@
       <div class="rounded-md px-2 py-3 font-bold w-1/4 text-center mt-2 mb-3 mx-auto" [style.border]="bColor" [style.background]="bgColor">
           {{ responseMessage }}
       </div>
-
+<!-- 
       <button (click)="exitAction(true)"  routerLinkActive="router-link-active" 
         class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 mx-3 rounded-lg">Ja</button>
 
       <button (click)="exitAction(false)" routerLinkActive="router-link-active" 
         class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 mx-3 rounded-lg">Nee</button>
-
+ -->
     </div>

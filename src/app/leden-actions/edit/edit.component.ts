@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -36,7 +37,7 @@ export class EditComponent implements OnInit  {
   Address: string = ""
   Address_2: string = ""
   opmerking_2: string = ""
-  validForm: boolean = false
+  validForm: boolean = true
 
   afdelingIdPreChange!: number
 
@@ -55,6 +56,7 @@ export class EditComponent implements OnInit  {
   ngOnInit(): void {
     this.fillDataOfLid()
     this.saved = false;
+    console.log(this.afdelingId)
   }
 
   
@@ -77,6 +79,7 @@ export class EditComponent implements OnInit  {
         this.afdelingIdPreChange = data[0].afdelingId
       }
       this.email = data[0].email
+      this.email_2 = data[0].email_2
       this.phone = data[0].telefoon
       this.phone_2 = data[0].telefoon_2
       this.Address = data[0].Address
@@ -84,131 +87,100 @@ export class EditComponent implements OnInit  {
       this.opmerking = data[0].Opmerking
       this.opmerking_2 = data[0].Opmerking_2
       this.geboortedatum = data[0].geboortedatum      
+      // this.geboortedatum = this.datePipe.transform(data[0].geboortedatum, 'dd-MM-yyyy');
       this.hasSecondAddress = data[0].hasSecondAddress
     })
   }
 
+  // On Submit
   editLidForm(item: any) {
-    
-    if (!item.voornaam.trim()) {
+    console.log("Pas aan Pressed.")
+    this.validateForm(item);
+  }
+
+  // Check validation
+  validateForm(item: any) {
+    if (!item.voornaam || item.voornaam.trim() === '') {
       this.validForm = false;
-      this.responseMessage = "Vul Je voornaam In!";
-      this.bgColor = "#fca5a5"
-      this.bColor = "3px solid red"
-    } else if (!item.name.trim()) {
+      console.log("Voornaam leeg");
+    } else if (!item.name || item.name.trim() === '') {
       this.validForm = false;
-      this.responseMessage = "Vul Je naam In!";
-      this.bgColor = "#fca5a5"
-      this.bColor = "3px solid red"
-    } else if (!item.email.trim()) {
+      console.log("Naam leeg");
+    } else if (!item.email || item.email.trim() === ''){
       this.validForm = false;
-      this.responseMessage = "Vul Je email In!";
-      this.bgColor = "#fca5a5"
-      this.bColor = "3px solid red"
-    } else if (!item.email_2.trim()) {
+      console.log("Email leeg");
+    } else if (!item.phone || item.phone.trim() === '') {
       this.validForm = false;
-      this.responseMessage = "Vul de tweede Email In!";
-      this.bgColor = "#fca5a5"
-      this.bColor = "3px solid red"
-    } else if (!item.Address.trim()) {
+      console.log("telefoon leeg");
+    } else if (!item.Address || item.Address.trim() === ''){
       this.validForm = false;
-      this.responseMessage = "Vul de Address In!";
-      this.bgColor = "#fca5a5"
-      this.bColor = "3px solid red"
-    } else if (!item.telefoon.trim()) {
+      console.log("Address leeg");
+    } else if (!item.opmerking || item.opmerking.trim() === ''){
       this.validForm = false;
-      this.responseMessage = "Vul je Telefoon numer In!";
-      this.bgColor = "#fca5a5"
-      this.bColor = "3px solid red"
-    } else if (!item.geboortedatum.trim()) {
-      this.validForm = false;
-      this.responseMessage = "Vul de geboortedatum In!";
-      this.bgColor = "#fca5a5"
-      this.bColor = "3px solid red"
-    } else if (!item.Opmerking.trim()) {
-      this.validForm = false;
-      this.responseMessage = "Vul de Opmerking In!";
-      this.bgColor = "#fca5a5"
-      this.bColor = "3px solid red"
-    } else if(this.hasSecondAddress) {
-      if(!item.Address_2.trim()) {
-          this.validForm = false;
-          this.responseMessage = "Vul de Tweede Address In!";
-          this.bgColor = "#fca5a5"
-          this.bColor = "3px solid red"
-        } else if(!item.Telefoon_2.trim()) {
-          this.validForm = false;
-          this.responseMessage = "Vul de Tweede Telefoon In!";
-          this.bgColor = "#fca5a5"
-          this.bColor = "3px solid red"
-        } else if(!item.Opmerking_2.trim()) {
-          this.validForm = false;
-          this.responseMessage = "Vul de Tweede Opmerking In!";
-          this.bgColor = "#fca5a5"
-          this.bColor = "3px solid red"
-        }
-    }else if(this.validForm){
-        // If all fields are filled, set validForm to true (assuming you want to validate them all)
-        this.afdelingId = this.firebaseservice.getAfdelingId(this.department)
-        if(!this.hasSecondAddress) {
-          const updatedLid = {
-            voornaam: this.voornaam,
-            name: this.name,
-            afdeling: this.department,
-            afdelingId: this.afdelingId,
-            email: this.email,
-            email_2: this.email_2,
-            telefoon: this.phone,
-            Address: this.Address,
-            betaald: false,
-            Opmerking: this.opmerking,
-            geboortedatum: this.geboortedatum,
-            hasSecondAddress: this.hasSecondAddress
-          };
-            this.firebaseservice.updateLid(updatedLid, this.parameterValue);
-            this.responseMessage = "Lid Aangepast!";
-            this.bgColor = "#9fff96";
-            this.bColor = "3px solid green";
-            this.setTimeoutActive = false;
-            this.saved = true
-          setTimeout(() => {
-            this.router.navigate(['/afdelingLijst/'+this.afdelingIdPreChange])      
-            
-          }, 1000)
-  
-        } else  {
-          const updatedLid = {
-            voornaam: this.voornaam,
-            name: this.name,
-            afdeling: this.department,
-            afdelingId: this.afdelingId,
-            email: this.email,
-            email_2: this.email_2,
-            telefoon: this.phone,
-            telefoon_2: this.phone_2,
-            Address: this.Address,
-            Address_2: this.Address_2,
-            betaald: false,
-            Opmerking: this.opmerking,
-            Opmerking_2: this.opmerking_2,
-            geboortedatum: this.geboortedatum,
-            hasSecondAddress: this.hasSecondAddress
-          };
-          this.firebaseservice.updateLid(updatedLid, this.parameterValue);
-          this.responseMessage = "Lid Aangepast!";
-          this.bgColor = "#9fff96";
-          this.bColor = "3px solid green";
-          this.setTimeoutActive = false;
-          this.saved = true
-          setTimeout(() => {
-            this.router.navigate(['/afdelingLijst/'+this.afdelingIdPreChange])      
-            
-          }, 1000)  
-        }
-        this.responseMessage = "Fout met gegevens!";
-        this.bgColor = "#fca5a5";
-        this.bColor = "3px solid red";               
+      console.log("opmerking leeg");
+    } else if(!item.email_2 || item.email_2.trim() === ''){
+      this.email_2 = ""
+    }
+    if(this.hasSecondAddress){
+      console.log("2de Address")
+      if (!item.phone_2 || item.phone_2.trim() === '') {
+        this.validForm = false;
+        console.log("phone_2 leeg");
+      } else if (!item.Address_2 || item.Address_2.trim() === ''){
+        this.validForm = false;
+        console.log("Address_2 leeg");
+      } else if (!item.opmerking_2 || item.opmerking_2.trim() === ''){
+        this.validForm = false;
+        console.log("opmerking_2 leeg");
       }
+    } else {
+      this.Address_2 = ""
+      this.opmerking_2 = ""
+      this.phone_2 = ""
+      this.hasSecondAddress = false
+    }
+    if(this.validForm) {
+      console.log("Form Valid")
+      this.editData(item)
+    } else if (!this.validForm) {
+      this.confirmExit = true;
+      this.responseMessage = "Vul Alle Velden In!";
+      this.bgColor = "#fca5a5"
+      this.bColor = "3px solid red"
+    }
+    
+  }
+
+  // Handle and Edit the data
+  editData(item: any) {
+    const updatedLid = {
+      voornaam: this.voornaam,
+      name: this.name,
+      afdeling: this.department,
+      afdelingId: this.firebaseservice.getAfdelingId(this.department),
+      email: this.email,
+      email_2: this.email_2,
+      telefoon: this.phone,
+      telefoon_2: this.phone_2,
+      Address: this.Address,
+      Address_2: this.Address_2,
+      betaald: false,
+      Opmerking: this.opmerking,
+      Opmerking_2: this.opmerking_2,
+      geboortedatum: this.geboortedatum,
+      hasSecondAddress: this.hasSecondAddress
+    }
+    this.firebaseservice.updateLid(updatedLid, this.parameterValue);
+    this.responseMessage = "Lid Aangepast!";
+    this.bgColor = "#9fff96";
+    this.bColor = "3px solid green";
+    this.setTimeoutActive = false;
+    this.confirmExit = true;
+    this.saved = true
+    setTimeout(() => {
+      this.router.navigate(['/afdelingLijst/'+this.afdelingIdPreChange])      
+    }, 1000)  
+
   }
 
   canDeactive(): Observable<boolean> | Promise<boolean> | boolean {
