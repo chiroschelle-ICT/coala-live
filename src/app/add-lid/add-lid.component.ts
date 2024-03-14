@@ -10,10 +10,13 @@ import { FirebaseService } from '../service/firebase.service';
 })
 export class AddLidComponent implements OnInit {
 
+  // Lid Data (only 1)
   voornaam: string = ""
   name: string = ""
   department: string = ""
   afdelingId: number = 0
+  hasSecondAddress: boolean = false
+  // Data for 1st Parent
   email: string = "" 
   phone: string = ""
   street: string = ""
@@ -21,9 +24,18 @@ export class AddLidComponent implements OnInit {
   postcode: any = ""
   city: string = ""
   geboortedatum: string = "" 
+  opmerking: string =""
+  // Data for 2nd Parent (not required)
+  email_2: string = "" 
+  phone_2: string = ""
+  street_2: string = ""
+  houseNumber_2: string = ""
+  postcode_2: any = ""
+  city_2: string = ""
+  opmerking_2: string = ""
 
+  // Validation and response 
   validForm: boolean = false
-
   bColor!: string
   bgColor!: string
   responseMessage!: string
@@ -51,6 +63,11 @@ export class AddLidComponent implements OnInit {
       this.responseMessage = "Vul Je email In!";
       this.bgColor = "#fca5a5"
       this.bColor = "3px solid red"
+    } else if (!item.email_2.trim()) {
+      this.validForm = false;
+      this.responseMessage = "Vul de tweede Email In!";
+      this.bgColor = "#fca5a5"
+      this.bColor = "3px solid red"
     } else if (!item.street.trim()) {
       this.validForm = false;
       this.responseMessage = "Vul Je straat In!";
@@ -76,36 +93,86 @@ export class AddLidComponent implements OnInit {
       this.responseMessage = "Vul Je geboortedatum In!";
       this.bgColor = "#fca5a5"
       this.bColor = "3px solid red"
-    }
+    } else if (!item.opmerking.trim()) {
+      this.validForm = false;
+      this.responseMessage = "Vul de Opmerking In!";
+      this.bgColor = "#fca5a5"
+      this.bColor = "3px solid red"
+    } 
     else {
       // If all fields are filled, set validForm to true (assuming you want to validate them all)
       this.afdelingId = this.firebaseservice.getAfdelingId(this.department)
      
-      const newLid = {
-        voornaam: this.voornaam,
-        name: this.name,
-        afdeling: this.department,
-        afdelingId: this.afdelingId,
-        email: this.email,
-        telefoon: this.phone,
-        Address: this.street +" "+ this.houseNumber +" "+  this.postcode +" "+  this.city,
-        betaald: false,
-        geboortedatum: this.geboortedatum
-      };
+      // Only save the nececary amt of values to database
+      if(!this.hasSecondAddress) {
+        const newLid = {
+          // Data Lid
+          voornaam: this.voornaam,
+          name: this.name,
+          afdeling: this.department,
+          afdelingId: this.afdelingId,
+          geboortedatum: this.geboortedatum,
+          email: this.email,
+          email_2: this.email_2,
+          betaald: false,
+          // Data ouder 1:
+          telefoon: this.phone,
+          Address: this.street +" "+ this.houseNumber +" "+  this.postcode +" "+  this.city,
+          Opmerking: this.opmerking,
+          hasSecondAddress: this.hasSecondAddress
+        };
 
-      this.firebaseservice.addLid(newLid).then(() => {
-        this.clearFormInput()
-        this.bgColor = "#9fff96"
-        this.bColor = "3px solid green"
-        this.responseMessage = "Nieuw Lid toegevoegd!"
-      }) .catch((error) => {
-        this.bgColor = "#fca5a5"
-        this.bColor = "3px solid red"
-        this.responseMessage = "Error Met toevoegen van Lid: " + error
-      });
-      
+        this.firebaseservice.addLid(newLid).then(() => {
+          this.clearFormInput()
+          this.bgColor = "#9fff96"
+          this.bColor = "3px solid green"
+          this.responseMessage = "Nieuw Lid toegevoegd!"
+        }) .catch((error) => {
+          this.bgColor = "#fca5a5"
+          this.bColor = "3px solid red"
+          this.responseMessage = "Error Met toevoegen van Lid: " + error
+        });
+      } else if (this.hasSecondAddress) {
+
+        const newLid2Address = {
+          // Data Lid
+          voornaam: this.voornaam,
+          name: this.name,
+          afdeling: this.department,
+          afdelingId: this.afdelingId,
+          geboortedatum: this.geboortedatum,
+          email: this.email,
+          email_2: this.email_2,
+          betaald: false,
+          // Data ouder 1:
+          telefoon: this.phone,
+          Address: this.street +" "+ this.houseNumber +" "+  this.postcode +" "+  this.city,
+          Opmerking: this.opmerking,
+          hasSecondAddress: this.hasSecondAddress,
+          // data ouder 2:
+          telefoon_2: this.phone_2,
+          Address_2: this.street_2 +" "+ this.houseNumber_2 +" "+  this.postcode_2 +" "+  this.city_2,
+          Opmerking_2: this.opmerking_2,
+        };
+
+        this.firebaseservice.addLid(newLid2Address).then(() => {
+          this.clearFormInput()
+          this.bgColor = "#9fff96"
+          this.bColor = "3px solid green"
+          this.responseMessage = "Nieuw Lid toegevoegd!"
+        }) .catch((error) => {
+          this.bgColor = "#fca5a5"
+          this.bColor = "3px solid red"
+          this.responseMessage = "Error Met toevoegen van Lid: " + error
+        });
+      }
+
     }
   }
+
+  OnChangeAddress() {
+    this.hasSecondAddress = !this.hasSecondAddress;
+    }
 
   clearFormInput() {
     this.voornaam = "";

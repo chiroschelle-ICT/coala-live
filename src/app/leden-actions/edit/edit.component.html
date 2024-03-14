@@ -1,80 +1,132 @@
 <form #nieuwLidForm="ngForm" (ngSubmit)="editLidForm(nieuwLidForm.value)">
-    <div class="max-w-2xl mx-auto mt-1 p-4 border rounded-lg shadow-lg">
-        <div class="bg-red-500 text-white text-center py-2 px-4 rounded-t-lg">
+  <div class="w-4/6 mx-auto mt-1 p-4 border rounded-lg shadow-lg">
+    <div class="bg-red-500 text-white text-center py-2 px-4 rounded-t-lg">
           <h2 class="text-xl font-bold">Edit Lid Form</h2>
         </div>
-        <div class="bg-white p-4 rounded-b-lg flex flex-wrap justify-between">
-          <div class="w-full md:w-1/2 mb-4 md:pr-2">
-            <label for="voornaam" class="font-semibold">Voornaam:</label>
-            <input type="text" name="voornaam" placeholder="Voornaam" [(ngModel)]="voornaam" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" required>
+        <div class="bg-white p-4 rounded-b-lg ">
+          <fieldset class="grid grid-cols-2 border-2 border-stone-300 p-3 rounded-md">
+            <legend class="font-semibold">Basis Informatie <span class="font-bold text-red-600 mr-1">*</span> </legend>
+    
+            <div class="w-full md:w-2/2 mb-4 md:pr-2">
+              <label for="voornaam" class="font-semibold">Voornaam:</label>
+              <input type="text" name="voornaam" placeholder="Voornaam" [(ngModel)]="voornaam"
+                class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300" required>
+            </div>
+            <div class="w-full md:w-2/2 mb-4 md:pl-2">
+              <label for="name" class="font-semibold">Naam:</label>
+              <input type="text" name="name" placeholder="Naam" [(ngModel)]="name"
+                class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300" required>
+            </div>
+            <div class="w-full md:w-2/2 mb-4 md:pr-2">
+              <label for="department" class="font-semibold">Voornaam Afdeling:</label>
+              <select name="department" [(ngModel)]="department"
+                class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300" required>
+                <option value="Ribbel Jongens">Ribbel Jongens</option>
+                <option value="Ribbel Meisjes">Ribbel Meisjes</option>
+                <option value="Speelclub Jongens">Speelclub Jongens</option>
+                <option value="Speelclub Meisjes">Speelclub Meisjes</option>
+                <option value="Rakkers">Rakkers</option>
+                <option value="Kwiks">Kwiks</option>
+                <option value="Toppers">Toppers</option>
+                <option value="Tippers">Tippers</option>
+                <option value="Kerels">Kerels</option>
+                <option value="Tiptiens">Tiptiens</option>
+                <option value="Aspi Jongens">Aspi Jongens</option>
+                <option value="Aspi Meisjes">Aspi Meisjes</option>
+              </select>
+            </div>
+    
+            <div class="w-full md:w-2/2 mb-4 md:pl-2">
+              <label for="geboortedatum" class="font-semibold">Geboorte Datum:</label>
+              <input type="date" name="geboortedatum" placeholder="geboortedatum" [(ngModel)]="geboortedatum"
+                class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300" required>
+            </div>
+    
+            <div class="w-full md:w-2/2 mb-4 md:pl-2">
+              <label for="email" class="font-semibold">Email 1:</label>
+              <input type="email" name="email" placeholder="Email" [(ngModel)]="email"
+                class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300">
+            </div>
+    
+            <div class="w-full md:w-2/2 mb-4 md:pl-2">
+              <label for="email" class="font-semibold">Email 2:</label>
+              <input type="email" name="email_2" placeholder="Email" [(ngModel)]="email_2"
+                class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300">
+            </div>
+    
+          </fieldset>    
+    
+          <!-- Addresses --> 
+          <!-- Make Container wider and -ut the 2 addresses next to eachother and the Basis Info and Email Info also next to eachother (so a 2x2 grid using fieldset as the gridbox )-->
+          <div class="grid grid-cols-2">
+            <fieldset class="grid grid-cols- border-2 border-stone-300 p-3 rounded-md">
+              <legend class="font-semibold">Ouder 1 Informatie <span class="font-bold text-red-600 mr-1">*</span></legend>    
+    
+              <div class="w-full md:w-2/2 mb-4 md:pr-2">
+                <label for="phone" class="font-semibold">Telefoon:</label>
+                <input type="tel" name="phone" placeholder="Telefoon" [(ngModel)]="phone"
+                  class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300">
+              </div>
+              <div class="w-full md:w-2/2 mb-4 md:pl-2">
+                <label for="street" class="font-semibold">Address:</label>
+                <input type="text" name="Address" placeholder="Address" [(ngModel)]="Address"
+                  class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300" required>
+              </div>
+    
+              <div class="w-full md:w-2/2 md:w-full mb-4 md:pl-2">
+                <label for="postcode" class="font-semibold">Verschillende Addresen:</label>
+                <div class="w-fit mx-auto">
+                  <input (change)="OnChangeAddress()" id="default-checkbox" type="checkbox" value="" class="w-6 h-6 mt-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"  [attr.checked]="hasSecondAddress ? true : null">
+                </div>
+              </div>      
+              
+              <div class="w-full  md:w-2/2 md:w-full mb-4 md:pl-2 col-span-2">
+                <label for="postcode" class="font-semibold">Opmerking:</label>
+                <input type="text" name="opmerking" placeholder="bv Papa of Oma" [(ngModel)]="opmerking"
+                  class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300">
+              </div>      
+                                  
+              
+            </fieldset>
+          
+            <fieldset class="grid grid-cols-2 border-2 border-stone-300 p-3 rounded-md" *ngIf="hasSecondAddress">
+              <legend class="font-semibold">Ouder 2 Informatie</legend>
+            
+              <div class="w-full md:w-2/2 mb-4 md:pr-2">
+                <label for="phone" class="font-semibold">Telefoon:</label>
+                <input type="tel" name="phone_2" placeholder="Telefoon" [(ngModel)]="phone_2"
+                  class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300">
+              </div>
+              <div class="w-full md:w-2/2 mb-4 md:pr-2">
+                <label for="houseNumber" class="font-semibold">Address:</label> 
+                <input type="text" name="Address_2" placeholder="Address" [(ngModel)]="Address_2"
+                  class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300">
+              </div>       
+                           
+
+              <div class="w-full md:w-2/2 md:w-full mb-16 md:pl-2 col-span-2">
+
+                <label for="postcode" class="font-semibold">Opmerking:</label>
+                <input type="text" name="opmerking_2" placeholder="bv Papa of Oma" [(ngModel)]="opmerking_2"
+                  class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-gray-500 border-2 border-gray-300">
+              </div>      
+
+            </fieldset>
           </div>
-          <div class="w-full md:w-1/2 mb-4 md:pl-2">
-            <label for="name" class="font-semibold">Naam:</label>
-            <input type="text" name="name" placeholder="Naam" [(ngModel)]="name"
-              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" required>
-          </div>          
-          <div class="w-full md:w-1/2 mb-4 md:pl-2">
-            <label for="email" class="font-semibold">Email 1</label>
-            <input type="email" name="email" placeholder="Email" [(ngModel)]="email"
-              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" required>
-          </div>
-          <div class="w-full md:w-1/2 mb-4 md:pl-2">
-            <label for="email" class="font-semibold">Email 2</label>
-            <input type="email" name="email" placeholder="Email" [(ngModel)]="email2"
-              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" required>
-          </div>
-          <div class="w-full md:w-1/2 mb-4 md:pr-2">
-            <label for="telefoon" class="font-semibold">Telefoon:</label>
-            <input type="tel" name="telefoon" placeholder="telefoon" [(ngModel)]="telefoon"
-              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500">
-          </div> 
-          <div class="w-full md:w-1/2 mb-4 md:pr-2">
-            <label for="telefoon" class="font-semibold">Telefoon 2:</label>
-            <input type="tel" name="telefoon" placeholder="telefoon" [(ngModel)]="telefoon2"
-              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500">
-          </div>                  
-          <div class="w-full mb-4 md:pl-2">
-            <label for="Address" class="font-semibold">Address:</label>
-            <input type="text" name="Address" placeholder="Address" [(ngModel)]="Address"
-              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" required>
-          </div>
-          <div class="w-full mb-4 md:pl-2">
-            <label for="Address" class="font-semibold">Address 2:</label>
-            <input type="text" name="Address" placeholder="Address 2" [(ngModel)]="Address2"
-              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" required>
-          </div>
-          <div class="w-full md:w-1/2 mb-4 md:pl-2">
-            <label for="geboortedatum" class="font-semibold">Geboorte Datum:</label>
-            <input type="date" name="geboortedatum" placeholder="geboortedatum" [(ngModel)]="geboortedatum"
-              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" required>
-          </div>
-          <div class="row-span-2 w-full md:w-1/2 mb-4 md:pr-2">
-            <label for="afdeling" class="font-semibold">Voornaam Afdeling:</label>
-            <select name="afdeling" [(ngModel)]="afdeling"
-              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-gray-500" required>
-              <option value="Ribbel Jongens">Ribbel J</option>
-              <option value="Robbel Meisjes">Robbel M</option>
-              <option value="Speelclub Jongens">Speelclub J</option>
-              <option value="Speelclub Meisjes">Speelclub M</option>
-              <option value="Rakkers">Rakkers</option>
-              <option value="Kwiks">Kwiks</option>
-              <option value="Toppers">Toppers</option>
-              <option value="Tippers">Tippers</option>
-              <option value="Kerels">Kerels</option>
-              <option value="Tiptiens">Tiptiens</option>
-              <option value="Aspi Jongens">Aspi Jongens</option>
-              <option value="Aspi Meisjes">Aspi Meisjes</option>
-            </select>
-          </div>
-          <div class="w-full text-center">
+    
+          <div class="w-full text-center mt-3">
             <button type="submit"
-              class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg w-3/5 mb-5">Submit</button>
+              class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-md mr-6">Pas Aan</button>
+
+            <button [routerLink]="['/ledenDetails', parameterValue]" routerLinkActive="router-link-active" 
+              class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md">Terug</button>
           </div>
+           
         </div>
       </div>
     </form>
 
-    <div class="w-full text-center" *ngIf="confirmExit">
+    <div class="w-full text-center mb-6" *ngIf="confirmExit">
       <div class="rounded-md px-2 py-3 font-bold w-1/4 text-center mt-2 mb-3 mx-auto" [style.border]="bColor" [style.background]="bgColor">
           {{ responseMessage }}
       </div>

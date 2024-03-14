@@ -16,17 +16,8 @@ export class LedenDetailsComponent implements OnInit{
   parameterValue!: any
   detailLid!: any
 
-  lidNaam!: any
-  lidVoornaam!: any
-  lidAfdeling!: any
-  lidEmail!: any
-  lidTelefoon!: any
-  lidStraat!: any
-  lidHuisnummer!: any
-  lidGemeente!: any
-  lidPostcode!: any
-
   isModalOpen: boolean = false
+  HadSecondAddress!: boolean
 
   tempAfdelingID!: number
 
@@ -38,6 +29,7 @@ export class LedenDetailsComponent implements OnInit{
     this.fb.getLidPerId(this.parameterValue).subscribe((data : any) => {
       this.leden = data
       this.tempAfdelingID = data[0].afdelingId
+      this.HadSecondAddress = data[0].hasSecondAddress
     })
   }
 
