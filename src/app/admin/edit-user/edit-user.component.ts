@@ -15,6 +15,7 @@ export class EditUserComponent implements OnInit {
   parameterValue!: string     // The user ID
   updateForm: FormGroup
 
+  
   vlaidForm: boolean = false
   showResponse: boolean = false
   responseMessage:string = ""
@@ -24,6 +25,8 @@ export class EditUserComponent implements OnInit {
   afdeling!: string
   _password!: string
   _afdelingId!: number
+
+  userDocumentId: Users[] = []
 
   constructor(private fb : FirebaseService, private route : ActivatedRoute, private formbuilder : FormBuilder, private fire : FirebaseService)  {
     this.updateForm = this.formbuilder.group({
@@ -69,7 +72,6 @@ export class EditUserComponent implements OnInit {
     const _afdeling = this.updateForm.value.afdeling
     const _afdelingId = this.fb.getAfdelingId(_afdeling)
     const _rechten = this.updateForm.value.rechten
-    console.log(_afdeling)
     const UpdatedUser = {
       name: _name,
       email: _email,
@@ -90,15 +92,15 @@ export class EditUserComponent implements OnInit {
       this.bgColor = "#9fff96"
       this.bColor = "3px solid green"
       this.responseMessage = "Nieuwe gebruiker aangemaakt"
-      this.updateUser(UpdatedUser);
+      this.fb.getAuthUserDetails(UpdatedUser.userId).subscribe((data : Users[]) => {
+        this.userDocumentId = data
+        console.log(this.userDocumentId[0].Id)
+      })
+      this.fb.updateUser(UpdatedUser, this.userDocumentId[0].Id);
       setTimeout(() =>{
         this.showResponse = false
       }, 1000)
     }    
-  }
-
-  updateUser(user: any) {
-    this.fb.updateUser(user, this.parameterValue);
   }
 
 

@@ -152,7 +152,7 @@ export class FirebaseService {
   }
 
   // update User
-  updateUser(user: any, id: string) { 
+  updateUser(user: any, id: any) { 
     const userRef = doc(this.db, 'users/'+id) as DocumentReference<Users>
     return from(updateDoc(userRef, user))
   }
@@ -162,4 +162,17 @@ export class FirebaseService {
     return from(deleteDoc(userRef))
   }
 
+  // Search user
+  searchUserWithUserId(uId : string) {
+    collectionData<Users> (
+      query(
+        collection(this.db, 'users') as CollectionReference<Users>,
+        where('userId', "==", uId),
+      ),
+      {idField: 'Id'}
+    )
+  }
+
+
+  
 }
