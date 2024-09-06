@@ -86,7 +86,7 @@ export class SignupComponent implements OnInit {
   ActivateCreateUserDocument() {
     const newUser = {
       email: this.signupForm.value.email,
-      password: this.signupForm.value.password,
+      // password: this.authservice.encryopt(this.signupForm.value.password), // Encrypt this using key
       name: this.signupForm.value.name,
       afdeling: this.signupForm.value.afdeling,
       afdelingId: this.fire.getAfdelingId(this.signupForm.value.afdeling),

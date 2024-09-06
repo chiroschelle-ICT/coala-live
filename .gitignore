@@ -44,3 +44,6 @@ Thumbs.db
 
 #files
 TODO.md
+
+# Environment variables
+/environment/*
