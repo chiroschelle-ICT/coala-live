@@ -1,17 +1,26 @@
-# CoalaBeta
-- Tijdelijke coala voor leden beheer Chiro Schelle
+# LedenBeheer Application
 
-## Versions
+This is an **Angular application** designed to manage member data (**LedenBeheer**) using **Firebase** for authentication and database services.
 
-### 0.1.1
-- Beta Release
-- All Fucntionalities
+## Features
+- User authentication with Firebase
+- Member data management
+- Mail Management
 
-### < 0.1.0
-- Development stages
-- only admins could acces it
-- basic functions
+## Usage
 
+Once the app is up and running, you can:
 
-## TODO
-- Add The possebility to add a Medical File (Mefi Fishe)
+* Add new members
+* Edit existing member information
+* Delete members from the database
+
+## Support
+
+For inquiries or questions, please contact:
+
+* **Email:** [informatica@chiroschelle.be](mailto:informatica@chiroschelle.be)
+
+## License
+
+This project is licensed under the Custom Personal Use and Contribution License. Commercial use is prohibited without contacting the author. See `LICENSE` for more details.
