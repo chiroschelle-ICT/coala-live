@@ -105,6 +105,7 @@ export class AdminDashboardComponent implements OnInit {
       { border: '2px solid #ef4444', backgroundColor: '#b91c1c' },       // Tito
       { border: '2px solid #1d4ed8', backgroundColor: '#3b82f6' },       // Keti
       { border: '2px solid #c2410c', backgroundColor: '#fb923c' },       // Aspi
+      { border: '2px solid #626964', backgroundColor: '#b4b8b5' },       // VB
     ];
     const index = Math.ceil((afId / 2) - 1)
     return colors[index]

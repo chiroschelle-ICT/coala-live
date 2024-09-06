@@ -78,20 +78,6 @@ export class LoginComponent implements OnInit {
       this.responseMessage = msg
     }
   }
-
-
-/* 
-if('succes') {
-        this.bgColor = "#9fff96"
-        this.bColor = "3px solid green"
-        this.responseMessage = "U Bent Ingelogd"
-      } else {
-        this.bgColor = "#fca5a5"
-        this.bColor = "3px solid red"
-        this.responseMessage = "Foute Gegevens!"
-      }
-     */
-
 }
 
 

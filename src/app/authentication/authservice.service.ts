@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth'
-
+import * as bcrypt from 'bcryptjs';
 import { Observable, from } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CollectionReference, collectionData, DocumentReference, Firestore, addDoc, collection, deleteDoc, doc,  query, updateDoc, where, docData, DocumentData, getFirestore } from '@angular/fire/firestore';
-import { FirebaseService } from '../service/firebase.service';
+import { environment } from '../../../environment/environment';
+import * as CryptoJS from 'crypto-js';
+
 
 
 @Injectable({
@@ -37,6 +39,7 @@ export class AuthserviceService {
     })
   }
   */
+ // User Registration with PW Encryption
   signup(email: string, passwd : string) : Promise<{status: string, userId: string}>{
     return createUserWithEmailAndPassword(this.auth, email, passwd)
       .then(userCredential => {
@@ -45,7 +48,7 @@ export class AuthserviceService {
       }) .catch(error => {
         console.error("ERROR with creating new user: " + error); 
         return { status: 'error', userId : "ERROR"}
-      });      
+    });      
   }
   addNewUsertocollection(data: DocumentData) {
     const ledenCollection = collection(this.db, 'users');
@@ -54,7 +57,6 @@ export class AuthserviceService {
  
   // Login user with password and email
   loginUser(email: string, passwd: string) {
-    console.log("Email And Password: \n" + email + " " + passwd)
     return signInWithEmailAndPassword(this.auth, email, passwd)
     .then(() => {
       return this.auth.currentUser?.getIdToken()
@@ -98,6 +100,22 @@ export class AuthserviceService {
     } else {
       return null
     }
+  }
+
+
+  // -- Password encryption
+  // Used for password encruption in the users Collection (can also be used later for more data)
+  key = environment.ENCRYPTION_KEY
+
+  encryopt(text: string): string {
+    const ecrypted = CryptoJS.AES.encrypt(text, this.key).toString()
+    console.log("ENcryupted: " + ecrypted)
+    return ecrypted
+  }
+  deecrypt(text: string): string {
+    const bytes = CryptoJS.AES.decrypt(text, this.key);
+    const originalText = bytes.toString(CryptoJS.enc.Utf8);
+    return originalText
   }
 
 }
