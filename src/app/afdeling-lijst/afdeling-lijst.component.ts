@@ -3,6 +3,7 @@ import { DataService } from '../service/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FirebaseService } from '../service/firebase.service';
 import { Subscription } from 'rxjs';
+import { MailService } from '../service/mail.service';
 
 @Component({
   selector: 'app-afdeling-lijst',
@@ -22,7 +23,7 @@ export class AfdelingLijstComponent implements OnInit {
   isChecked!: boolean;
 
 
-  constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router, private fb : FirebaseService) {}
+  constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router, private fb : FirebaseService, private mailservice : MailService) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -42,5 +43,9 @@ export class AfdelingLijstComponent implements OnInit {
     this.fb.getAllLedenPerAfdeling(num).subscribe((data: any) => {
       this.leden = data
     })
+  }
+
+  onDownloadList() {
+    this.mailservice.downloadMailList(this.leden, "LedenLijst");
   }
 }
