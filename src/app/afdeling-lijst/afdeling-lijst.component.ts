@@ -22,6 +22,7 @@ export class AfdelingLijstComponent implements OnInit {
   inschrijvingIsChecked: boolean = false;
   isChecked!: boolean;
 
+  lidCount!: number;
 
   constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router, private fb : FirebaseService, private mailservice : MailService) {}
 
@@ -42,6 +43,7 @@ export class AfdelingLijstComponent implements OnInit {
     const num = parseInt(afId)
     this.fb.getAllLedenPerAfdeling(num).subscribe((data: any) => {
       this.leden = data
+      this.lidCount = this.leden.length
     })
   }
 
