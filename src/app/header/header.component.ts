@@ -18,7 +18,9 @@ export class HeaderComponent implements OnInit {
   }
 
   test!: any
-
+  searchText!: string
+  showResults: boolean = false
+  searchResults: string[] =  ['Result 1', 'Result 2', 'Result 3']; 
 
   ngOnInit() {
     this.test = this.firebaseService.getAdmin(this.authService.getUid())
