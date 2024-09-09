@@ -15,30 +15,29 @@
       </ul>
       <div class="relative" (mouseenter)="showResults = true" (mouseleave)="showResults = false">
         <form action="">
-          <input 
+         <!--  <input 
             *ngIf="!loggedIn" 
             [(ngModel)]="searchText" 
             type="text" 
             placeholder="Search" 
             class="px-3 py-1 text-gray-800 border rounded-lg focus:outline-none focus:border-blue-500" 
-            (focus)="showResults = true" 
-            (blur)="showResults = false"
-          />
+            name="searchText"
+          /> -->
       
-          <button *ngIf="!loggedIn" class="absolute right-0 top-0 mt-1 mr-2">
+          <!-- <button *ngIf="!loggedIn" class="absolute right-0 top-0 mt-1 mr-2">
             <i class="fas fa-search text-gray-600"></i>
-          </button>
+          </button> -->
       
-          <div *ngIf="loggedIn" id="spacer"></div>
+          <div id="spacer"></div>
         </form>
       
         <div 
-          *ngIf="showResults && searchText != ''" 
+          *ngIf="searchText.length > 2"
           class="absolute left-0 w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-lg"
         >
-          <ul>
-            <li *ngFor="let result of searchResults">{{ result }} www</li>
-          </ul>
+          <!-- <ul>
+            <li *ngFor="let result of searchResults| search:searchText">{{ result.name }}</li>
+          </ul> -->
         </div>
       </div>
       
