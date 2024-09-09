@@ -34,6 +34,7 @@ import { getStorage } from 'firebase/storage';
 import { HoverDirective } from './afdeling-lijst/hover.directive';
 import { CommonModule } from '@angular/common';
 import { SortByNamePipe } from './pipes/sort-by-name.pipe';
+import { SearchPipe } from './pipes/search.pipe';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { SortByNamePipe } from './pipes/sort-by-name.pipe';
     AddLidComponent,
     HoverDirective,
     SortByNamePipe,
+    SearchPipe,
     
   ],
   imports: [
