@@ -150,6 +150,8 @@ export class AddLidComponent implements OnInit {
           email: this.email,
           email_2: this.email_2,
           betaald: false,
+          chiro_age: this.chiroAge,
+          leiding: this.isLeiding,
           // Data ouder 1:
           telefoon: this.phone,
           Address: this.street +" "+ this.houseNumber +" "+  this.postcode +" "+  this.city,
