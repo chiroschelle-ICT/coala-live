@@ -38,6 +38,10 @@ export class EditComponent implements OnInit  {
   Address_2: string = ""
   opmerking_2: string = ""
   validForm: boolean = true
+  // Lid's Age (-1/0/1)
+  chiroAge: number = 0
+  // Leiding
+  isLeiding!: boolean
 
   afdelingIdPreChange!: number
 
@@ -89,6 +93,10 @@ export class EditComponent implements OnInit  {
       this.geboortedatum = data[0].geboortedatum      
       // this.geboortedatum = this.datePipe.transform(data[0].geboortedatum, 'dd-MM-yyyy');
       this.hasSecondAddress = data[0].hasSecondAddress
+      this.isLeiding = data[0].leiding
+      this.chiroAge = data[0].chiro_age
+
+
     })
   }
 
@@ -206,6 +214,9 @@ export class EditComponent implements OnInit  {
 
   OnChangeAddress() {
     this.hasSecondAddress = !this.hasSecondAddress;
+  }
+  OnChangeIsLeiding() {
+    this.isLeiding = !this.isLeiding
   }
 
   
