@@ -134,9 +134,9 @@ export class EditComponent implements OnInit  {
         console.log("opmerking_2 leeg");
       }
     } else {
-      this.Address_2 = ""
-      this.opmerking_2 = ""
-      this.phone_2 = ""
+      this.Address_2 = "/"
+      this.opmerking_2 = "/"
+      this.phone_2 = "/"
       this.hasSecondAddress = false
     }
     if(this.validForm) {
