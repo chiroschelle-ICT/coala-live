@@ -33,6 +33,10 @@ export class AddLidComponent implements OnInit {
   postcode_2: any = ""
   city_2: string = ""
   opmerking_2: string = ""
+  // Lid's Age (-1/0/1)
+  chiroAge: number = 0
+  // Leiding
+  isLeiding: boolean = false
 
   // Validation and response 
   validForm: boolean = false
@@ -114,7 +118,9 @@ export class AddLidComponent implements OnInit {
           geboortedatum: this.geboortedatum,
           email: this.email,
           email_2: this.email_2,
+          chiro_age: this.chiroAge,
           betaald: false,
+          leiding: this.isLeiding,
           // Data ouder 1:
           telefoon: this.phone,
           Address: this.street +" "+ this.houseNumber +" "+  this.postcode +" "+  this.city,
@@ -172,7 +178,10 @@ export class AddLidComponent implements OnInit {
 
   OnChangeAddress() {
     this.hasSecondAddress = !this.hasSecondAddress;
-    }
+  }
+  OnChangeIsLeiding() {
+    this.isLeiding = !this.isLeiding
+  }
 
   clearFormInput() {
     this.voornaam = "";
@@ -186,3 +195,4 @@ export class AddLidComponent implements OnInit {
     this.city = "";
   }
 }
+
