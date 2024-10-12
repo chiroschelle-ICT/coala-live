@@ -1,6 +1,9 @@
 <div class="" *ngFor="let lid of leden"> 
     <div  class="bg-orange-300 border-2 border-black  p-6 rounded-lg shadow-md w-2/6 m-auto mt-10" >
-      <h2 class="text-2xl font-semibold mb-4 text-center">Lid Overview</h2>
+      <h2 class="text-2xl font-semibold mb-4 text-center">
+      <span *ngIf="!lid.leiding">Lid Overview</span>
+      <span *ngIf="lid.leiding">Leiding Overview</span>
+      </h2>
   
       <!-- Customer Information -->
       <div class="mb-4">
@@ -31,14 +34,19 @@
 
         <p><strong class="text-gray-800">Afdeling</strong> {{lid.afdeling}} </p>
         
+        <br>
 
+        <p><strong class="text-gray-800">Chiro Leeftijd: </strong> {{lid.chiro_age}} </p>
+        <br>        
+        
+        
       </div>
   
       <!-- Edit and Delete Buttons -->
       <div class="flex justify-between">
-        <button [routerLink]="['/edit', lid.Id]" class="bg-yellow-400 hover:bg-yellow-600 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-blue">
+<!--        <button [routerLink]="['/edit', lid.Id]" class="bg-yellow-400 hover:bg-yellow-600 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-blue">
           Aanpassen
-        </button>
+        </button> -->
         <button [routerLink]="['/afdelingLijst', tempAfdelingID]" routerLinkActive="router-link-active"  class="bg-blue-400 hover:bg-blue-600 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-red">
           Terug
         </button>

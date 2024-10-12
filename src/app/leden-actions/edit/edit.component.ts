@@ -38,6 +38,10 @@ export class EditComponent implements OnInit  {
   Address_2: string = ""
   opmerking_2: string = ""
   validForm: boolean = true
+  // Lid's Age (-1/0/1)
+  chiroAge!: number
+  // Leiding
+  isLeiding!: boolean
 
   afdelingIdPreChange!: number
 
@@ -89,6 +93,23 @@ export class EditComponent implements OnInit  {
       this.geboortedatum = data[0].geboortedatum      
       // this.geboortedatum = this.datePipe.transform(data[0].geboortedatum, 'dd-MM-yyyy');
       this.hasSecondAddress = data[0].hasSecondAddress
+      /* 
+      this.isLeiding = data[0].leiding !== undefined ? data[0].leiding : false;
+      this.chiroAge = data[0].chiro_age !== undefined ? data[0].chiro_age : 0;
+       */
+      if (this.isLeiding === undefined) {
+        this.isLeiding = data[0].leiding !== undefined ? data[0].leiding : false;
+      } else {
+        this.isLeiding = data[0].leiding;
+      }
+      
+      if (this.chiroAge === undefined) {
+        this.chiroAge = data[0].chiro_age !== undefined ? data[0].chiro_age : 0;
+      } else {
+        this.chiroAge = data[0].chiro_age;
+      }
+      
+
     })
   }
 
@@ -130,13 +151,13 @@ export class EditComponent implements OnInit  {
         this.validForm = false;
         console.log("Address_2 leeg");
       } else if (!item.opmerking_2 || item.opmerking_2.trim() === ''){
-        this.validForm = false;
+        this.opmerking_2 = "/"
         console.log("opmerking_2 leeg");
       }
     } else {
-      this.Address_2 = ""
-      this.opmerking_2 = ""
-      this.phone_2 = ""
+      this.Address_2 = "/"
+      this.opmerking_2 = "/"
+      this.phone_2 = "/"
       this.hasSecondAddress = false
     }
     if(this.validForm) {
@@ -168,7 +189,9 @@ export class EditComponent implements OnInit  {
       Opmerking: this.opmerking,
       Opmerking_2: this.opmerking_2,
       geboortedatum: this.geboortedatum,
-      hasSecondAddress: this.hasSecondAddress
+      hasSecondAddress: this.hasSecondAddress,
+      chiro_age: this.chiroAge,
+      leiding: this.isLeiding,
     }
     this.firebaseservice.updateLid(updatedLid, this.parameterValue);
     this.responseMessage = "Lid Aangepast!";
@@ -206,6 +229,9 @@ export class EditComponent implements OnInit  {
 
   OnChangeAddress() {
     this.hasSecondAddress = !this.hasSecondAddress;
+  }
+  OnChangeIsLeiding() {
+    this.isLeiding = !this.isLeiding
   }
 
   
