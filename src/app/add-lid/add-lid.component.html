@@ -57,11 +57,12 @@
         <div class="w-full md:w-2/2 mb-4 md:pl-2">
           <label for="email" class="font-semibold">Chiro Leeftijd:</label><br>
           <div class="mx-auto w-fit">
-            <select class="bg-gray-300 rounded-lg px-4 py-1" [(ngModel)]="chiroAge">
-              <option>-1 - Jaar Blijven Zitten</option>
-              <option selected>0 - Normaal</option>
-              <option>1 - Jaar Overgeslagen</option>
-            </select>
+            <select name="chiroAge" [(ngModel)]="chiroAge"
+              class="bg-gray-300 rounded-lg px-4 py-1" required>
+              <option value="-1">Jaar Blijven Zitten</option>
+              <option value="0">Normaal</option>
+              <option value="+1">Jaar Overgeslagen</option>
+          </select>
           </div>
         </div>
 
