@@ -13,13 +13,34 @@
         <li [routerLink]="['/AdminDashboard']" routerLinkActive="router-link-active"  class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Admin</a></li>
 <!--         <li [routerLink]="['/subParent']" routerLinkActive="router-link-active"  class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Super Scary Subject stuff</a></li> -->
       </ul>
-      <div class="relative">
-        <input type="text" placeholder="Search" class="px-3 py-1 text-gray-800 border rounded-lg focus:outline-none focus:border-blue-500" />
-        
-        <button class="absolute right-0 top-0 mt-1 mr-2">
+      <div class="relative" (mouseenter)="showResults = true" (mouseleave)="showResults = false">
+        <form action="">
+         <!--  <input 
+            *ngIf="!loggedIn" 
+            [(ngModel)]="searchText" 
+            type="text" 
+            placeholder="Search" 
+            class="px-3 py-1 text-gray-800 border rounded-lg focus:outline-none focus:border-blue-500" 
+            name="searchText"
+          /> -->
+      
+          <!-- <button *ngIf="!loggedIn" class="absolute right-0 top-0 mt-1 mr-2">
             <i class="fas fa-search text-gray-600"></i>
-        </button>
+          </button> -->
+      
+          <div id="spacer"></div>
+        </form>
+      
+        <div 
+          *ngIf="searchText.length > 2"
+          class="absolute left-0 w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-lg"
+        >
+          <!-- <ul>
+            <li *ngFor="let result of searchResults| search:searchText">{{ result.name }}</li>
+          </ul> -->
+        </div>
       </div>
+      
     </nav>
   </header>
   

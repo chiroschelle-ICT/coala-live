@@ -69,11 +69,11 @@
       <span class="text-lg font-bold">TOTAAL </span> 
     </div>
     <div class="text-center w-fit px-3 ml-6">
-      <span class="text-lg font-semibold">10</span>
+      <span class="text-lg font-semibold"> {{lidCount}} </span>
     </div>
     <div class="col-span-4"></div>
     <div class="col-span-1 text-center">
-      <button class="bg-red-500 border-2 border-red-800 hover:bg-red-800  ease-in-out duration-400 px-5 rounded-md text-white font-semibold"> Download Mail Lijst </button>      
+      <button (click)="onDownloadList()" class="bg-red-500 border-2 border-red-800 hover:bg-red-800  ease-in-out duration-400 px-5 rounded-md text-white font-semibold"> Download Mail Lijst </button>      
     </div>
   </div>
 

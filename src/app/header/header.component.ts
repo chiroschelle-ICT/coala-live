@@ -3,6 +3,7 @@ import { DataService } from '../service/data.service';
 import { AuthserviceService } from '../authentication/authservice.service';
 import { NavigationEnd, Route, Router } from '@angular/router';
 import { FirebaseService } from '../service/firebase.service';
+import { Leden } from 'src/interfaces/Leden';
 
 @Component({
   selector: 'app-header',
@@ -12,12 +13,13 @@ import { FirebaseService } from '../service/firebase.service';
 export class HeaderComponent implements OnInit {
 
   loggedIn!: boolean
+  test!: any
+  showResults: boolean = false
+  public searchText: any = '';
 
   constructor(private auth : AuthserviceService, private router : Router, private authService : AuthserviceService, private firebaseService : FirebaseService) {
     this.loggedIn = this.auth.isLoggedIn()
   }
-
-  test!: any
 
 
   ngOnInit() {

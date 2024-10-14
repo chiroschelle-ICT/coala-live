@@ -38,6 +38,11 @@ export class EditComponent implements OnInit  {
   Address_2: string = ""
   opmerking_2: string = ""
   validForm: boolean = true
+  // Lid's Age (-1/0/1)
+  chiroAge: number = 0
+  // Leiding
+  isLeiding!: boolean
+  payed!: boolean
 
   afdelingIdPreChange!: number
 
@@ -56,25 +61,19 @@ export class EditComponent implements OnInit  {
   ngOnInit(): void {
     this.fillDataOfLid()
     this.saved = false;
-    console.log(this.afdelingId)
   }
 
-  
-
-  loadParameter() {
-    
-  }
-  
   fillDataOfLid() {
     this.route.params.subscribe(params => {
       this.parameterValue = params['lidId']
-    
     })
 
     this.firebaseservice.getLidPerId(this.parameterValue).subscribe((data: any) => {
       this.voornaam = data[0].voornaam
+      this.payed = data[0].betaald
       this.name = data[0].name
       this.department = data[0].afdeling
+      this.chiroAge = data[0].chiro_age
       if(this.setTimeoutActive) {
         this.afdelingIdPreChange = data[0].afdelingId
       }
@@ -89,12 +88,28 @@ export class EditComponent implements OnInit  {
       this.geboortedatum = data[0].geboortedatum      
       // this.geboortedatum = this.datePipe.transform(data[0].geboortedatum, 'dd-MM-yyyy');
       this.hasSecondAddress = data[0].hasSecondAddress
+      /* 
+      this.isLeiding = data[0].leiding !== undefined ? data[0].leiding : false;
+      this.chiroAge = data[0].chiro_age !== undefined ? data[0].chiro_age : 0;
+       */
+      if (this.isLeiding === undefined) {
+        this.isLeiding = data[0].leiding !== undefined ? data[0].leiding : false;
+      } else {
+        this.isLeiding = data[0].leiding;
+      }
+      
+      if (this.chiroAge === undefined) {
+        this.chiroAge = data[0].chiro_age !== undefined ? data[0].chiro_age : 0;
+      } else {
+        this.chiroAge = data[0].chiro_age;
+      }
+      
+
     })
   }
 
   // On Submit
   editLidForm(item: any) {
-    console.log("Pas aan Pressed.")
     this.validateForm(item);
   }
 
@@ -122,7 +137,6 @@ export class EditComponent implements OnInit  {
       this.email_2 = ""
     }
     if(this.hasSecondAddress){
-      console.log("2de Address")
       if (!item.phone_2 || item.phone_2.trim() === '') {
         this.validForm = false;
         console.log("phone_2 leeg");
@@ -130,13 +144,13 @@ export class EditComponent implements OnInit  {
         this.validForm = false;
         console.log("Address_2 leeg");
       } else if (!item.opmerking_2 || item.opmerking_2.trim() === ''){
-        this.validForm = false;
+        this.opmerking_2 = "/"
         console.log("opmerking_2 leeg");
       }
     } else {
-      this.Address_2 = ""
-      this.opmerking_2 = ""
-      this.phone_2 = ""
+      this.Address_2 = "/"
+      this.opmerking_2 = "/"
+      this.phone_2 = "/"
       this.hasSecondAddress = false
     }
     if(this.validForm) {
@@ -153,6 +167,7 @@ export class EditComponent implements OnInit  {
 
   // Handle and Edit the data
   editData(item: any) {
+    console.log(this.chiroAge)
     const updatedLid = {
       voornaam: this.voornaam,
       name: this.name,
@@ -164,11 +179,13 @@ export class EditComponent implements OnInit  {
       telefoon_2: this.phone_2,
       Address: this.Address,
       Address_2: this.Address_2,
-      betaald: false,
       Opmerking: this.opmerking,
       Opmerking_2: this.opmerking_2,
       geboortedatum: this.geboortedatum,
-      hasSecondAddress: this.hasSecondAddress
+      hasSecondAddress: this.hasSecondAddress,
+      chiro_age: this.chiroAge,
+      leiding: this.isLeiding,
+      betaald: this.payed,
     }
     this.firebaseservice.updateLid(updatedLid, this.parameterValue);
     this.responseMessage = "Lid Aangepast!";
@@ -206,6 +223,9 @@ export class EditComponent implements OnInit  {
 
   OnChangeAddress() {
     this.hasSecondAddress = !this.hasSecondAddress;
+  }
+  OnChangeIsLeiding() {
+    this.isLeiding = !this.isLeiding    
   }
 
   
