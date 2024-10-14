@@ -9,7 +9,7 @@ import { adminGuard } from '../guards/admin.guard';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'singup', component: SignupComponent,  canActivate: [adminGuard] },
-  { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
+  { path: 'logout', component: LogoutComponent, /*canActivate: [AuthGuard]*/ },
 ];
 
 @NgModule({
