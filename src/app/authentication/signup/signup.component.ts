@@ -68,7 +68,7 @@ export class SignupComponent implements OnInit {
         this.bgColor = "#9fff96"
         this.bColor = "3px solid green"
         this.responseMessage = "Nieuwe gebruiker aangemaakt"
-        this.ActivateCreateUserDocument()
+        this.ActivateCreateUserDocument() 
         this.clearFields()
         setTimeout(() =>{
           this.showResponse = false
