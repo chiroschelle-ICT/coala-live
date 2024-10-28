@@ -117,35 +117,32 @@ export class EditComponent implements OnInit  {
   validateForm(item: any) {
     if (!item.voornaam || item.voornaam.trim() === '') {
       this.validForm = false;
-      console.log("Voornaam leeg");
+      this.responseMessage = "Voornaam leeg"
     } else if (!item.name || item.name.trim() === '') {
       this.validForm = false;
-      console.log("Naam leeg");
+      this.responseMessage = "Naam leeg"
     } else if (!item.email || item.email.trim() === ''){
       this.validForm = false;
-      console.log("Email leeg");
+      this.responseMessage = "Email leeg"
     } else if (!item.phone || item.phone.trim() === '') {
       this.validForm = false;
-      console.log("telefoon leeg");
+      this.responseMessage = "1ste telefoon nummer is leeg"
     } else if (!item.Address || item.Address.trim() === ''){
       this.validForm = false;
-      console.log("Address leeg");
+      this.responseMessage = "1ste Address is leeg"
     } else if (!item.opmerking || item.opmerking.trim() === ''){
       this.validForm = false;
-      console.log("opmerking leeg");
+      this.responseMessage = "1ste Opmerking is leeg"
     } else if(!item.email_2 || item.email_2.trim() === ''){
       this.email_2 = ""
     }
     if(this.hasSecondAddress){
       if (!item.phone_2 || item.phone_2.trim() === '') {
-        this.validForm = false;
-        console.log("phone_2 leeg");
+        this.responseMessage = "2de Telefoon nummer is  leeg"
       } else if (!item.Address_2 || item.Address_2.trim() === ''){
-        this.validForm = false;
-        console.log("Address_2 leeg");
+        this.responseMessage = "2de Addres is leeg"
       } else if (!item.opmerking_2 || item.opmerking_2.trim() === ''){
-        this.opmerking_2 = "/"
-        console.log("opmerking_2 leeg");
+        this.responseMessage = "2de Opmrking is leeg"
       }
     } else {
       this.Address_2 = "/"
@@ -158,7 +155,6 @@ export class EditComponent implements OnInit  {
       this.editData(item)
     } else if (!this.validForm) {
       this.confirmExit = true;
-      this.responseMessage = "Vul Alle Velden In!";
       this.bgColor = "#fca5a5"
       this.bColor = "3px solid red"
     }

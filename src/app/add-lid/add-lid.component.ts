@@ -13,7 +13,7 @@ export class AddLidComponent implements OnInit {
   // Lid Data (only 1)
   voornaam: string = ""
   name: string = ""
-  department: string = ""
+  department: string = 'Ribbel Jongens';
   afdelingId: number = 0
   hasSecondAddress: boolean = false
   // Data for 1st Parent

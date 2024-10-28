@@ -12,17 +12,22 @@ export class HoverDirective {
 
   @HostListener('mouseenter') onMouseEnter() {
     if(!this.appHover) {
-      this.renderer.setStyle(this.el.nativeElement, 'background-color', '#FFA500'); // Change the background color
-      this.renderer.setStyle(this.el.nativeElement, 'font-size', '18px'); // Change the font size
-    } else{
-      this.renderer.setStyle(this.el.nativeElement, 'background-color', '#44b7cf');
+      this.renderer.setStyle(this.el.nativeElement, 'background-color', '#FFA500'); 
       this.renderer.setStyle(this.el.nativeElement, 'font-size', '18px'); 
+    } else{
+      this.renderer.setStyle(this.el.nativeElement, 'background-color', '#edd766');
+      this.renderer.setStyle(this.el.nativeElement, 'font-size', '20px'); 
     }
   }
 
   @HostListener('mouseleave') onMouseLeave() {
-    this.renderer.removeStyle(this.el.nativeElement, 'background-color');
-    this.renderer.removeStyle(this.el.nativeElement, 'font-size');
+    if(!this.appHover) {
+      this.renderer.setStyle(this.el.nativeElement, 'background-color', '#edd766'); 
+      this.renderer.setStyle(this.el.nativeElement, 'font-size', '18px');
+    } else{
+      this.renderer.setStyle(this.el.nativeElement, 'background-color', '#FFA500');
+      this.renderer.setStyle(this.el.nativeElement, 'font-size', '18px'); 
+    }
   }
 
 }
