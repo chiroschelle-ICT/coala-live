@@ -7,7 +7,7 @@ import { ParentComponent } from './parent/parent.component';
 import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
-  { path: 'subParent', component: ParentComponent, /*canActivate: [AuthGuard]*/ },
+  { path: 'subParent', component: ParentComponent,canActivate: [AuthGuard] },
 ];
 
 @NgModule({
