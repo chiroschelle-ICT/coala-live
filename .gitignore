@@ -49,4 +49,4 @@ TODO.md
 /environment/*
 
 # routing files
-**/*.routing.module.ts
+*.routing.module.ts
