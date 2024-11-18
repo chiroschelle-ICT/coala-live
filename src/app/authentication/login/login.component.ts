@@ -78,6 +78,12 @@ export class LoginComponent implements OnInit {
       this.responseMessage = msg
     }
   }
+
+  tempOutage() {
+    this.bgColor = "#E9D502"
+    this.bColor = "3px solid orange"
+    this.responseMessage = "De Coala Staat tijdelijk uit."
+  }
 }
 
 
