@@ -22,10 +22,10 @@ export class HoverDirective {
 
   @HostListener('mouseleave') onMouseLeave() {
     if(!this.appHover) {
-      this.renderer.setStyle(this.el.nativeElement, 'background-color', '#edd766'); 
+      this.renderer.setStyle(this.el.nativeElement, 'background-color', '#fdba74'); 
       this.renderer.setStyle(this.el.nativeElement, 'font-size', '18px');
     } else{
-      this.renderer.setStyle(this.el.nativeElement, 'background-color', '#FFA500');
+      this.renderer.setStyle(this.el.nativeElement, 'background-color', '#fb923c');
       this.renderer.setStyle(this.el.nativeElement, 'font-size', '18px'); 
     }
   }
